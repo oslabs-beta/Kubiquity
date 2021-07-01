@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname + "../src")));
+app.use("/build", express.static(path.join(__dirname + "../build")));
 
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "../index.html")));
 app.use((req, res) => res.status(404).send("Unable to find item"));
