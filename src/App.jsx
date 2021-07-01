@@ -1,8 +1,13 @@
 import React from 'react';
 
+import Errors from './components/errors/Errors';
+import Pods from './components/pods/Pods';
+
 const App = () => (
   <div>
-    React work will go here.
+    <h1>Kubiquity</h1>
+    <Errors />
+    <Pods/>
   </div>
 );
 
