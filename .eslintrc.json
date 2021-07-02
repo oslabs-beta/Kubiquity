@@ -1,0 +1,48 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier", "react"],
+  "rules": {
+    "indent": ["warn", 2],
+    "arrow-parens": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "no-console": "off",
+    "radix": "off",
+    "react/button-has-type": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "semi": ["warn", "always"],
+    "space-infix-ops": "warn",
+    "quotes": ["warn", "single"],
+    "prefer-const": "warn",
+    "no-unused-vars": ["off", { "vars": "local" }],
+    "no-case-declarations": "off"
+  },
+  "settings": {
+    "react": { "version": "detect" },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
