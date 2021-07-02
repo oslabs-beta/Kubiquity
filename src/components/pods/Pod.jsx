@@ -1,11 +1,5 @@
 import React from 'react';
 
-// Pod might have:
-// pod ID
-// pod name
-// memory usage
-// the pod's associated node
-
 class Pod extends React.Component {
   render() {
     const {
@@ -19,11 +13,11 @@ class Pod extends React.Component {
       <>
         <div>Pod</div>
         <div>ID: {podId}</div>
-        <div>name: {name}</div>
-        <div>current memory useage: { currentMemoryUsage}</div>
+        <div>Name: {name}</div>
+        <div>Current Memory Useage: {currentMemoryUsage}</div>
         <div>Parent Node ID: {parentNode}</div>
       </>
-    )
+    );
   }
 }
 

@@ -45,9 +45,10 @@ class Pods extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            pods: []
+            pods: [],
         }
     }
+
     componentDidMount() {
         // MOCK POD WORK FOR TESTING AND DEVELOPMENT:
         this.setState({ pods: MOCK_PODS });
@@ -65,25 +66,19 @@ class Pods extends React.Component {
     }
 
     render() {
+        const pods = this.state.pods.map((pod, i) => (
+            <Pod
+                key={`pod${i}`}
+                {...pod}
+            />
+        ));
 
-        const newPods = []
-
-        for (let i = 0; i < this.state.pods.length; i++) {
-            const currentPod = this.state.pods[i]
-
-            newPods.push(
-                <Pod
-                    key={`pod${i}`}
-                    {...currentPod}
-                />
-            )
-        }
         return (
             <div>
                 Pods
-                {newPods}
+                {pods}
             </div>
-        )
+        );
     }
 }
 

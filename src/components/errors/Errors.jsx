@@ -2,6 +2,7 @@ import React from 'react';
 
 import Error from './Error';
 
+// TODO: update indent spacing. 
 const MOCK_ERRORS = [
     {
         message: 'OOM error',
@@ -49,16 +50,13 @@ class Errors extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            errors: []
+            errors: [],
         }
     }
 
     componentDidMount() {
         // MOCK ERROR WORK FOR TESTING AND DEVELOPMENT:
         this.setState({ errors: MOCK_ERRORS });
-
-        // getting errors via fetch
-        // GET request to /errors
 
         // TODO: use GET request to /errors once route is written on backend.
         // fetch('/errors')
@@ -73,29 +71,17 @@ class Errors extends React.Component {
     }
     
     render() {
-        // Goal: render each error by passing each error's information to an Error component. 
-        // Errors are in this.state.errors => this.state.errors is an array. 
-        // Iterate through our array and create a new array of Error components. 
-        const newErrors = [];
-
-        for (let i = 0; i < this.state.errors.length; i++) {
-            // if this.state.errors is an array of objects, then currentError is one error object.
-            const currentError = this.state.errors[i];
-
-            newErrors.push(
-                <Error
-                    key={`error${ i }`}
-                    {...currentError}
-                />
-            )
-        }
-
-        // After for loop, newErrors will be an array of Error React Components. 
+        const errors = this.state.errors.map((err, i) => (
+          <Error
+            key={`error${ i }`}
+            {...err}
+          />
+        ));
 
         return (
             <div>
                 Errors
-                {newErrors}
+                {errors}
             </div>
         )
     }
