@@ -11,6 +11,7 @@ app.use(express.static(path.resolve(__dirname + '../src')));
 app.use('/build', express.static(path.join(__dirname + '../build')));
 
 app.use((req, res) => res.status(404).send('Unable to find item'));
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -25,7 +26,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}...`);
+  console.log(`Server running on ${ PORT }...`);
 });
 
 module.exports = app;
