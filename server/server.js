@@ -10,6 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname + '../src')));
 app.use('/build', express.static(path.join(__dirname + '../build')));
 
+//test comment
+
 app.use((req, res) => res.status(404).send('Unable to find item'));
 app.use((err, req, res, next) => {
   const defaultErr = {
