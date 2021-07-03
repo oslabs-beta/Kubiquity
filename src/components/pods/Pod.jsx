@@ -10,7 +10,7 @@ const Pod = ({
     <div>Pod</div>
     <div>ID: {podId}</div>
     <div>Name: {name}</div>
-    <div>Current Memory Useage: {currentMemoryUsage}</div>
+    <div>Current Memory Usage: {currentMemoryUsage}</div>
     <div>Parent Node ID: {parentNode}</div>
   </>
 );
