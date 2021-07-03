@@ -44,10 +44,11 @@ const MOCK_PODS = [
 
 class Pods extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
       pods: [],
-    }
+    };
   }
 
   componentDidMount() {

@@ -10,7 +10,7 @@ const App = () => (
   <div>
     <h1>Kubiquity</h1>
     <Errors />
-    <Pods/>
+    <Pods />
   </div>
 );
 
