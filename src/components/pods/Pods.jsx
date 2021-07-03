@@ -66,12 +66,8 @@ class Pods extends React.Component {
   }
 
   render() {
-    const pods = this.state.pods.map((pod, i) => (
-      <Pod
-        key={`pod${ i }`}
-        {...pod}
-      />
-    ));
+    const pods = this.state.pods
+      .map((pod, i) => <Pod key={`pod${ i }`} {...pod} />);
 
     return (
       <div>

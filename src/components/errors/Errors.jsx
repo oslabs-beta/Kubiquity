@@ -69,12 +69,8 @@ class Errors extends React.Component {
   }
   
   render() {
-    const errors = this.state.errors.map((err, i) => (
-      <PodError
-        key={`error${ i }`}
-        {...err}
-      />
-    ));
+    const errors = this.state.errors
+      .map((err, i) => <PodError key={`error${ i }`} {...err} />);
 
     return (
       <div>
