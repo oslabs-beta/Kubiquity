@@ -1,0 +1,26 @@
+/* Electron CSS reset */
+
+html {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  cursor: default;
+}
+
+input, textarea, select, button, img {
+  -webkit-user-drag: none;
+}
+
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.selectable {
+  -webkit-user-select: auto;
+  cursor: auto;
+}
+
+/* End of Electron CSS reset */
+
+/* TODO: consider replacing CSS with SASS */
+
+
