@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Pod from './Pod';
+import ApexChart from './MemoryBarChart';
 import MemoryBarChart from '../../charts/BarChart.jsx';
 
 const MOCK_PODS = [
@@ -87,6 +88,7 @@ class Pods extends React.Component {
 
     return (
       <div>
+        <ApexChart />
         <div>
           Pods
         </div>
