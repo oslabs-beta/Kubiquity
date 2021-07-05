@@ -84,6 +84,7 @@ class Errors extends React.Component {
     return (
       <div>
         Errors
+        <ErrorsTable data={this.state.errors} />
         {errors}
       </div>
     )
