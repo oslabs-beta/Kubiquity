@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PodError from './PodError';
+// import PodError from './PodError';
 import ErrorsTable from './ErrorsTable';
 
 const MOCK_ERRORS = [
@@ -78,14 +78,14 @@ class Errors extends React.Component {
       )
     }
 
-    const errors = this.state.errors
-      .map((err, i) => <PodError key={`error${ i }`} {...err} />);
+    // const errors = this.state.errors
+    //   .map((err, i) => <PodError key={`error${ i }`} {...err} />);
 
     return (
       <div>
         Errors
         <ErrorsTable data={this.state.errors} />
-        {errors}
+        {/* {errors} */}
       </div>
     )
   }

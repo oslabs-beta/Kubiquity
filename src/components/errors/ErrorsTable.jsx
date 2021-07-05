@@ -1,36 +1,46 @@
 import React, { useMemo } from 'react';
-import { useTable } from 'react-table';
+import { useTable, useSortBy } from 'react-table';
+
+// TODO: decide if useMemo is appropriate for our app. 
+// TODO: figure out if columns should be composed in the Errors component. 
+// TODO: move styling to CSS. 
+// TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
 
 const ErrorsTable = ({ data }) => {
-  debugger
-  const values = useMemo(() => data, []);
+  // const values = useMemo(() => data, []);
 
-  const columns = useMemo(() => ([
+  const columns = useMemo(() => [
+    {
+      Header: 'Timestamp',
+      accessor: 'createdAt',
+      sortType: 'basic',
+    },
     {
       Header: 'Message',
       accessor: 'message',
+      sortType: 'basic',
     },
     {
       Header: 'Status Code',
       accessor: 'statusCode',
-    },
-    {
-      Header: 'Timestamp',
-      accessor: 'createdAt',
+      sortType: 'basic',
     },
     {
       Header: 'Severity',
       accessor: 'severity',
+      sortType: 'basic',
     },
     {
       Header: 'Recommended Actions',
       accessor: 'recommendedActions',
+      sortType: 'basic',
     },
     {
       Header: 'Pod ID',
       accessor: 'pod',
+      sortType: 'basic',
     },
-  ]),[]);
+  ],[]);
 
   const {
     getTableProps,
@@ -38,7 +48,7 @@ const ErrorsTable = ({ data }) => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data });
+  } = useTable({ columns, data }, useSortBy);
 
   return (
     <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
@@ -47,7 +57,7 @@ const ErrorsTable = ({ data }) => {
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
               <th
-                {...column.getHeaderProps()}
+                {...column.getHeaderProps(column.getSortByToggleProps())}
                 style={{
                   borderBottom: 'solid 3px red',
                   background: 'aliceblue',
@@ -56,6 +66,9 @@ const ErrorsTable = ({ data }) => {
                 }}
               >
                 {column.render('Header')}
+                <span>
+                  {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                </span>
               </th>
             ))}
           </tr>
