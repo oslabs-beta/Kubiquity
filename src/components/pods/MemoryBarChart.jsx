@@ -22,12 +22,8 @@ class MemoryBarChart extends React.Component {
             horizontal: true,
           },
         },
-        dataLabels: {
-          enabled: false,
-        },
-        xaxis: {
-          categories,
-        },
+        dataLabels: { enabled: false },
+        xaxis: { categories },
       },
     };
   }
