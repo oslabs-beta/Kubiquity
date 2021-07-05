@@ -69,6 +69,14 @@ class Errors extends React.Component {
   }
   
   render() {
+    if (!this.state.errors.length) {
+      return (
+        <>
+          Loading errors, please wait . . . 
+        </>
+      )
+    }
+
     const errors = this.state.errors
       .map((err, i) => <PodError key={`error${ i }`} {...err} />);
 
