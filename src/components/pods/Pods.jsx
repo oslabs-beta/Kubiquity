@@ -2,7 +2,6 @@ import React from 'react';
 
 import Pod from './Pod';
 import ApexChart from './MemoryBarChart';
-import MemoryBarChart from '../../charts/BarChart.jsx';
 
 const MOCK_PODS = [
   {
@@ -69,31 +68,28 @@ class Pods extends React.Component {
   }
 
   render() {
+    if (!this.state.pods.length) return (
+      <>Loading pods, please wait . . . </>
+    );
+
+    const memoryValues = new Array(this.state.pods.length);
+    const podLabels = new Array(this.state.pods.length);
     const reactPods = new Array(this.state.pods.length);
-    const barChartData = new Array(this.state.pods.length);
 
     this.state.pods.forEach((pod, i) => {
-      const barChartDatum = {
-        text: pod.podId,
-        value: pod.currentMemoryUse,
-      };
-
-      const reactPod = (
-        <Pod key={`pod${i}`} {...pod} />
-      );
-
-      reactPods[i] = reactPod;
-      barChartData[i] = barChartDatum;
+      memoryValues[i] = pod.currentMemoryUse;
+      podLabels[i] = `${ pod.name } (${ pod.podId })`;
+      reactPods[i] = (<Pod key={`pod${i}`} {...pod} />);
     });
 
     return (
       <div>
-        <ApexChart />
         <div>
           Pods
         </div>
-        <MemoryBarChart
-          data={barChartData}
+        <ApexChart
+          data={memoryValues}
+          categories={podLabels}
         />
         {reactPods}
       </div>

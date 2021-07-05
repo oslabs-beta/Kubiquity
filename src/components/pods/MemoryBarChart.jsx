@@ -4,11 +4,11 @@ import ReactApexCharts from 'react-apexcharts';
 class ApexChart extends React.Component {
   constructor(props) {
     super(props);
-
+    const { data, categories } = props;
+    debugger
     this.state = {
-    
       series: [{
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+        data,
       }],
       options: {
         chart: {
@@ -25,21 +25,23 @@ class ApexChart extends React.Component {
           enabled: false
         },
         xaxis: {
-          categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-            'United States', 'China', 'Germany'
-          ],
+          categories,
         }
       },
-    
-    
     };
   }
 
   render() {
+    debugger
     return (
       <div id="chart">
         hello
-        <ReactApexCharts options={this.state.options} series={this.state.series} type="bar" height={350} />
+        <ReactApexCharts
+          options={this.state.options}
+          series={this.state.series}
+          type="bar"
+          height={350}
+        />
       </div>
     )
   }
