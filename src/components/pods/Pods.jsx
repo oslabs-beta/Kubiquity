@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Pod from './Pod';
-import MemoryBarChart from '../../charts/BarChart.jsx';
+import MemoryBarChart from './MemoryBarChart';
 
 const MOCK_PODS = [
   {
