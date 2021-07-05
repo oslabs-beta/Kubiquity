@@ -68,18 +68,24 @@ class Pods extends React.Component {
   }
 
   render() {
+    if (!this.state.pods.length) {
+      return (
+        <>
+          Loading pods, please wait . . . 
+        </>
+      )
+    }
+    
     const reactPods = new Array(this.state.pods.length);
     const barChartData = new Array(this.state.pods.length);
 
     this.state.pods.forEach((pod, i) => {
+      const reactPod = (<Pod key={`pod${i}`} {...pod} />);
+
       const barChartDatum = {
         text: pod.podId,
         value: pod.currentMemoryUse,
       };
-
-      const reactPod = (
-        <Pod key={`pod${i}`} {...pod} />
-      );
 
       reactPods[i] = reactPod;
       barChartData[i] = barChartDatum;
