@@ -1,41 +1,40 @@
 import React from 'react';
 import ReactApexCharts from 'react-apexcharts';
 
-class ApexChart extends React.Component {
+// TODO: decide how we plan on setting height for this chart. 
+// TODO: customize this component as needed. 
+// TODO: test out given download functions. 
+class MemoryBarChart extends React.Component {
   constructor(props) {
     super(props);
     const { data, categories } = props;
-    debugger
+
     this.state = {
-      series: [{
-        data,
-      }],
+      series: [{ data }],
       options: {
         chart: {
           type: 'bar',
-          height: 350
+          height: 350,
         },
         plotOptions: {
           bar: {
             borderRadius: 4,
             horizontal: true,
-          }
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         xaxis: {
           categories,
-        }
+        },
       },
     };
   }
 
   render() {
-    debugger
     return (
-      <div id="chart">
-        hello
+      <div>
         <ReactApexCharts
           options={this.state.options}
           series={this.state.series}
@@ -47,4 +46,4 @@ class ApexChart extends React.Component {
   }
 }
 
-export default ApexChart;
+export default MemoryBarChart;
