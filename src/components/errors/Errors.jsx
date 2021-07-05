@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PodError from './PodError';
+import ErrorsTable from './ErrorsTable';
 
 const MOCK_ERRORS = [
   {
