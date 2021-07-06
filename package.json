@@ -22,8 +22,11 @@
   "homepage": "https://github.com/oslabs-beta/Kubiquity#readme",
   "dependencies": {
     "@kubernetes/client-node": "^0.15.0",
+    "dotenv": "^10.0.0",
     "electron": "^13.1.4",
     "express": "^4.17.1",
+    "mongoose": "^5.13.1",
+    "node-cmd": "^4.0.0",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
