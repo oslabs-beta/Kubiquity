@@ -1,18 +1,15 @@
-const mongoose = require('mongoose');
+const { Schema, connect, model } = require('mongoose');
 require('dotenv').config();
 
 const URI = process.env.MONGO_URI;
 
-mongoose
-  .connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: 'test',
-  })
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch((err) => console.log(err));
-
-const Schema = mongoose.Schema;
+connect(URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: 'test',
+}).then(() => {
+  console.log('Connected to Mongo DB.');
+}).catch((err) => console.log(err));
 
 const errorSchema = new Schema({
   namespace: {
@@ -41,8 +38,7 @@ const errorSchema = new Schema({
   },
 }, {
   timestamps: true,
-})
+});
 
-const Error = mongoose.model('error', errorSchema);
-
-module.exports = Error;
+const K8sError = model('error', errorSchema);
+module.exports = K8sError;
