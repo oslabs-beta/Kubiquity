@@ -24,8 +24,8 @@
   "homepage": "https://github.com/oslabs-beta/Kubiquity#readme",
   "dependencies": {
     "@kubernetes/client-node": "^0.15.0",
-    "dotenv": "^10.0.0",
     "apexcharts": "^3.27.1",
+    "dotenv": "^10.0.0",
     "electron": "^13.1.4",
     "express": "^4.17.1",
     "mongoose": "^5.13.1",
@@ -33,7 +33,6 @@
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-apexcharts": "^1.3.9",
-    "react-bar-chart": "^0.1.2",
     "react-dom": "^17.0.2",
     "react-table": "^7.7.0"
   },
