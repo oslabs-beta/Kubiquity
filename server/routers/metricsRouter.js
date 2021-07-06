@@ -1,4 +1,6 @@
 const express = require('express');
-const errorsController = require('../controllers/errorsController');
+const errorsController = require('../controllers/metricsController');
 
 const router = express.Router();
+
+module.exports = router;
