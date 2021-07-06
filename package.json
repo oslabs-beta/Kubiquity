@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "rm -rf build && webpack --mode production",
-    "watch": "rm -rf build && webpack --config webpack.common.js --watch",
-    "dev": "rm -rf build && webpack --config webpack.common.js --watch --mode development",
+    "build": "rm -rf build && webpack --mode production --config webpack.common.js",
+    "dev": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .' 'nodemon server/server.js'",
+    "frontend": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .'",
+    "backend": "nodemon server/server.js",
+    "react": "rm -rf build && webpack --config webpack.common.js --watch  --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,13 +25,17 @@
   "dependencies": {
     "@kubernetes/client-node": "^0.15.0",
     "dotenv": "^10.0.0",
+    "apexcharts": "^3.27.1",
     "electron": "^13.1.4",
     "express": "^4.17.1",
     "mongoose": "^5.13.1",
     "node-cmd": "^4.0.0",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-apexcharts": "^1.3.9",
+    "react-bar-chart": "^0.1.2",
+    "react-dom": "^17.0.2",
+    "react-table": "^7.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
