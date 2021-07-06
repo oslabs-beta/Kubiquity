@@ -14,4 +14,12 @@ router.get(
   )
 );
 
+router.get(
+  '/test',
+  errorsController.getErrors,
+  (req, res) => (
+    res.status(200).json(res.locals.errors)
+  )
+);
+
 module.exports = router;
