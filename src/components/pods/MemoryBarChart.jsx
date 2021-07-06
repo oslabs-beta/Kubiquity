@@ -1,49 +1,45 @@
 import React from 'react';
-import BarChart from 'react-bar-chart';
+import ReactApexCharts from 'react-apexcharts';
 
-const MARGIN = {
-  top: 20,
-  right: 20,
-  bottom: 30,
-  left: 40,
-};
-
-// TODO: Some amount of this component may need to be altered
-// once the app is closer to production ready. Points of interest:
-// state; componentDidMount; margin; add x axis; change bar color;
-// add title to chart.
-
+// TODO: decide how we plan on setting height for this chart. 
+// TODO: customize this component as needed. 
+// TODO: test out given download functions. 
 class MemoryBarChart extends React.Component {
   constructor(props) {
     super(props);
+    const { data, categories } = props;
 
     this.state = {
-      width: 500,
-    };
-  }
-
-  // TODO: decide if we want to keep dynamic sizing here. 
-  componentDidMount() {
-    window.onresize = () => {
-      this.setState({ width: this.refs.root.offsetWidth }); 
+      series: [{ data }],
+      options: {
+        chart: {
+          type: 'bar',
+          height: 350,
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          },
+        },
+        dataLabels: { enabled: false },
+        xaxis: { categories },
+      },
     };
   }
 
   render() {
-    const { data } = this.props;
-
     return (
-      <>
-        <BarChart
-          ylabel='Memory used (GB)'
-          width={this.state.width}
-          height={500}
-          margin={MARGIN}
-          data={data}
+      <div>
+        <ReactApexCharts
+          options={this.state.options}
+          series={this.state.series}
+          type="bar"
+          height={350}
         />
-      </>
-    );
+      </div>
+    )
   }
-};
+}
 
 export default MemoryBarChart;
