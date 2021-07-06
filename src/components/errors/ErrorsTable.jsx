@@ -16,28 +16,33 @@ const ErrorsTable = ({ data }) => {
       sortType: 'basic',
     },
     {
+      Header: 'Namespace',
+      accessor: 'namespace',
+      sortType: 'basic',
+    },
+    {
+      Header: 'Type',
+      accessor: 'type',
+      sortType: 'basic',
+    },
+    {
+      Header: 'Reason',
+      accessor: 'reason',
+      sortType: 'basic',
+    },
+    {
+      Header: 'Object',
+      accessor: 'object',
+      sortType: 'basic',
+    },
+    {
       Header: 'Message',
       accessor: 'message',
       sortType: 'basic',
     },
     {
-      Header: 'Status Code',
-      accessor: 'statusCode',
-      sortType: 'basic',
-    },
-    {
-      Header: 'Severity',
-      accessor: 'severity',
-      sortType: 'basic',
-    },
-    {
-      Header: 'Recommended Actions',
-      accessor: 'recommendedActions',
-      sortType: 'basic',
-    },
-    {
-      Header: 'Pod ID',
-      accessor: 'pod',
+      Header: 'Last seen',
+      accessor: 'lastSeen',
       sortType: 'basic',
     },
   ],[]);

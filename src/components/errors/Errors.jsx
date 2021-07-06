@@ -5,45 +5,14 @@ import ErrorsTable from './ErrorsTable';
 
 const MOCK_ERRORS = [
   {
-    message: 'OOM error',
-    statusCode: 500,
-    createdAt: 'June 16 1934',
-    severity: 'Bad',
-    recommendedActions: 'Get more memory',
-    pod: 10000,
-  },
-  {
-    message: 'OOM error',
-    statusCode: 404,
-    createdAt: 'June 16 1934',
-    severity: 'Bad',
-    recommendedActions: 'Get more memory',
-    pod: 10000,
-  },
-  {
-    message: 'OOM error 2',
-    statusCode: 500,
-    createdAt: 'June 16 1934',
-    severity: 'Bad',
-    recommendedActions: 'Get more memory',
-    pod: 10000,
-  },
-  {
-    message: 'OOM error 3',
-    statusCode: 500,
-    createdAt: 'June 16 1934',
-    severity: 'Bad',
-    recommendedActions: 'Get more memory',
-    pod: 10000,
-  },
-  {
-    message: 'OOM error 4',
-    statusCode: 500,
-    createdAt: 'June 16 1934',
-    severity: 'Bad',
-    recommendedActions: 'Get more memory',
-    pod: 10000,
-  },
+    createdAt: new Date().toISOString(),
+    namespace: 'Namespace',
+    lastSeen: 'Last seen',
+    type: 'Type',
+    reason: 'Reason',
+    object: 'Object',
+    message: 'Message',
+  }
 ];
 
 class Errors extends React.Component {
@@ -61,11 +30,8 @@ class Errors extends React.Component {
     // TODO: use GET request to /errors once route is written on backend.
     // fetch('/errors')
     //   .then(res => res.json())
-    //   .then(data => {
-    //         // Once FE is connected to BE, we will have some data.
-    //         // That data will include the errors we want to save to state.
-    //       const newState = { errors: data };
-    //       this.setState(newState)
+    //   .then(errors => {
+    //       this.setState({ errors })
     //   }).catch(err => console.log(err));
   }
   
