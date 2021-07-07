@@ -36,7 +36,6 @@ const errorsController = {};
 errorsController.queryErrors = (req, res, next) => {
   try {
     const errorList = cmd.runSync('kubectl get events --all-namespaces').data.split('\n');
-    console.log(errorList);
     errorList.pop();
     res.locals.errorList = errorList;
 
@@ -53,7 +52,6 @@ errorsController.queryErrors = (req, res, next) => {
 
 errorsController.formatErrors = (req, res, next) => {
   try {
-    console.log(res.locals.errorList);
     const errors = errorArrayConverter(res.locals.errorList);
     res.locals.errors = errors;
 
@@ -70,6 +68,7 @@ errorsController.formatErrors = (req, res, next) => {
 
 errorsController.saveErrors = async (req, res, next) => {
   const { errors } = res.locals;
+  errors.shift();
 
   try {
     const errorPromises = errors.map((err) => {
@@ -102,7 +101,6 @@ errorsController.saveErrors = async (req, res, next) => {
 
 errorsController.getErrors = async (req, res, next) => {
   try {
-    await K8sError.deleteOne({ namespace: 'NAMESPACE' });
     res.locals.errors = await K8sError.find({});
     console.log(res.locals.errors);
     return next();

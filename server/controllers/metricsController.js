@@ -5,7 +5,7 @@ const metricsController = {};
 
 const PROM_URL = 'http://127.0.0.1:9090/api/v1/';
 
-metricsController.getMemory = async (req, res, next) => {
+metricsController.getMemory = (req, res, next) => {
   try {
     // create query at current time
     const currentDate = new Date().toISOString();
@@ -13,9 +13,9 @@ metricsController.getMemory = async (req, res, next) => {
     query += `&start=${currentDate}&end=${currentDate}&step=1m`;
     let memArr;
     // send query to prometheus for node memory usage
-    const data = await fetch(PROM_URL + query)
-      .then((data) => data.json())
-      .then((results) => {
+    const data = fetch(PROM_URL + query)
+      .then(data => data.json())
+      .then(results => {
         memArr = results.data.result[0].values[0];
         // format results and change into megabytes
         memArr.forEach((el, ind) => {
@@ -26,8 +26,12 @@ metricsController.getMemory = async (req, res, next) => {
       });
     // convert array into object to send to front end
     const memObj = Object.assign({}, memArr);
-    res.locals.memory = memObj;
-
+    const formattedData = [];
+    Object.entries(memObj).forEach(([key, value]) => {
+      const formattedObj = { podId: key, memory: value };
+      formattedData.push(formattedObj);
+    });
+    console.log(formattedData);
     return next();
   } catch (err) {
     return next({
