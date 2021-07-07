@@ -28,15 +28,7 @@ const Table = ({ data, headers }) => {
     return (
       <tr {...headerProps}>
         {headerGroup.headers.map(column => (
-          <th
-            {...column.getHeaderProps(column.getSortByToggleProps())}
-            style={{
-              borderBottom: 'solid 3px red',
-              background: 'aliceblue',
-              color: 'black',
-              fontWeight: 'bold',
-            }}
-          >
+          <th {...column.getHeaderProps(column.getSortByToggleProps())}>
             {column.render('Header')}
             <span>
               {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
