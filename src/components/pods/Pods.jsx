@@ -1,44 +1,15 @@
 import React from 'react';
 
-import Pod from './Pod';
 import MemoryBarChart from './MemoryBarChart';
 
 const MOCK_PODS = [
   {
-    podId: 100,
-    name: 'David Z',
-    currentMemoryUse: 100,
-    parentNode: 5,
+    podId: 0,
+    memory: 1250,
   },
   {
-    podId: 101,
-    name: 'David Z',
-    currentMemoryUse: 200,
-    parentNode: 5,
-  },
-  {
-    podId: 102,
-    name: 'David Z',
-    currentMemoryUse: 180,
-    parentNode: 5,
-  },
-  {
-    podId: 103,
-    name: 'David Z',
-    currentMemoryUse: 150,
-    parentNode: 5,
-  },
-  {
-    podId: 104,
-    name: 'hcma',
-    currentMemoryUse: 120,
-    parentNode: 5,
-  },
-  {
-    podId: 105,
-    name: 'sn',
-    currentMemoryUse: 220,
-    parentNode: 5,
+    podId: 1,
+    memory: 845,
   },
 ];
 
@@ -47,39 +18,32 @@ class Pods extends React.Component {
     super(props);
 
     this.state = {
-      pods: [],
+      metrics: [],
     };
   }
 
   componentDidMount() {
     // MOCK POD WORK FOR TESTING AND DEVELOPMENT:
-    this.setState({ pods: MOCK_PODS });
+    this.setState({ metrics: MOCK_PODS });
 
-    // TODO: use GET request to /pods once route is written on backend.
-    //fetch('/pods')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         // Once FE is connected to BE, we will have some data.
-    //         // That data will include the pods we want to save to state.
-    //         const newState = { pods: data };
-    //         this.setState(newState)
-    //     })
-    //     .catch(err => console.log(err));
+    // TODO: uncomment for testing connection from FE to BE. 
+    // fetch('http://localhost:3000/metrics')
+    //   .then(res => res.json())
+    //   .then(metrics => this.setState({ metrics }))
+    //   .catch(err => console.log(err));
   }
 
   render() {
-    if (!this.state.pods.length) return (
-      <>Loading pods, please wait . . . </>
-    );
+    const { metrics } = this.state;
 
-    const memoryValues = new Array(this.state.pods.length);
-    const podLabels = new Array(this.state.pods.length);
-    const reactPods = new Array(this.state.pods.length);
+    if (!metrics.length) return (<>Loading metrics, please wait . . . </>);
 
-    this.state.pods.forEach((pod, i) => {
-      memoryValues[i] = pod.currentMemoryUse;
-      podLabels[i] = `${ pod.name } (${ pod.podId })`;
-      reactPods[i] = (<Pod key={`pod${i}`} {...pod} />);
+    const memoryValues = new Array(metrics.length);
+    const podLabels = new Array(metrics.length);
+
+    metrics.forEach(({ podId, memory }, i) => {
+      memoryValues[i] = memory;
+      podLabels[i] = `Pod (${ podId })`;
     });
 
     return (
@@ -91,7 +55,6 @@ class Pods extends React.Component {
           data={memoryValues}
           categories={podLabels}
         />
-        {reactPods}
       </div>
     );
   }

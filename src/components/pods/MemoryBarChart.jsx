@@ -41,7 +41,7 @@ const CHART = {
 const PLOT_OPTIONS = { bar: BAR_OBJ };
 
 const MemoryBarChart = ({ data, categories }) => {
-  const height = data.length > 30 ? 1500 : data.length * 50;
+  const height = data.length > 30 ? 1500 : data.length * 80;
   const series = [{ data }];
 
   const options = {
