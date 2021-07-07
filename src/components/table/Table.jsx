@@ -22,26 +22,30 @@ const Table = ({ data, headers }) => {
   const tableProps = getTableProps();
   const tableBodyProps = getTableBodyProps();
 
-  const headerComponents = headerGroups.map(headerGroup => (
-    <tr {...headerGroup.getHeaderGroupProps()}>
-      {headerGroup.headers.map(column => (
-        <th
-          {...column.getHeaderProps(column.getSortByToggleProps())}
-          style={{
-            borderBottom: 'solid 3px red',
-            background: 'aliceblue',
-            color: 'black',
-            fontWeight: 'bold',
-          }}
-        >
-          {column.render('Header')}
-          <span>
-            {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
-          </span>
-        </th>
-      ))}
-    </tr>
-  ));
+  const headerComponents = headerGroups.map(headerGroup => {
+    const headerProps = headerGroup.getHeaderGroupProps();
+
+    return (
+      <tr {...headerProps}>
+        {headerGroup.headers.map(column => (
+          <th
+            {...column.getHeaderProps(column.getSortByToggleProps())}
+            style={{
+              borderBottom: 'solid 3px red',
+              background: 'aliceblue',
+              color: 'black',
+              fontWeight: 'bold',
+            }}
+          >
+            {column.render('Header')}
+            <span>
+              {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+            </span>
+          </th>
+        ))}
+      </tr>
+    )
+  });
 
   const rowsComponents = rows.map(row => {
     prepareRow(row);
