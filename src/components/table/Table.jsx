@@ -48,15 +48,10 @@ const Table = ({ data, headers }) => {
     return (
       <tr {...row.getRowProps()}>
         {row.cells.map(cell => {
+          const cellProps = cell.getCellProps();
+
           return (
-            <td
-              {...cell.getCellProps()}
-              style={{
-                padding: '10px',
-                border: 'solid 1px gray',
-                background: 'papayawhip',
-              }}
-            >
+            <td {...cellProps}>
               {cell.render('Cell')}
             </td>
           )

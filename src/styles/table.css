@@ -9,3 +9,7 @@ tbody > * {
   font-family: 'Courier New', Courier, monospace;
 }
 
+td {
+  padding: 6px;
+  border: solid 1px gray;
+}
