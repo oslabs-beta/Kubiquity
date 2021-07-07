@@ -1,3 +1,11 @@
-tbody > * {
-  font-size: 8px;
+#table-container {
+  width: 95vw;
+  max-height: 90vh;
+  overflow: scroll;
 }
+
+tbody > * {
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+}
+

@@ -66,14 +66,16 @@ const Table = ({ data, headers }) => {
   });
 
   return (
-    <table {...tableProps}>
-      <thead>
-        {headerComponents}
-      </thead>
-      <tbody {...tableBodyProps}>
-        {rowsComponents}
-      </tbody>
-    </table>
+    <div id="table-container">
+      <table {...tableProps}>
+        <thead>
+          {headerComponents}
+        </thead>
+        <tbody {...tableBodyProps}>
+          {rowsComponents}
+        </tbody>
+      </table>
+    </div>
   )
 };
 
