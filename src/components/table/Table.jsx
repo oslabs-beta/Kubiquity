@@ -1,50 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTable, useSortBy } from 'react-table';
 
 import '../../styles/table.css';
 
-// TODO: decide if useMemo is appropriate for our app. 
-// TODO: figure out if columns should be composed in the Errors component. 
 // TODO: move styling to CSS. 
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
-
-const columns = useMemo(() => [
-  {
-    Header: 'Timestamp',
-    accessor: 'createdAt',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Namespace',
-    accessor: 'namespace',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Type',
-    accessor: 'type',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Reason',
-    accessor: 'reason',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Object',
-    accessor: 'object',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Message',
-    accessor: 'message',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Last seen',
-    accessor: 'lastSeen',
-    sortType: 'basic',
-  },
-],[]);
 
 const Table = ({ data, headers }) => {
   const {
@@ -53,7 +13,10 @@ const Table = ({ data, headers }) => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ headers, data }, useSortBy);
+  } = useTable({
+    columns: headers,
+    data,
+  }, useSortBy);
 
   const tableProps = getTableProps();
   const tableBodyProps = getTableBodyProps();
@@ -77,10 +40,11 @@ const Table = ({ data, headers }) => {
         </th>
       ))}
     </tr>
-  ))
+  ));
 
-  const rows = rows.map(row => {
-    prepareRow(row)
+  const rowsComponents = rows.map(row => {
+    prepareRow(row);
+
     return (
       <tr {...row.getRowProps()}>
         {row.cells.map(cell => {
@@ -99,7 +63,7 @@ const Table = ({ data, headers }) => {
         })}
       </tr>
     )
-  })
+  });
 
   return (
     <table {...tableProps}>
@@ -107,7 +71,7 @@ const Table = ({ data, headers }) => {
         {headerComponents}
       </thead>
       <tbody {...tableBodyProps}>
-        {rows}
+        {rowsComponents}
       </tbody>
     </table>
   )

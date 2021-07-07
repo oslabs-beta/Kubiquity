@@ -1,6 +1,44 @@
 import React from 'react';
 
-import ErrorsTable from './ErrorsTable';
+import Table from '../table/Table.jsx';
+
+const ERROR_HEADERS = [
+  {
+    Header: 'Timestamp',
+    accessor: 'createdAt',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Namespace',
+    accessor: 'namespace',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Type',
+    accessor: 'type',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Reason',
+    accessor: 'reason',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Object',
+    accessor: 'object',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Message',
+    accessor: 'message',
+    sortType: 'basic',
+  },
+  {
+    Header: 'Last seen',
+    accessor: 'lastSeen',
+    sortType: 'basic',
+  },
+];
 
 class Errors extends React.Component {
   constructor(props) {
@@ -26,7 +64,10 @@ class Errors extends React.Component {
           KUBERNETES ERRORS
         </div>
         {this.state.errors.length ? (
-          <ErrorsTable data={this.state.errors} />
+          <Table
+            data={this.state.errors}
+            headers={ERROR_HEADERS}
+          />
         ) : (
           <>Loading errors, please wait . . . </>)
         }
