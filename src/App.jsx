@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
-    }, 1300);
+    }, 2500);
   }, []);
 
   if (isSplashShowing) {

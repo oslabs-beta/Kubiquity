@@ -7,6 +7,7 @@
   flex-direction: column;
   color: #ffffff;
   background-image: linear-gradient(to bottom right, #0e2b5f, #a9b1c2);
+  animation: fadeIn 3s;
 }
 
 #splash-header {
@@ -21,4 +22,9 @@
 
 #loading {
   font-size: 15px;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
