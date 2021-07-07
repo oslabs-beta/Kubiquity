@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
-    }, 1300);
+    }, 4850);
   }, []);
 
   if (isSplashShowing) {
@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <div id="app">
       <div id="app-header">
         <h1>Kubiquity</h1>
         <p>An error logging and visualization tool for Kubernetes.</p>
@@ -37,7 +37,7 @@ const App = () => {
         <Errors />
         <Pods />
       </div>
-    </>
+    </div>
   )
 };
 
