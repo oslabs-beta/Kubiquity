@@ -36,6 +36,7 @@ const errorsController = {};
 errorsController.queryErrors = (req, res, next) => {
   try {
     const errorList = cmd.runSync('kubectl get events --all-namespaces').data.split('\n');
+    console.log(errorList);
     errorList.pop();
     res.locals.errorList = errorList;
 
@@ -51,10 +52,20 @@ errorsController.queryErrors = (req, res, next) => {
 };
 
 errorsController.formatErrors = (req, res, next) => {
-  const errors = errorArrayConverter(res.locals.errorList);
-  res.locals.errors = errors;
+  try {
+    console.log(res.locals.errorList);
+    const errors = errorArrayConverter(res.locals.errorList);
+    res.locals.errors = errors;
 
-  return next();
+    return next();
+  } catch (err) {
+    return next({
+      log: `errorController.formatErrors: ERROR: ${err}`,
+      message: {
+        err: 'Error occurred while formatting errors. Check server logs for more information.',
+      },
+    });
+  }
 };
 
 errorsController.saveErrors = async (req, res, next) => {
@@ -91,7 +102,9 @@ errorsController.saveErrors = async (req, res, next) => {
 
 errorsController.getErrors = async (req, res, next) => {
   try {
+    await K8sError.deleteOne({ namespace: 'NAMESPACE' });
     res.locals.errors = await K8sError.find({});
+    console.log(res.locals.errors);
     return next();
   } catch (err) {
     return next({
