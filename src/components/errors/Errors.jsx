@@ -13,6 +13,8 @@ class Errors extends React.Component {
 
   componentDidMount() {
     // TODO: update to not use a localhost path
+    // TODO: uncomment /errors and commment in /errors/test
+    // fetch('http://localhost:3000/errors')
     fetch('http://localhost:3000/errors/test')
       .then(res => res.json())
       .then(errors => this.setState({ errors }))
