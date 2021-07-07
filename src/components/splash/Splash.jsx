@@ -1,11 +1,19 @@
 import React from 'react';
 
+import '../../styles/splash.css';
+
 const Splash = () => (
-  <>
-    <h1>Kubiquity</h1>
-    <div>Developed by k8sm8s, 2021</div>
-    <div>App is loading; please wait . . . </div>
-  </>
+  <div id="splash-container">
+    <h1 id="splash-header">
+      kubiquity
+    </h1>
+    <div id="credits">
+      Developed by k8sm8s, 2021
+    </div>
+    <div id="loading">
+      App is loading; please wait . . .
+    </div>
+  </div>
 );
 
 export default Splash;

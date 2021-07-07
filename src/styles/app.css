@@ -75,3 +75,7 @@ input, button, textarea, select {
 
 /* TODO: add app styling */
 /* TODO: consider replacing CSS with SASS */
+
+p, div, h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
