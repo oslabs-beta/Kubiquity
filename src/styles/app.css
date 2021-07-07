@@ -43,6 +43,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background: #f8f8f8;
 }
 
 a:not([class]) {
@@ -78,8 +79,39 @@ input, button, textarea, select {
 
 p, div, h1 {
   font-family: Arial, Helvetica, sans-serif;
+  color: #222222;
 }
 
 #app-container {
-  margin: 36px;
+  padding: 0 42px 42px 42px;
+  background: #f8f8f8;
+}
+
+#app-header {
+  padding: 42px 42px 0 42px;
+  margin-bottom: 42px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(#bac1cd, #f8f8f8);
+}
+
+#app-header > h1 {
+  margin-right: 18px;
+}
+
+#app-header > p {
+  padding-top: 8px;
+  font-size: 16px;
+  color: #767676;
+}
+
+#app-container > * {
+  margin-bottom: 24px;
+}
+
+.section-headers {
+  color: #767676;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 12px;
 }
