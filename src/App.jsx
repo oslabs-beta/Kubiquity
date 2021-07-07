@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div id="app-container">
       <h1>Kubiquity</h1>
       <Errors />
       <Pods />

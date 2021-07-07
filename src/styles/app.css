@@ -79,3 +79,7 @@ input, button, textarea, select {
 p, div, h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#app-container {
+  margin: 36px;
+}
