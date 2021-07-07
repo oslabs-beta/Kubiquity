@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <div id="app">
       <div id="app-header">
         <h1>Kubiquity</h1>
         <p>An error logging and visualization tool for Kubernetes.</p>
@@ -37,7 +37,7 @@ const App = () => {
         <Errors />
         <Pods />
       </div>
-    </>
+    </div>
   )
 };
 

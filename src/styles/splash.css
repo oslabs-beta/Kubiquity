@@ -10,6 +10,10 @@
   animation: fadeIn 3s, fadeOut 1.5s 3.5s;
 }
 
+#splash-container > * {
+  color: #ffffff;
+}
+
 #splash-header {
   margin-bottom: 12px;
   font-size: 60px;
