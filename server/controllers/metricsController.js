@@ -31,7 +31,7 @@ metricsController.getMemory = (req, res, next) => {
       const formattedObj = { podId: key, memory: value };
       formattedData.push(formattedObj);
     });
-    console.log(formattedData);
+    res.locals.memory = formattedData;
     return next();
   } catch (err) {
     return next({
