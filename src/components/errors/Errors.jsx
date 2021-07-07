@@ -18,18 +18,18 @@ class Errors extends React.Component {
       .then(errors => this.setState({ errors }))
       .catch(err => console.log(err));
   }
-  
-  render() {
-    if (!this.state.errors.length) {
-      return (
-        <>Loading errors, please wait . . . </>
-      )
-    }
 
+  render() {
     return (
       <div>
-        Errors
-        <ErrorsTable data={this.state.errors} />
+        <div className="section-headers">
+          KUBERNETES ERRORS
+        </div>
+        {this.state.errors.length ? (
+          <ErrorsTable data={this.state.errors} />
+        ) : (
+          <>Loading errors, please wait . . . </>)
+        }
       </div>
     )
   }

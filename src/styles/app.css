@@ -83,7 +83,7 @@ p, div, h1 {
 }
 
 #app-container {
-  padding: 42px;
+  padding: 0 42px 42px 42px;
   background: #f8f8f8;
 }
 
@@ -103,4 +103,15 @@ p, div, h1 {
   padding-top: 8px;
   font-size: 16px;
   color: #767676;
+}
+
+#app-container> * {
+  margin-bottom: 24px;
+}
+
+.section-headers {
+  color: #767676;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 12px;
 }
