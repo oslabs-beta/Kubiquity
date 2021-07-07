@@ -97,6 +97,7 @@ p, div, h1 {
 
 #app-header > h1 {
   margin-right: 18px;
+  color: #3b4f79;
 }
 
 #app-header > p {
