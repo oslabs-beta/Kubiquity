@@ -84,8 +84,8 @@ class Pods extends React.Component {
 
     return (
       <div>
-        <div>
-          Pods
+        <div className="section-headers">
+          PODS AND MEMORY
         </div>
         <MemoryBarChart
           data={memoryValues}
