@@ -1,62 +1,65 @@
 import React from 'react';
 import ReactApexCharts from 'react-apexcharts';
 
-// TODO: decide how we plan on setting height for this chart. 
-// TODO: customize this component as needed. 
 // TODO: test out given download functions. 
-class MemoryBarChart extends React.Component {
-  constructor(props) {
-    super(props);
-    const { data, categories } = props;
 
-    this.state = {
-      series: [{ data }],
-      options: {
-        fill: {
-          colors: ['#0e2b5f']
-        },
-        chart: {
-          type: 'bar',
-          height: 350,
-          animations: {
-            enabled: true,
-            easing: 'easeinout',
-            speed: 800,
-            animateGradually: {
-                enabled: false,
-            },
-            dynamicAnimation: {
-                enabled: true,
-                speed: 350
-            }
-          }
-        }, 
-        plotOptions: {
-          bar: {
-            borderRadius: 4,
-            horizontal: true,
-          },
-        },
-        dataLabels: { enabled: false },
-        xaxis: { categories },
-      },
-    };
-  }
+const DARK_BLUE = '#0e2b5f';
+const BAR = 'bar';
+const EASE_IN_OUT = 'easeinout';
 
-  render() {
-    const height = this.props.data.length > 30 ? 1500 : this.props.data.length * 50;
+const COLORS = [DARK_BLUE];
 
-    return (
-      <div>
-        <ReactApexCharts
-          options={this.state.options}
-          series={this.state.series}
-          type="bar"
-          height={height}
-        />
-      </div>
-    )
-  }
-}
+const ENABLED_FALSE = { enabled: false };
+const DATA_LABELS = ENABLED_FALSE;
+const ANIMATE_GRADUALLY = ENABLED_FALSE;
+const FILL = { colors: COLORS };
+
+const DYNAMIC_ANIMATION = {
+  enabled: true,
+  speed: 350
+};
+
+const BAR_OBJ = {
+  borderRadius: 4,
+  horizontal: true,
+};
+
+const ANIMATIONS = {
+  enabled: true,
+  easing: EASE_IN_OUT,
+  speed: 800,
+  animateGradually: ANIMATE_GRADUALLY,
+  dynamicAnimation: DYNAMIC_ANIMATION,
+};
+
+const CHART = {
+  type: BAR,
+  height: 350,
+  animations: ANIMATIONS
+};
+
+const PLOT_OPTIONS = { bar: BAR_OBJ };
+
+const MemoryBarChart = ({ data, categories }) => {
+  const height = data.length > 30 ? 1500 : data.length * 50;
+  const series = [{ data }];
+
+  const options = {
+    fill: FILL,
+    chart: CHART,
+    plotOptions: PLOT_OPTIONS,
+    dataLabels: DATA_LABELS,
+    xaxis: { categories },
+  };
+
+  return (
+    <ReactApexCharts
+      options={options}
+      series={series}
+      type="bar"
+      height={height}
+    />
+  )
+};
 
 export default MemoryBarChart;
