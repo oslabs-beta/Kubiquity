@@ -23,7 +23,7 @@ class Pods extends React.Component {
   }
 
   componentDidMount() {
-    // MOCK POD WORK FOR TESTING AND DEVELOPMENT:
+    // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
     this.setState({ metrics: MOCK_PODS });
 
     // TODO: uncomment for testing connection from FE to BE. 
@@ -43,7 +43,7 @@ class Pods extends React.Component {
 
     metrics.forEach(({ podId, memory }, i) => {
       memoryValues[i] = memory;
-      podLabels[i] = `Pod (${ podId })`;
+      podLabels[i] = podId;
     });
 
     return (

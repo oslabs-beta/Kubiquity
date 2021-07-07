@@ -3,42 +3,40 @@ import ReactApexCharts from 'react-apexcharts';
 
 // TODO: test out given download functions. 
 
-const DARK_BLUE = '#0e2b5f';
-const BAR = 'bar';
-const EASE_IN_OUT = 'easeinout';
-
-const COLORS = [DARK_BLUE];
-
 const ENABLED_FALSE = { enabled: false };
-const DATA_LABELS = ENABLED_FALSE;
-const ANIMATE_GRADUALLY = ENABLED_FALSE;
-const FILL = { colors: COLORS };
-
-const DYNAMIC_ANIMATION = {
-  enabled: true,
-  speed: 350
-};
-
-const BAR_OBJ = {
-  borderRadius: 4,
-  horizontal: true,
-};
-
-const ANIMATIONS = {
-  enabled: true,
-  easing: EASE_IN_OUT,
-  speed: 800,
-  animateGradually: ANIMATE_GRADUALLY,
-  dynamicAnimation: DYNAMIC_ANIMATION,
-};
+const FILL = { colors: ['#0e2b5f']};
 
 const CHART = {
-  type: BAR,
   height: 350,
-  animations: ANIMATIONS
+  type: 'bar',
+  animations: {
+    enabled: true,
+    easing: 'easeinout',
+    speed: 800,
+    animateGradually: ENABLED_FALSE,
+    dynamicAnimation: {
+      enabled: true,
+      speed: 350
+    },
+  },
 };
 
-const PLOT_OPTIONS = { bar: BAR_OBJ };
+const PLOT_OPTIONS = {
+  bar: {
+    borderRadius: 4,
+    horizontal: true,
+  },
+};
+
+const X_AXIS_LABELS = {
+  formatter: val => `${val} MB`,
+};
+
+const Y_AXIS = {
+  labels: {
+    formatter: val => `Pod ${val}`,
+  },
+};
 
 const MemoryBarChart = ({ data, categories }) => {
   const height = data.length > 30 ? 1500 : data.length * 80;
@@ -48,8 +46,12 @@ const MemoryBarChart = ({ data, categories }) => {
     fill: FILL,
     chart: CHART,
     plotOptions: PLOT_OPTIONS,
-    dataLabels: DATA_LABELS,
-    xaxis: { categories },
+    dataLabels: ENABLED_FALSE,
+    yaxis: Y_AXIS,
+    xaxis: {
+      categories,
+      labels: X_AXIS_LABELS,
+    },
   };
 
   return (
