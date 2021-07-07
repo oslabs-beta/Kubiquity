@@ -10,10 +10,7 @@ import './styles/app.css';
 // TODO: after MVP, try out Typescript.
 
 const App = () => {
-  const [
-    isSplashShowing,
-    setIsSplashShowing
-  ] = useState(true);
+  const [isSplashShowing, setIsSplashShowing] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,11 +18,7 @@ const App = () => {
     }, 4850);
   }, []);
 
-  if (isSplashShowing) {
-    return (
-      <Splash />
-    )
-  }
+  if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
