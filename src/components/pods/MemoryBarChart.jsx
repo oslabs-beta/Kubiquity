@@ -12,10 +12,25 @@ class MemoryBarChart extends React.Component {
     this.state = {
       series: [{ data }],
       options: {
+        fill: {
+          colors: ['#0e2b5f']
+        },
         chart: {
           type: 'bar',
           height: 350,
-        },
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 800,
+            animateGradually: {
+                enabled: false,
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
+            }
+          }
+        }, 
         plotOptions: {
           bar: {
             borderRadius: 4,
@@ -29,13 +44,15 @@ class MemoryBarChart extends React.Component {
   }
 
   render() {
+    const height = this.props.data.length > 30 ? 1500 : this.props.data.length * 50;
+
     return (
       <div>
         <ReactApexCharts
           options={this.state.options}
           series={this.state.series}
           type="bar"
-          height={350}
+          height={height}
         />
       </div>
     )
