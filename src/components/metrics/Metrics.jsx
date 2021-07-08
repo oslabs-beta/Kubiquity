@@ -13,7 +13,7 @@ const MOCK_PODS = [
   },
 ];
 
-class Pods extends React.Component {
+class Metrics extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +49,7 @@ class Pods extends React.Component {
     return (
       <div>
         <div className="section-headers">
-          PODS AND MEMORY
+          MEMORY METRICS FOR ACTIVE PODS
         </div>
         <MemoryBarChart
           data={memoryValues}
@@ -60,4 +60,4 @@ class Pods extends React.Component {
   }
 }
 
-export default Pods;
+export default Metrics;
