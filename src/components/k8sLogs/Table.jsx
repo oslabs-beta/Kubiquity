@@ -13,6 +13,9 @@ const RED_BACKGROUND_STYLE = {
   color: '#f8f8f8',
 };
 
+const DOWN_ARROW = (<div>&#128317;</div>);
+const UP_ARROW = (<div>&#128316;</div>);
+
 const Table = ({ data, headers }) => {
   const {
     getTableProps,
@@ -37,7 +40,7 @@ const Table = ({ data, headers }) => {
           <th {...column.getHeaderProps(column.getSortByToggleProps())}>
             {column.render('Header')}
             <span>
-              {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+              {column.isSorted ? (column.isSortedDesc ? UP_ARROW : DOWN_ARROW) : ''}
             </span>
           </th>
         ))}

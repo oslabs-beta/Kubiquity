@@ -98,11 +98,12 @@ p, div, h1 {
 #app-header > h1 {
   margin-right: 18px;
   color: #3b4f79;
+  font-size: 54px;
 }
 
 #app-header > p {
-  padding-top: 8px;
-  font-size: 16px;
+  padding-top: 18px;
+  font-size: 18px;
 }
 
 #app-container > * {
@@ -130,10 +131,12 @@ p, div, h1 {
 
 .sub-header {
   font-size: 14px;
+  margin-bottom: 24px;
 }
 
-#log-sub-header {
-  margin-bottom: 24px;
+#chart-container {
+  width: 95%;
+  margin-left: 42px;
 }
 
 #metrics-loading {
