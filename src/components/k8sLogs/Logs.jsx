@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from '../table/Table.jsx';
+import Table from './Table.jsx';
 import Loading from '../loading/Loading.jsx';
 
 const LOG_HEADERS = [
