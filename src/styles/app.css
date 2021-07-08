@@ -79,7 +79,7 @@ input, button, textarea, select {
 
 p, div, h1 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #222222;
+  color: #767676;
 }
 
 #app-container {
@@ -114,7 +114,6 @@ p, div, h1 {
   color: #767676;
   font-size: 18px;
   font-weight: 400;
-  margin-bottom: 12px;
 }
 
 #app {

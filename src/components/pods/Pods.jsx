@@ -87,6 +87,9 @@ class Pods extends React.Component {
         <div className="section-headers">
           PODS AND MEMORY
         </div>
+        <div>
+          Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your cluster.
+        </div>
         <MemoryBarChart
           data={memoryValues}
           categories={podLabels}
