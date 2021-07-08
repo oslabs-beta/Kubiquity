@@ -29,19 +29,20 @@ const App = () => {
       setIsSplashShowing(false);
     }, 4850);
 
-    fetch('http://localhost:3000/errors/test')
+    fetch('http://localhost:3000/errors/')
+    // fetch('http://localhost:3000/errors/test')
       .then(res => res.json())
-      .then(logs => setLogs(logs))
+      .then(newLogs => setLogs(newLogs))
       .catch(err => console.log(err));
     
     // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
-    setMetrics(MOCK_PODS);
+    // setMetrics(MOCK_PODS);
 
     // TODO: uncomment for testing connection from FE to BE. 
-    // fetch('http://localhost:3000/metrics')
-    //   .then(res => res.json())
-    //   .then(metrics => this.setState({ metrics }))
-    //   .catch(err => console.log(err));
+    fetch('http://localhost:3000/metrics')
+      .then(res => res.json())
+      .then(newMetrics => setMetrics(newMetrics))
+      .catch(err => console.log(err));
   }, []);
 
   if (isSplashShowing) return (<Splash />);
