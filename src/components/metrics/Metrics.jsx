@@ -3,39 +3,30 @@ import React from 'react';
 import MemoryBarChart from './MemoryBarChart';
 import Loading from '../loading/Loading.jsx';
 
-const MOCK_PODS = [
-  {
-    podId: 0,
-    memory: 1250,
-  },
-  {
-    podId: 1,
-    memory: 845,
-  },
-];
+
 
 class Metrics extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      metrics: [],
-    };
-  }
+  //   this.state = {
+  //     metrics: [],
+  //   };
+  // }
 
-  componentDidMount() {
-    // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
-    this.setState({ metrics: MOCK_PODS });
+  // componentDidMount() {
+  //   // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
+  //   this.setState({ metrics: MOCK_PODS });
 
-    // TODO: uncomment for testing connection from FE to BE. 
-    // fetch('http://localhost:3000/metrics')
-    //   .then(res => res.json())
-    //   .then(metrics => this.setState({ metrics }))
-    //   .catch(err => console.log(err));
-  }
+  //   // TODO: uncomment for testing connection from FE to BE. 
+  //   // fetch('http://localhost:3000/metrics')
+  //   //   .then(res => res.json())
+  //   //   .then(metrics => this.setState({ metrics }))
+  //   //   .catch(err => console.log(err));
+  // }
 
   render() {
-    const { metrics } = this.state;
+    const { metrics } = this.props;
     const memoryValues = new Array(metrics.length);
     const podLabels = new Array(metrics.length);
 

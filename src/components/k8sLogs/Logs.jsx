@@ -42,23 +42,23 @@ const LOG_HEADERS = [
 ];
 
 class Logs extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      logs: [],
-    };
-  }
+  //   this.state = {
+  //     logs: [],
+  //   };
+  // }
 
-  componentDidMount() {
-    // TODO: update to not use a localhost path
-    // TODO: uncomment /errors and commment in /errors/test
-    //! fetch('http://localhost:3000/errors')
-    fetch('http://localhost:3000/errors/test')
-      .then(res => res.json())
-      .then(logs => this.setState({ logs }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   // TODO: update to not use a localhost path
+  //   // TODO: uncomment /errors and commment in /errors/test
+  //   //! fetch('http://localhost:3000/errors')
+  //   fetch('http://localhost:3000/errors/test')
+  //     .then(res => res.json())
+  //     .then(logs => this.setState({ logs }))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
@@ -72,9 +72,9 @@ class Logs extends React.Component {
         >
           Use the Kubiquity logs to find and resolve errors. 
         </div>
-        {this.state.logs.length ? (
+        {this.props.logs.length ? (
           <Table
-            data={this.state.logs}
+            data={this.props.logs}
             headers={LOG_HEADERS}
           />
         ) : (
