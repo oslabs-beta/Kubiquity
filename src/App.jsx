@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Logs from './components/logs/Logs';
+import Logs from './components/k8sLogs/Logs';
 import Pods from './components/pods/Pods';
 import Splash from './components/splash/Splash';
 
