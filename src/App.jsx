@@ -6,7 +6,6 @@ import Splash from './components/splash/Splash';
 
 import './styles/app.css';
 
-// TODO: after MVP, convert React Class Components to Hooks.
 // TODO: after MVP, try out Typescript.
 
 const MOCK_PODS = [
