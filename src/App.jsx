@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Errors from './components/errors/Errors';
+import Logs from './components/logs/Logs';
 import Pods from './components/pods/Pods';
 import Splash from './components/splash/Splash';
 
@@ -27,8 +27,8 @@ const App = () => {
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="app-container">
-        <Errors />
         <Pods />
+        <Logs />
       </div>
     </div>
   )

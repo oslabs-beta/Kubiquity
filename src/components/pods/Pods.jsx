@@ -91,7 +91,6 @@ class Pods extends React.Component {
           data={memoryValues}
           categories={podLabels}
         />
-        {reactPods}
       </div>
     );
   }

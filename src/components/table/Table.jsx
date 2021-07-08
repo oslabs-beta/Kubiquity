@@ -7,6 +7,12 @@ import '../../styles/table.css';
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
 // TODO: potentially add sticky headers: https://github.com/GuillaumeJasmin/react-table-sticky
 
+const RED_BACKGROUND_STYLE = {
+  backgroundColor: '#de8989',
+  fontWeight: 'bold',
+  color: '#f8f8f8',
+};
+
 const Table = ({ data, headers }) => {
   const {
     getTableProps,
@@ -41,9 +47,14 @@ const Table = ({ data, headers }) => {
 
   const rowsComponents = rows.map(row => {
     prepareRow(row);
+    const { type } = row.original;
+    const rowStyles = type === 'Normal' ? null : RED_BACKGROUND_STYLE;
 
     return (
-      <tr {...row.getRowProps()}>
+      <tr
+        {...row.getRowProps()}
+        style={rowStyles}
+      >
         {row.cells.map(cell => {
           const cellProps = cell.getCellProps();
 
