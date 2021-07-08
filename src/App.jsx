@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Logs from './components/k8sLogs/Logs';
 import Metrics from './components/metrics/Metrics';
+import Splash from './components/splash/Splash';
 
 import './styles/app.css';
 
