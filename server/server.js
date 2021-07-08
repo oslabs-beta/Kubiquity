@@ -13,7 +13,7 @@ app.use('/build', express.static(path.join(__dirname + '../build')));
 
 app.use('/errors', errorsRouter);
 
-app.use((req, res) => res.status(404).send('Unable to find item'));
+app.use('*', (req, res) => res.status(404).send('Unable to find item'));
 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -31,5 +31,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server running on ${ PORT }...`);
 });
-
-module.exports = app;
