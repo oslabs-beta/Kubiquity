@@ -39,5 +39,14 @@ $time: 3000ms;
 }
 
 #loading {
-  margin-right: 50px;
+  overflow: hidden;
+  height: 49px;
+  width: 95px;
+  margin-top: 6px;
+}
+
+svg {
+  position: relative;
+  top: -23px;
+  left: -47px;
 }

@@ -10,7 +10,7 @@ const Splash = () => (
     <div id="credits">
       Developed by k8sm8s, 2021
     </div>
-    <div id="loading">
+    <div id="loading-splash">
       App is loading; please wait . . .
     </div>
   </div>
