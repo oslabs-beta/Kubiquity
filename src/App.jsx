@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Errors from './components/errors/Errors';
-import Pods from './components/pods/Pods';
+import Metrics from './components/metrics/Metrics';
 import Splash from './components/splash/Splash';
 
 import './styles/app.css';
@@ -35,7 +35,7 @@ const App = () => {
       </div>
       <div id="app-container">
         <Errors />
-        <Pods />
+        <Metrics />
       </div>
     </div>
   )
