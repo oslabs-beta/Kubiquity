@@ -136,6 +136,7 @@ p, div, h1 {
 
 #chart-container {
   width: 95%;
+  margin-left: 42px;
 }
 
 #metrics-loading {
