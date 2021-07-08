@@ -135,3 +135,7 @@ p, div, h1 {
 #log-sub-header {
   margin-bottom: 24px;
 }
+
+#metrics-loading {
+  margin-top: 24px;
+}

@@ -29,20 +29,20 @@ const App = () => {
       setIsSplashShowing(false);
     }, 4850);
 
-    fetch('http://localhost:3000/errors/')
-    // fetch('http://localhost:3000/errors/test')
+    // TODO: to test actual K8s cluster, uncomment 33 and comment out 34. 
+    // fetch('http://localhost:3000/errors/')
+    fetch('http://localhost:3000/errors/test')
       .then(res => res.json())
       .then(newLogs => setLogs(newLogs))
       .catch(err => console.log(err));
     
-    // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
-    // setMetrics(MOCK_PODS);
+    // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
+    setMetrics(MOCK_PODS);
 
-    // TODO: uncomment for testing connection from FE to BE. 
-    fetch('http://localhost:3000/metrics')
-      .then(res => res.json())
-      .then(newMetrics => setMetrics(newMetrics))
-      .catch(err => console.log(err));
+    // fetch('http://localhost:3000/metrics')
+    //   .then(res => res.json())
+    //   .then(newMetrics => setMetrics(newMetrics))
+    //   .catch(err => console.log(err));
   }, []);
 
   if (isSplashShowing) return (<Splash />);

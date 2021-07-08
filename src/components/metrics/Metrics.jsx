@@ -26,7 +26,9 @@ const Metrics = ({ metrics }) => {
           categories={podLabels}
         />
       ) : (
-        <Loading resource={'metrics'}/>
+        <div id="metrics-loading">
+          <Loading resource={'metrics'}/>
+        </div>
       )}
     </div>
   );
