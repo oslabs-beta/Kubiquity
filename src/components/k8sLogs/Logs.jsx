@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Table from '../table/Table.jsx';
+import Loading from '../loading/Loading.jsx';
 
 const LOG_HEADERS = [
   {
@@ -77,8 +78,8 @@ class Logs extends React.Component {
             headers={LOG_HEADERS}
           />
         ) : (
-          <>Loading logs, please wait . . . </>)
-        }
+          <Loading resource={'logs'} />
+        )}
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MemoryBarChart from './MemoryBarChart';
+import Loading from '../loading/Loading.jsx';
 
 const MOCK_PODS = [
   {
@@ -35,9 +36,6 @@ class Metrics extends React.Component {
 
   render() {
     const { metrics } = this.state;
-
-    if (!metrics.length) return (<>Loading metrics, please wait . . . </>);
-
     const memoryValues = new Array(metrics.length);
     const podLabels = new Array(metrics.length);
 
@@ -54,10 +52,14 @@ class Metrics extends React.Component {
         <div className="sub-header">
           Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your cluster.
         </div>
-        <MemoryBarChart
-          data={memoryValues}
-          categories={podLabels}
-        />
+        {metrics.length ? (
+          <MemoryBarChart
+            data={memoryValues}
+            categories={podLabels}
+          />
+        ) : (
+          <Loading resource={'metrics'}/>
+        )}
       </div>
     );
   }
