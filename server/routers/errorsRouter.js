@@ -5,13 +5,12 @@ const router = express.Router();
 
 router.get(
   '/',
+  errorsController.clearErrors,
   errorsController.queryErrors,
   errorsController.formatErrors,
   errorsController.saveErrors,
   errorsController.getErrors,
-  (req, res) => (
-    res.status(200).json(res.locals.errors)
-  )
+  (req, res) => res.status(200).json(res.locals.errors),
 );
 
 router.get(
