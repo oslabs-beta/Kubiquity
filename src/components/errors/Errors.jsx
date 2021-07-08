@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ErrorsTable from './ErrorsTable';
+import Loading from '../loading/Loading.jsx';
 
 class Errors extends React.Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class Errors extends React.Component {
         {this.state.errors.length ? (
           <ErrorsTable data={this.state.errors} />
         ) : (
-          <>Loading errors, please wait . . . </>)
-        }
+          <Loading resource={'logs'}/>
+        )}
       </div>
     )
   }

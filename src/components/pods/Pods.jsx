@@ -2,6 +2,7 @@ import React from 'react';
 
 import Pod from './Pod';
 import MemoryBarChart from './MemoryBarChart';
+import Loading from '../loading/Loading.jsx';
 
 const MOCK_PODS = [
   {
@@ -68,10 +69,6 @@ class Pods extends React.Component {
   }
 
   render() {
-    if (!this.state.pods.length) return (
-      <>Loading pods, please wait . . . </>
-    );
-
     const memoryValues = new Array(this.state.pods.length);
     const podLabels = new Array(this.state.pods.length);
     const reactPods = new Array(this.state.pods.length);
@@ -87,11 +84,14 @@ class Pods extends React.Component {
         <div className="section-headers">
           PODS AND MEMORY
         </div>
-        <MemoryBarChart
-          data={memoryValues}
-          categories={podLabels}
-        />
-        {reactPods}
+        {this.state.pods.length ? (
+          <MemoryBarChart
+            data={memoryValues}
+            categories={podLabels}
+          />
+        ) : (
+          <Loading resource={'metrics'}/>
+        )}
       </div>
     );
   }
