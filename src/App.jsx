@@ -38,11 +38,11 @@ const App = () => {
     // MOCK METRICS WORK FOR TESTING AND DEVELOPMENT:
     setMetrics(MOCK_PODS);
 
-        // TODO: uncomment for testing connection from FE to BE. 
-        // fetch('http://localhost:3000/metrics')
-        //   .then(res => res.json())
-        //   .then(metrics => this.setState({ metrics }))
-        //   .catch(err => console.log(err));
+    // TODO: uncomment for testing connection from FE to BE. 
+    // fetch('http://localhost:3000/metrics')
+    //   .then(res => res.json())
+    //   .then(metrics => this.setState({ metrics }))
+    //   .catch(err => console.log(err));
   }, []);
 
   if (isSplashShowing) return (<Splash />);
