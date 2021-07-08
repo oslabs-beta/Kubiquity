@@ -103,7 +103,6 @@ p, div, h1 {
 #app-header > p {
   padding-top: 8px;
   font-size: 16px;
-  color: #767676;
 }
 
 #app-container > * {
@@ -127,4 +126,12 @@ p, div, h1 {
   100% {
     opacity: 1;
   }
+}
+
+.sub-header {
+  font-size: 14px;
+}
+
+#log-sub-header {
+  margin-bottom: 24px;
 }
