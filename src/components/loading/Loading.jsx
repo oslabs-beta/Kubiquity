@@ -7,10 +7,8 @@ const Loading = ({ resource }) => (
     Loading {resource}, please wait . . .
     <div id="loading">
       <svg
-        width="144px"
-        height="68px"
-        // viewBox="0 0 187.3 93.7"
-        // preserveAspectRatio="xMidYMid meet"
+        width="200px"
+        height="200px"
       >
         <path
           id="infinity-outline"
