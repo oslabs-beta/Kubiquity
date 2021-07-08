@@ -55,12 +55,14 @@ const MemoryBarChart = ({ data, categories }) => {
   };
 
   return (
-    <ReactApexCharts
-      options={options}
-      series={series}
-      type="bar"
-      height={height}
-    />
+    <div id="chart-container">
+      <ReactApexCharts
+        options={options}
+        series={series}
+        type="bar"
+        height={height}
+      />
+    </div>
   )
 };
 
