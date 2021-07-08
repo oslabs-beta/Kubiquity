@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Errors from './components/errors/Errors';
+import Logs from './components/k8sLogs/Logs';
 import Metrics from './components/metrics/Metrics';
 import Splash from './components/splash/Splash';
 
@@ -10,10 +10,7 @@ import './styles/app.css';
 // TODO: after MVP, try out Typescript.
 
 const App = () => {
-  const [
-    isSplashShowing,
-    setIsSplashShowing
-  ] = useState(true);
+  const [isSplashShowing, setIsSplashShowing] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,11 +18,7 @@ const App = () => {
     }, 4850);
   }, []);
 
-  if (isSplashShowing) {
-    return (
-      <Splash />
-    )
-  }
+  if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
@@ -34,8 +27,8 @@ const App = () => {
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="app-container">
-        <Errors />
         <Metrics />
+        <Logs />
       </div>
     </div>
   )

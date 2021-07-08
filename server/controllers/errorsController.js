@@ -101,8 +101,7 @@ errorsController.saveErrors = async (req, res, next) => {
 
 errorsController.getErrors = async (req, res, next) => {
   try {
-    res.locals.errors = await K8sError.find({});
-    console.log(res.locals.errors);
+    res.locals.errors = await K8sError.find({}).sort({ 'createdAt': -1 });
     return next();
   } catch (err) {
     return next({
