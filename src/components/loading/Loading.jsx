@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import '../../styles/loading.scss';
-
 const Loading = ({ resource }) => (
   <div id="loading-container">
     Loading {resource}, please wait . . .
