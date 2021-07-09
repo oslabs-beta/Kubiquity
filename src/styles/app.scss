@@ -48,7 +48,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background: #f8f8f8;
+  background: $white;
 }
 
 a:not([class]) {
@@ -84,12 +84,12 @@ input, button, textarea, select {
 
 p, div, h1 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #767676;
+  color: $grey;
 }
 
 #app-container {
   padding: 0 54px 54px 54px;
-  background: #f8f8f8;
+  background: $white;
 }
 
 #app-header {
@@ -97,12 +97,11 @@ p, div, h1 {
   margin-bottom: 42px;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(#bac1cd, #f8f8f8);
 }
 
 #app-header > h1 {
   margin-right: 18px;
-  color: #3b4f79;
+  color: $darkBlue;
   font-size: 54px;
 }
 
@@ -116,7 +115,7 @@ p, div, h1 {
 }
 
 .section-headers {
-  color: #767676;
+  color: $grey;
   font-size: 18px;
   font-weight: 400;
 }
