@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Logs from './components/k8sLogs/Logs';
+import Log from './components/log/Log';
 import Metrics from './components/metrics/Metrics';
 import Splash from './components/splash/Splash';
 import Navbar from './components/navbar/Navbar';
@@ -23,7 +23,7 @@ const MOCK_PODS = [
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
   const [metrics, setMetrics] = useState([]);
-  const [logs, setLogs] = useState([]);
+  const [log, setLog] = useState([]);
   const [isLogShowing, setIsLogShowing] = useState(true);
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
@@ -37,7 +37,7 @@ const App = () => {
     // fetch('http://localhost:3000/errors/')
     fetch('http://localhost:3000/errors/test')
       .then(res => res.json())
-      .then(newLogs => setLogs(newLogs))
+      .then(newLog => setLog(newLog))
       .catch(err => console.log(err));
     
     // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
@@ -64,7 +64,7 @@ const App = () => {
       />
       <div id="app-container">
         {areMetricsShowing && (<Metrics metrics={metrics}/>)}
-        {isLogShowing && (<Logs logs={logs}/>)}
+        {isLogShowing && (<Log log={log}/>)}
       </div>
     </div>
   )

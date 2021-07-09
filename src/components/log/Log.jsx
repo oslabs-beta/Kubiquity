@@ -41,26 +41,26 @@ const LOG_HEADERS = [
   },
 ];
 
-const Logs = ({ logs }) => (
+const Log = ({ log }) => (
   <div>
     <div className="section-headers">
-      KUBERNETES LOGS
+      EVENT LOG
     </div>
     <div
       className="sub-header"
       id="log-sub-header"
     >
-      Use the Kubiquity logs to find and resolve errors. 
+      Use the Kubiquity event log to find and resolve errors. 
     </div>
-    {logs.length ? (
+    {log.length ? (
       <Table
-        data={logs}
+        data={log}
         headers={LOG_HEADERS}
       />
     ) : (
-      <Loading resource={'logs'} />
+      <Loading resource={'log'} />
     )}
   </div>
 );
 
-export default Logs;
+export default Log;
