@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import Log from './components/log/Log';
-import Metrics from './components/metrics/Metrics';
-import Splash from './components/splash/Splash';
-import Navbar from './components/navbar/Navbar';
+import Log from './components/log';
+import Metrics from './components/metrics';
+import Splash from './components/splash';
+import Navbar from './components/navbar';
 
 import './styles/app.css';
 
