@@ -28,12 +28,13 @@ const Navbar = ({
   const handleClick = e => {
     const { textContent } = e.target;
     const areAllShowing = textContent === 'Home';
-    debugger
+    
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];
       const stateUpdater = navOptionToStateUpdater[navOption];
+      const shouldDisplay = areAllShowing || textContent === navOption;
 
-      stateUpdater(areAllShowing || textContent === navOption);
+      stateUpdater(shouldDisplay);
     }
   };
 
