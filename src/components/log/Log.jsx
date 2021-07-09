@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { Loading } from '../';
 import Table from './Table.jsx';
-import Loading from '../loading';
 
 const LOG_HEADERS = [
   {
