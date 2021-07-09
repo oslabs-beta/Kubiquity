@@ -54,14 +54,16 @@ const App = () => {
         <h1>Kubiquity</h1>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
-      <Navbar
-        setIsLogShowing={setIsLogShowing}
-        setAreMetricsShowing={setAreMetricsShowing}
-        setIsAboutShowing={setIsAboutShowing}
-      />
-      <div id="app-container">
-        {areMetricsShowing && (<Metrics metrics={metrics}/>)}
-        {isLogShowing && (<Log log={log}/>)}
+      <div id="navbar-and-app-container">
+        <Navbar
+          setIsLogShowing={setIsLogShowing}
+          setAreMetricsShowing={setAreMetricsShowing}
+          setIsAboutShowing={setIsAboutShowing}
+        />
+        <div id="app-container">
+          {areMetricsShowing && (<Metrics metrics={metrics}/>)}
+          {isLogShowing && (<Log log={log}/>)}
+        </div>
       </div>
     </div>
   )
