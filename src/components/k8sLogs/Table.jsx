@@ -34,10 +34,14 @@ const Table = ({ data, headers }) => {
     return (
       <tr {...headerProps}>
         {headerGroup.headers.map(column => (
-          <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+          <th
+            {...column.getHeaderProps(column.getSortByToggleProps())}
+          >
             {column.render('Header')}
             <span>
-              {column.isSorted ? (column.isSortedDesc ? UP_ARROW : DOWN_ARROW) : ''}
+              {column.isSorted ?
+                (column.isSortedDesc ? UP_ARROW : DOWN_ARROW)
+              : ''}
             </span>
           </th>
         ))}
