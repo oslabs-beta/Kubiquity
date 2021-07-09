@@ -1,42 +1,51 @@
 import React from 'react';
 
-const Sidebar = () => {
+const HOME = 'Home';
+const LOG = 'Log';
+const METRICS = 'Metrics';
+const ABOUT = 'About';
+
+const NAV_OPTIONS = [
+  HOME,
+  LOG,
+  METRICS,
+  ABOUT
+];
+
+const Sidebar = ({
+  setIsLogsShowing,
+  setIsMetricsShowing,
+  setIsAboutShowing,
+}) => {
+  const navOptionToStateUpdater = {
+    [LOG]: setIsLogsShowing,
+    [METRICS]: setIsMetricsShowing,
+    [ABOUT]: setIsAboutShowing,
+  };
+
   const handleClick = e => {
     const { value } = e.target;
+    const areAllShowing = value === 'Home';
 
-    switch(value) {
-      case 'Memory':
-        break;
-      case 'Log':
-        break;
-      case 'Above':
-        break;
-      default:
+    for (let i = 1; i < NAV_OPTIONS.length; i++) {
+      const navOption = NAV_OPTIONS[i];
+      const stateUpdater = navOptionToStateUpdater[navOption];
+
+      stateUpdater(areAllShowing || value === navOption);
     }
   };
 
+  const buttons = NAV_OPTIONS.map((navOption, i) => (
+    <li key={`navOption-${navOption}-${i}`}>
+      <button onClick={handleClick}>
+        {navOption}
+      </button>
+    </li>
+  ));
+
   return (
     <ul>
-      <li>
-        <button onClick={handleClick}>
-          Home
-        </button>
-      </li>
-      <li>
-        <button onClick={handleClick}>
-          Memory
-        </button>
-      </li>
-      <li>
-        <button onClick={handleClick}>
-          Log
-        </button>
-      </li>
-      <li>
-        <button onClick={handleClick}>
-          About
-        </button>
-      </li>
+      {buttons}
     </ul>
   )
 };
