@@ -4,8 +4,8 @@ $time: 3000ms;
 #infinity-outline {
   fill: transparent;
   stroke-width: 4;
-  stroke: #0e2b5f;
-  stroke-dasharray: $len*0.01, $len;
+  stroke: $darkBlue;
+  stroke-dasharray: $len * 0.01, $len;
   stroke-dashoffset: 0;
   animation: anim $time linear infinite;
 }
@@ -13,22 +13,22 @@ $time: 3000ms;
 #infinity-bg {
   fill: transparent;
   stroke-width: 4;
-  stroke: #424242;
+  stroke: $grey;
   opacity: 0.2;
 }
 
 @keyframes anim {
   12.5% {
-    stroke-dasharray: $len*0.14, $len;
-    stroke-dashoffset: -$len*0.11;
+    stroke-dasharray: $len * 0.14, $len;
+    stroke-dashoffset: -$len * 0.11;
   }
   43.75% {
-    stroke-dasharray: $len*0.35, $len;
-    stroke-dashoffset: -$len*0.35;
+    stroke-dasharray: $len * 0.35, $len;
+    stroke-dashoffset: -$len * 0.35;
   }
   100% {
-    stroke-dasharray: $len*0.01, $len;
-    stroke-dashoffset: -$len*0.99;
+    stroke-dasharray: $len * 0.01, $len;
+    stroke-dashoffset: -$len * 0.99;
   }
 }
 

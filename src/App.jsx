@@ -4,7 +4,7 @@ import Logs from './components/k8sLogs/Logs';
 import Metrics from './components/metrics/Metrics';
 import Splash from './components/splash/Splash';
 
-import './styles/app.css';
+import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 

@@ -1,0 +1,70 @@
+@import '_variables';
+@import '_cssReset';
+@import '_table';
+@import '_splash';
+@import '_loading';
+
+p, div, h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: $grey;
+}
+
+#app-container {
+  padding: 0 54px 54px 54px;
+  background: $white;
+
+  * {
+    margin-bottom: 24px;
+  }
+}
+
+#app-header {
+  padding: 42px 42px 0 42px;
+  margin-bottom: 42px;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin-right: 18px;
+    color: $darkBlue;
+    font-size: 54px;
+  }
+
+  p {
+    padding-top: 18px;
+    font-size: 18px;
+  }
+}
+
+.section-headers {
+  color: $grey;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+#app {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sub-header {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+#chart-container {
+  width: 95%;
+  margin-left: 42px;
+}
+
+#metrics-loading {
+  margin-top: 24px;
+}
