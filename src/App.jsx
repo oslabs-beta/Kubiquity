@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Logs from './components/k8sLogs/Logs';
-import Metrics from './components/metrics/Metrics';
-import Splash from './components/splash/Splash';
+import { Log, Metrics, Splash, Navbar } from './components';
 
 import './styles/app.scss';
 
@@ -22,7 +20,10 @@ const MOCK_PODS = [
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
   const [metrics, setMetrics] = useState([]);
-  const [logs, setLogs] = useState([]);
+  const [log, setLog] = useState([]);
+  const [isLogShowing, setIsLogShowing] = useState(true);
+  const [areMetricsShowing, setAreMetricsShowing] = useState(true);
+  const [isAboutShowing, setIsAboutShowing] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,7 +34,7 @@ const App = () => {
     // fetch('http://localhost:3000/errors/')
     fetch('http://localhost:3000/errors/test')
       .then(res => res.json())
-      .then(newLogs => setLogs(newLogs))
+      .then(newLog => setLog(newLog))
       .catch(err => console.log(err));
     
     // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
@@ -53,9 +54,14 @@ const App = () => {
         <h1>Kubiquity</h1>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
+      <Navbar
+        setIsLogShowing={setIsLogShowing}
+        setAreMetricsShowing={setAreMetricsShowing}
+        setIsAboutShowing={setIsAboutShowing}
+      />
       <div id="app-container">
-        <Metrics metrics={metrics}/>
-        <Logs logs={logs}/>
+        {areMetricsShowing && (<Metrics metrics={metrics}/>)}
+        {isLogShowing && (<Log log={log}/>)}
       </div>
     </div>
   )
