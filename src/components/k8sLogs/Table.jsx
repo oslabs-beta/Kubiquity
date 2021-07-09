@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable, useSortBy } from 'react-table';
 
-import '../../styles/table.css';
+// import '../../styles/table.css';
 
 // TODO: move styling to CSS. 
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
