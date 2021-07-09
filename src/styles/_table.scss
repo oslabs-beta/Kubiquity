@@ -1,0 +1,23 @@
+#table-container {
+  width: 90vw;
+  max-height: 95vh;
+  overflow: scroll;
+}
+
+tbody > * {
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #222222;
+}
+
+td {
+  border: solid 1px gray;
+}
+
+th {
+  border-bottom: solid 3px #222222;
+  background: #3b4f79;
+  color: #f8f8f8;
+  font-weight: bold;
+  padding: 6px;
+}

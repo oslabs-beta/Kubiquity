@@ -1,0 +1,149 @@
+@import '_variables';
+@import '_table';
+@import '_splash';
+@import '_loading';
+
+/* Electron CSS reset */
+
+html {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  cursor: default;
+}
+
+input, textarea, select, button, img {
+  -webkit-user-drag: none;
+}
+
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.selectable {
+  -webkit-user-select: auto;
+  cursor: auto;
+}
+
+/* End of Electron CSS reset */
+
+/* General CSS reset */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul[role='list'], ol[role='list'] {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background: #f8f8f8;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* End general CSS reset */
+
+/* TODO: add app styling */
+/* TODO: consider replacing CSS with SASS */
+
+p, div, h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #767676;
+}
+
+#app-container {
+  padding: 0 54px 54px 54px;
+  background: #f8f8f8;
+}
+
+#app-header {
+  padding: 42px 42px 0 42px;
+  margin-bottom: 42px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(#bac1cd, #f8f8f8);
+}
+
+#app-header > h1 {
+  margin-right: 18px;
+  color: #3b4f79;
+  font-size: 54px;
+}
+
+#app-header > p {
+  padding-top: 18px;
+  font-size: 18px;
+}
+
+#app-container > * {
+  margin-bottom: 24px;
+}
+
+.section-headers {
+  color: #767676;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+#app {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sub-header {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+#chart-container {
+  width: 95%;
+  margin-left: 42px;
+}
+
+#metrics-loading {
+  margin-top: 24px;
+}
