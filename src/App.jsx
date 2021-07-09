@@ -23,6 +23,9 @@ const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
   const [metrics, setMetrics] = useState([]);
   const [logs, setLogs] = useState([]);
+  const [isLogShowing, setIsLogShowing] = useState(true);
+  const [areMetricsShowing, setAreMetricsShowing] = useState(true);
+  const [isAboutShowing, setIsAboutShowing] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
