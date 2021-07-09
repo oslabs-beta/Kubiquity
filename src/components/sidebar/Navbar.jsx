@@ -12,7 +12,7 @@ const NAV_OPTIONS = [
   ABOUT
 ];
 
-const Sidebar = ({
+const Navbar = ({
   setIsLogsShowing,
   setIsMetricsShowing,
   setIsAboutShowing,
@@ -50,4 +50,4 @@ const Sidebar = ({
   )
 };
 
-export default Sidebar;
+export default Navbar;
