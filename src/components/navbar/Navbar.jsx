@@ -3,14 +3,14 @@ import React from 'react';
 import NavButton from './NavButton';
 
 const HOME = 'Home';
-const LOG = 'Log';
 const METRICS = 'Metrics';
+const LOG = 'Log';
 const ABOUT = 'About';
 
 const NAV_OPTIONS = [
   HOME,
-  LOG,
   METRICS,
+  LOG,
   ABOUT
 ];
 
@@ -26,14 +26,14 @@ const Navbar = ({
   };
 
   const handleClick = e => {
-    const { id } = e.target;
-    const areAllShowing = id === 'Home';
-
+    const { textContent } = e.target;
+    const areAllShowing = textContent === 'Home';
+    debugger
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];
       const stateUpdater = navOptionToStateUpdater[navOption];
 
-      stateUpdater(areAllShowing || id === navOption);
+      stateUpdater(areAllShowing || textContent === navOption);
     }
   };
 
