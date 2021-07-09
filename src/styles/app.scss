@@ -4,14 +4,21 @@
 @import '_splash';
 @import '_loading';
 
+body {
+  min-width: 600px;
+}
+
 p, div, h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: $grey;
 }
 
 #app-container {
-  padding: 0 54px 54px 54px;
+  padding: 30px 0;
   background: $white;
+  margin-right: 30px;
+  width: 82vw;
+  overflow-x: hidden;
 
   * {
     margin-bottom: 24px;
@@ -20,19 +27,20 @@ p, div, h1 {
 
 #app-header {
   padding: 42px 42px 0 42px;
-  margin-bottom: 42px;
   display: flex;
   align-items: center;
+  background: $darkBlue;
 
   h1 {
     margin-right: 18px;
-    color: $darkBlue;
+    color: $white;
     font-size: 54px;
   }
 
   p {
     padding-top: 18px;
     font-size: 18px;
+    color: $white;
   }
 }
 
@@ -67,4 +75,66 @@ p, div, h1 {
 
 #metrics-loading {
   margin-top: 24px;
+}
+
+#navbar-and-app-container {
+  display: flex;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 30px 60px;
+}
+
+button {
+  background: none;
+  border: none;
+  margin: 6px;
+  color: $darkBlue;
+  transition: color 100ms linear;
+  font-weight: 600;
+}
+
+button:hover {
+  color: $lightBlue;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 860px) {
+  #app-header {
+    flex-direction: column;
+    align-items: unset;
+    justify-content: flex-start;
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      padding-top: 0px;
+      margin: 0 0 12px;
+    }
+  }
+
+  #navbar-and-app-container {
+    display: block;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    margin-top: 12px;
+  }
+
+  #app-container {
+    margin: 24px 60px 0;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  body {
+    overflow-x: scroll;
+  }
 }
