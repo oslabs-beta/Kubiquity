@@ -11,13 +11,13 @@ tbody > * {
 }
 
 td {
-  border: solid 1px gray;
+  border: solid 1px $grey;
 }
 
 th {
-  border-bottom: solid 3px #222222;
-  background: #3b4f79;
-  color: #f8f8f8;
+  border-bottom: solid 3px $black;
+  background: $darkBlue;
+  color: $white;
   font-weight: bold;
   padding: 6px;
 }

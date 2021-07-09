@@ -1,9 +1,6 @@
 import React from 'react';
 import { useTable, useSortBy } from 'react-table';
 
-import '../../styles/table.css';
-
-// TODO: move styling to CSS. 
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
 // TODO: potentially add sticky headers: https://github.com/GuillaumeJasmin/react-table-sticky
 
@@ -37,10 +34,14 @@ const Table = ({ data, headers }) => {
     return (
       <tr {...headerProps}>
         {headerGroup.headers.map(column => (
-          <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+          <th
+            {...column.getHeaderProps(column.getSortByToggleProps())}
+          >
             {column.render('Header')}
             <span>
-              {column.isSorted ? (column.isSortedDesc ? UP_ARROW : DOWN_ARROW) : ''}
+              {column.isSorted ?
+                (column.isSortedDesc ? UP_ARROW : DOWN_ARROW)
+              : ''}
             </span>
           </th>
         ))}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Log, Metrics, Splash, Navbar } from './components';
 
-import './styles/app.css';
+import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
