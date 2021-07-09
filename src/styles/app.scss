@@ -12,6 +12,10 @@ p, div, h1 {
 #app-container {
   padding: 0 54px 54px 54px;
   background: $white;
+
+  * {
+    margin-bottom: 24px;
+  }
 }
 
 #app-header {
@@ -19,21 +23,17 @@ p, div, h1 {
   margin-bottom: 42px;
   display: flex;
   align-items: center;
-}
 
-#app-header > h1 {
-  margin-right: 18px;
-  color: $darkBlue;
-  font-size: 54px;
-}
+  h1 {
+    margin-right: 18px;
+    color: $darkBlue;
+    font-size: 54px;
+  }
 
-#app-header > p {
-  padding-top: 18px;
-  font-size: 18px;
-}
-
-#app-container > * {
-  margin-bottom: 24px;
+  p {
+    padding-top: 18px;
+    font-size: 18px;
+  }
 }
 
 .section-headers {

@@ -7,10 +7,10 @@
   flex-direction: column;
   background-image: linear-gradient(to bottom right, $darkBlue, $lightBlue);
   animation: fadeIn 3s, fadeOut 1.5s 3.5s;
-}
 
-#splash-container > * {
-  color: $white;
+  * {
+    color: $white;
+  }
 }
 
 #splash-header {
