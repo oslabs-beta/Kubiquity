@@ -13,13 +13,13 @@ const NAV_OPTIONS = [
 ];
 
 const Navbar = ({
-  setIsLogsShowing,
-  setIsMetricsShowing,
+  setIsLogShowing,
+  setAreMetricsShowing,
   setIsAboutShowing,
 }) => {
   const navOptionToStateUpdater = {
-    [LOG]: setIsLogsShowing,
-    [METRICS]: setIsMetricsShowing,
+    [LOG]: setIsLogShowing,
+    [METRICS]: setAreMetricsShowing,
     [ABOUT]: setIsAboutShowing,
   };
 
