@@ -57,8 +57,8 @@ const App = () => {
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="app-container">
-        <Metrics metrics={metrics}/>
-        <Logs logs={logs}/>
+        {areMetricsShowing && (<Metrics metrics={metrics}/>)}
+        {isLogShowing && (<Logs logs={logs}/>)}
       </div>
     </div>
   )
