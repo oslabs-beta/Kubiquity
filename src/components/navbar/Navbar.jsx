@@ -1,5 +1,7 @@
 import React from 'react';
 
+import NavButton from './NavButton';
+
 const HOME = 'Home';
 const LOG = 'Log';
 const METRICS = 'Metrics';
@@ -36,11 +38,11 @@ const Navbar = ({
   };
 
   const buttons = NAV_OPTIONS.map((navOption, i) => (
-    <li key={`navOption-${navOption}-${i}`}>
-      <button onClick={handleClick}>
-        {navOption}
-      </button>
-    </li>
+    <NavButton
+      key={`navOption-${navOption}-${i}`}
+      navOption={navOption}
+      handleClick={handleClick}
+    />
   ));
 
   return (
