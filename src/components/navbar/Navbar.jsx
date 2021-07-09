@@ -26,20 +26,21 @@ const Navbar = ({
   };
 
   const handleClick = e => {
-    const { value } = e.target;
-    const areAllShowing = value === 'Home';
+    const { id } = e.target;
+    const areAllShowing = id === 'Home';
 
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];
       const stateUpdater = navOptionToStateUpdater[navOption];
 
-      stateUpdater(areAllShowing || value === navOption);
+      stateUpdater(areAllShowing || id === navOption);
     }
   };
 
   const buttons = NAV_OPTIONS.map((navOption, i) => (
     <NavButton
       key={`navOption-${navOption}-${i}`}
+      id={navOption}
       navOption={navOption}
       handleClick={handleClick}
     />

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Logs from './components/k8sLogs/Logs';
 import Metrics from './components/metrics/Metrics';
 import Splash from './components/splash/Splash';
+import Navbar from './components/navbar/Navbar';
 
 import './styles/app.css';
 
@@ -56,6 +57,11 @@ const App = () => {
         <h1>Kubiquity</h1>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
+      <Navbar
+        setIsLogShowing={setIsLogShowing}
+        setAreMetricsShowing={setAreMetricsShowing}
+        setIsAboutShowing={setIsAboutShowing}
+      />
       <div id="app-container">
         {areMetricsShowing && (<Metrics metrics={metrics}/>)}
         {isLogShowing && (<Logs logs={logs}/>)}
