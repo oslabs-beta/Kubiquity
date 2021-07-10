@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Errors from './components/errors/Errors';
 import Pods from './components/pods/Pods';
+import About from './components/about/About';
 import Splash from './components/splash/Splash';
 
 import './styles/app.css';
@@ -32,6 +33,7 @@ const App = () => {
       <h1>Kubiquity</h1>
       <Errors />
       <Pods />
+      <About />
     </div>
   )
 };
