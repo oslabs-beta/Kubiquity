@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-
-
-import About from './components/about/About';
-
-import { Log, Metrics, Splash, Navbar } from './components';
+import {
+  Log,
+  Metrics,
+  Splash,
+  Navbar,
+  About,
+} from './components';
 
 import './styles/app.scss';
 
@@ -67,7 +69,7 @@ const App = () => {
         <div id="app-container">
           {areMetricsShowing && (<Metrics metrics={metrics} />)}
           {isLogShowing && (<Log log={log} />)}
-          <About />
+          {isAboutShowing && (<About />)}
         </div>
       </div>
     </div>

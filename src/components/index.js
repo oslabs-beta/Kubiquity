@@ -3,6 +3,7 @@ import Log from './log';
 import Metrics from './metrics';
 import Navbar from './navbar';
 import Splash from './splash';
+import About from './about';
 
 export {
   Loading,
@@ -10,4 +11,5 @@ export {
   Metrics,
   Navbar,
   Splash,
+  About,
 };
