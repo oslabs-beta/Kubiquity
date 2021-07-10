@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { Log, Metrics, Splash, Navbar } from './components';
+import {
+  Log,
+  Metrics,
+  Splash,
+  Navbar,
+  About,
+} from './components';
 
 import './styles/app.scss';
 
@@ -36,7 +42,7 @@ const App = () => {
       .then(res => res.json())
       .then(newLog => setLog(newLog))
       .catch(err => console.log(err));
-    
+
     // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
     setMetrics(MOCK_PODS);
 
@@ -61,8 +67,9 @@ const App = () => {
           setIsAboutShowing={setIsAboutShowing}
         />
         <div id="app-container">
-          {areMetricsShowing && (<Metrics metrics={metrics}/>)}
-          {isLogShowing && (<Log log={log}/>)}
+          {areMetricsShowing && (<Metrics metrics={metrics} />)}
+          {isLogShowing && (<Log log={log} />)}
+          {isAboutShowing && (<About />)}
         </div>
       </div>
     </div>
