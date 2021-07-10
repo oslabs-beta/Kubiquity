@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const errorsRouter = require('./routers/errorsRouter');
+const metricsRouter = require('./routers/metricsRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,8 +13,9 @@ app.use(express.static(path.resolve(__dirname + '../src')));
 app.use('/build', express.static(path.join(__dirname + '../build')));
 
 app.use('/errors', errorsRouter);
+app.use('/metrics', metricsRouter);
 
-app.use((req, res) => res.status(404).send('Unable to find item'));
+app.use('*', (req, res) => res.status(404).send('Unable to find item'));
 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -29,7 +31,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${ PORT }...`);
+  console.log(`Server running on ${PORT}...`);
 });
-
-module.exports = app;

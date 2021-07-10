@@ -1,0 +1,52 @@
+$len: 300px;
+$time: 3000ms;
+
+#infinity-outline {
+  fill: transparent;
+  stroke-width: 4;
+  stroke: $darkBlue;
+  stroke-dasharray: $len * 0.01, $len;
+  stroke-dashoffset: 0;
+  animation: anim $time linear infinite;
+}
+
+#infinity-bg {
+  fill: transparent;
+  stroke-width: 4;
+  stroke: $grey;
+  opacity: 0.2;
+}
+
+@keyframes anim {
+  12.5% {
+    stroke-dasharray: $len * 0.14, $len;
+    stroke-dashoffset: -$len * 0.11;
+  }
+  43.75% {
+    stroke-dasharray: $len * 0.35, $len;
+    stroke-dashoffset: -$len * 0.35;
+  }
+  100% {
+    stroke-dasharray: $len * 0.01, $len;
+    stroke-dashoffset: -$len * 0.99;
+  }
+}
+
+#loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loading {
+  overflow: hidden;
+  height: 49px;
+  width: 95px;
+  margin-top: 6px;
+}
+
+svg {
+  position: relative;
+  top: -23px;
+  left: -47px;
+}
