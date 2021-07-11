@@ -46,28 +46,41 @@ app
   });
 
 
-  ipcMain.on('getLog', async (event, data) => {
-    // const log = await getLogTest();
-    // console.log(log);
-    // const dataObj = [{ data }];
-    // storage.set('testData', dataObj, (error) => {
-    //   console.log(storage.getAll((a, b) => {
-    //     console.log(a);
-    //     console.log(b);
-    //   }));
-    //   console.log('hit line 44');
-    // });
-  });
-  
-  ipcMain.on('getMetrics', async (event, data) => {
-    // const log = await getLogTest();
-    // console.log(log);
-    // const dataObj = [{ data }];
-    // storage.set('testData', dataObj, (error) => {
-    //   console.log(storage.getAll((a, b) => {
-    //     console.log(a);
-    //     console.log(b);
-    //   }));
-    //   console.log('hit line 44');
-    // });
-  });
+ipcMain.on('getLog', async (event, data) => {
+  // const log = await getLogTest();
+  // console.log(log);
+  // const dataObj = [{ data }];
+  // storage.set('testData', dataObj, (error) => {
+  //   console.log(storage.getAll((a, b) => {
+  //     console.log(a);
+  //     console.log(b);
+  //   }));
+  //   console.log('hit line 44');
+  // });
+});
+
+ipcMain.on('getMetrics', async (event, data) => {
+  // const log = await getLogTest();
+  // console.log(log);
+  // const dataObj = [{ data }];
+  // storage.set('testData', dataObj, (error) => {
+  //   console.log(storage.getAll((a, b) => {
+  //     console.log(a);
+  //     console.log(b);
+  //   }));
+  //   console.log('hit line 44');
+  // });
+});
+
+ipcMain.on('getLogTest', async (event, data) => {
+  // const log = await getLogTest();
+  // console.log(log);
+  // const dataObj = [{ data }];
+  // storage.set('testData', dataObj, (error) => {
+  //   console.log(storage.getAll((a, b) => {
+  //     console.log(a);
+  //     console.log(b);
+  //   }));
+  //   console.log('hit line 44');
+  // });
+});
