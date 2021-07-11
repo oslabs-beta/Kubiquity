@@ -12,6 +12,16 @@ import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
+/*
+
+  const checkButtonClick = () => {
+    alert('sending!');
+
+    window.api.send("check", "some data 2");
+  };
+
+*/
+
 const MOCK_PODS = [
   {
     podId: 0,
