@@ -41,7 +41,17 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive('gotLogTest', (resp) => {
+  window.api.receive('gotLogTest', resp => {
+    console.log('in recieve');
+    console.log(resp);
+  });
+
+  window.api.receive('gotLog', resp => {
+    console.log('in recieve');
+    console.log(resp);
+  });
+
+  window.api.receive('gotMetrics', resp => {
     console.log('in recieve');
     console.log(resp);
   });

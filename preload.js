@@ -5,6 +5,8 @@ const VALID_CHANNELS = [
   'getMetrics',
   'getLogTest',
   'gotLogTest',
+  'gotLog',
+  'gotLogMetrics',
 ];
 
 contextBridge.exposeInMainWorld(
