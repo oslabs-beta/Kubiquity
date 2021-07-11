@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './app/index.js',
+  entry: './src/index.js',
   devtool: 'inline-source-map',
   target: 'electron-renderer',
   devServer: {

@@ -1,6 +1,11 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
-const VALID_CHANNELS = ['getLog', 'getMetrics', 'getLogTest'];
+const VALID_CHANNELS = [
+  'getLog',
+  'getMetrics',
+  'getLogTest',
+  'gotLogTest',
+];
 
 contextBridge.exposeInMainWorld(
   'api', {
