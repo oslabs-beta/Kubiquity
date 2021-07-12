@@ -52,6 +52,8 @@ app
     throw Error(`Error while launching app: ${ err }`);
   });
 
+
+// TODO: figure out if we need to convert data to JSON, or if IPC can handle JS. 
 ipcMain.on(GET_LOG, async (event, data) => {
   const log = await getLog();
   event.sender.send(GOT_LOG, JSON.stringify(log));
