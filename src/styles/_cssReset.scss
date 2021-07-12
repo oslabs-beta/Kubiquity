@@ -43,7 +43,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background: #f8f8f8;
+  background: $white;
 }
 
 a:not([class]) {
@@ -73,69 +73,3 @@ input, button, textarea, select {
 }
 
 /* End general CSS reset */
-
-/* TODO: add app styling */
-/* TODO: consider replacing CSS with SASS */
-
-p, div, h1 {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #767676;
-}
-
-#app-container {
-  padding: 0 54px 54px 54px;
-  background: #f8f8f8;
-}
-
-#app-header {
-  padding: 42px 42px 0 42px;
-  margin-bottom: 42px;
-  display: flex;
-  align-items: center;
-  background-image: linear-gradient(#bac1cd, #f8f8f8);
-}
-
-#app-header > h1 {
-  margin-right: 18px;
-  color: #3b4f79;
-}
-
-#app-header > p {
-  padding-top: 8px;
-  font-size: 16px;
-}
-
-#app-container > * {
-  margin-bottom: 24px;
-}
-
-.section-headers {
-  color: #767676;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-#app {
-  animation: fadeIn 1s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.sub-header {
-  font-size: 14px;
-}
-
-#log-sub-header {
-  margin-bottom: 24px;
-}
-
-#metrics-loading {
-  margin-top: 24px;
-}

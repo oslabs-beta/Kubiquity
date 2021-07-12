@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../styles/splash.css';
-
 const Splash = () => (
   <div id="splash-container">
     <h1 id="splash-header">

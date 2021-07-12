@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { Loading } from '../';
 import MemoryBarChart from './MemoryBarChart';
-import Loading from '../loading/Loading.jsx';
 
 const Metrics = ({ metrics }) => {
   const memoryValues = new Array(metrics.length);

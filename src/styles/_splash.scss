@@ -5,13 +5,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: #ffffff;
-  background-image: linear-gradient(to bottom right, #0e2b5f, #a9b1c2);
+  background-image: linear-gradient(to bottom right, $darkBlue, $lightBlue);
   animation: fadeIn 3s, fadeOut 1.5s 3.5s;
-}
 
-#splash-container > * {
-  color: #ffffff;
+  * {
+    color: $white;
+  }
 }
 
 #splash-header {
