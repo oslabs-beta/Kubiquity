@@ -2,11 +2,12 @@ const fetch = require('node-fetch');
 const cmd = require('node-cmd');
 const { spawn } = require('child_process');
 
-const metricsController = {};
-
 const PROM_URL = 'http://127.0.0.1:9090/api/v1/';
 
+const metricsController = {};
+
 let isPromUp = false;
+
 const forwardPromPort = () =>
   new Promise((resolve, reject) => {
     const promPodName = cmd
@@ -47,8 +48,7 @@ metricsController.getMemory = async (req, res, next) => {
     // create query at current time
     if (isPromUp) {
       const currentDate = new Date().toISOString();
-      let query = `/query_range?query=sum(rate(node_memory_MemFree_bytes[2m]))`;
-      query += `&start=${currentDate}&end=${currentDate}&step=1m`;
+      let query = `/query_range?query=sum(rate(node_memory_MemFree_bytes[2m]))&start=${currentDate}&end=${currentDate}&step=1m`;
       let memArr;
       // send query to prometheus for node memory usage
       const data = await fetch(PROM_URL + query);
