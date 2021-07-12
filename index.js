@@ -4,6 +4,7 @@ const path = require('path');
 const electronReload = require('electron-reload');
 const { getLog, getMetrics, getLogTest } = require('./backend/index');
 require('dotenv').config();
+const errorsController = require('./backend/controllers/errorsController')
 
 const ELECTRON_MODULE_PATH = path.join(
   __dirname,
@@ -47,46 +48,17 @@ app
 
 ipcMain.on('getLog', async (event, data) => {
   const log = await getLog();
-  event.reply('getLog', log);
-  // const log = await getLogTest();
-  // console.log(log);
-  // const dataObj = [{ data }];
-  // storage.set('testData', dataObj, (error) => {
-  //   console.log(storage.getAll((a, b) => {
-  //     console.log(a);
-  //     console.log(b);
-  //   }));
-  //   console.log('hit line 44');
-  // });
+  event.sender.send('gotLog', log);
 });
 
 ipcMain.on('getMetrics', async (event, data) => {
   const metrics = await getMetrics();
-  // const log = await getLogTest();
-  // console.log(log);
-  // const dataObj = [{ data }];
-  // storage.set('testData', dataObj, (error) => {
-  //   console.log(storage.getAll((a, b) => {
-  //     console.log(a);
-  //     console.log(b);
-  //   }));
-  //   console.log('hit line 44');
-  // });
+  event.sender.send('gotMetrics', metrics);
 });
 
 ipcMain.on('getLogTest', async (event, data) => {
-  // console.log(event);
   console.log('in test')
-  event.sender.send('gotLogTest', 'check if this works');
-  // event.reply('getLogTestResp', 'time to see if this works');
-  // const log = await getLogTest();
-  // console.log(log);
-  // const dataObj = [{ data }];
-  // storage.set('testData', dataObj, (error) => {
-  //   console.log(storage.getAll((a, b) => {
-  //     console.log(a);
-  //     console.log(b);
-  //   }));
-  //   console.log('hit line 44');
-  // });
+  const errors = await getLogTest();
+  console.log(errors);
+  event.sender.send('gotLogTest', JSON.stringify(errors));
 });

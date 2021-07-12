@@ -41,9 +41,11 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive('gotLogTest', resp => {
+  window.api.receive('gotLogTest', (resp) => {
     console.log('in recieve');
     console.log(resp);
+    const newLog = JSON.parse(resp);
+    setLog(newLog);
   });
 
   window.api.receive('gotLog', resp => {
@@ -102,9 +104,9 @@ const App = () => {
         />
         <div id="app-container">
           <button onClick={handleTest}>test button</button>
-          {/* {areMetricsShowing && (<Metrics metrics={metrics} />)}
+          {areMetricsShowing && (<Metrics metrics={metrics} />)}
           {isLogShowing && (<Log log={log} />)}
-          {isAboutShowing && (<About />)} */}
+          {isAboutShowing && (<About />)}
         </div>
       </div>
     </div>
