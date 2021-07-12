@@ -33,41 +33,27 @@ const errorArrayConverter = (array) => {
 
 const errorsController = {};
 
-errorsController.queryErrors = (req, res, next) => {
+// TODO: app proper error handling
+
+errorsController.queryErrors = () => {
   try {
     const errorList = cmd.runSync('kubectl get events --all-namespaces').data.split('\n');
     errorList.pop();
-    res.locals.errorList = errorList;
-
-    return next();
+    return errorList;
   } catch (err) {
-    return next({
-      log: `errorController.queryErrors: ERROR: ${err}`,
-      message: {
-        err: 'Error occurred while querying errors. Check server logs for more information.',
-      },
-    });
+    console.log(err);
   }
 };
 
-errorsController.formatErrors = (req, res, next) => {
+errorsController.formatErrors = (errorList) => {
   try {
-    const errors = errorArrayConverter(res.locals.errorList);
-    res.locals.errors = errors;
-
-    return next();
+    return errorArrayConverter(errorList);
   } catch (err) {
-    return next({
-      log: `errorController.formatErrors: ERROR: ${err}`,
-      message: {
-        err: 'Error occurred while formatting errors. Check server logs for more information.',
-      },
-    });
+    console.log(err);
   }
 };
 
-errorsController.saveErrors = async (req, res, next) => {
-  const { errors } = res.locals;
+errorsController.saveErrors = async (errors) => {
   errors.shift();
 
   try {
@@ -88,42 +74,27 @@ errorsController.saveErrors = async (req, res, next) => {
     });
 
     await Promise.all(errorPromises);
-    return next();
+    return;
   } catch (err) {
-    return next({
-      log: `errorController.saveErrors: ERROR: ${err}`,
-      message: {
-        err: 'Error occurred while saving errors. Check server logs for more information.',
-      },
-    });
+    console.log(err);
   }
 };
 
-errorsController.getErrors = async (req, res, next) => {
+errorsController.getErrors = async () => {
   try {
     const errors = await K8sError.find({}).sort({ 'createdAt': -1 });
     return errors
   } catch (err) {
-    return next({
-      log: `errorController.getErrors: ERROR: ${err}`,
-      message: {
-        err: 'Error occurred while retrieving errors. Check server logs for more information.',
-      },
-    });
+    console.log(err);
   }
 };
 
-errorsController.clearErrors = async (req, res, next) => {
+errorsController.clearErrors = async () => {
   try {
     await K8sError.deleteMany({});
-    return next();
+    return;
   } catch (err) {
-    return next({
-      log: `errorController.clearErrors: ERROR: ${err}`,
-      message: {
-        err: 'Error occurred while clearing errors. Check server logs for more information.',
-      },
-    });
+    console.log(err);
   }
 };
 

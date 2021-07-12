@@ -48,6 +48,7 @@ app
 
 ipcMain.on('getLog', async (event, data) => {
   const log = await getLog();
+  console.log('them logs been got');
   event.sender.send('gotLog', JSON.stringify(log));
 });
 

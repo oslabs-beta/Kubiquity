@@ -54,8 +54,8 @@ const App = () => {
     }, 4850);
 
     // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
-    window.api.send('getLogTest');
-    // window.api.send('getLog');
+    // window.api.send('getLogTest');
+    window.api.send('getLog');
 
     // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
     // setMetrics(MOCK_PODS);
