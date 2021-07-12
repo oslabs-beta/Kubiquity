@@ -12,16 +12,6 @@ import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
-/*
-
-  const checkButtonClick = () => {
-    alert('sending!');
-
-    window.api.send("check", "some data 2");
-  };
-
-*/
-
 const MOCK_PODS = [
   {
     podId: 0,
@@ -41,54 +31,36 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive('gotLogTest', (resp) => {
-    console.log('in recieve');
-    console.log(resp);
+  window.api.receive('gotLogTest', resp => {
     const newLog = JSON.parse(resp);
     setLog(newLog);
   });
 
   window.api.receive('gotLog', resp => {
-    console.log('in recieve');
-    console.log(resp);
+    const newLog = JSON.parse(resp);
+    setLog(newLog);
   });
 
   window.api.receive('gotMetrics', resp => {
-    console.log('in recieve');
-    console.log(resp);
+    const newMetrics = JSON.parse(resp);
+    setMetrics(newMetrics);
   });
 
-  const handleTest = () => {
-    window.api.send('getLogTest');
-    // window.on('getLogTestResp', (event, data) => {
-    //   console.log(data);
-    // });
-  };
-
-  /*
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
 
-    // TODO: to test actual K8s cluster, uncomment 33 and comment out 34. 
-    // fetch('http://localhost:3000/errors/')
-    fetch('http://localhost:3000/errors/test')
-      .then(res => res.json())
-      .then(newLog => setLog(newLog))
-      .catch(err => console.log(err));
+    // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
+    window.api.send('getLogTest');
+    // window.api.send('getLog');
 
-    // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
+    // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
     setMetrics(MOCK_PODS);
-
-    // fetch('http://localhost:3000/metrics')
-    //   .then(res => res.json())
-    //   .then(newMetrics => setMetrics(newMetrics))
-    //   .catch(err => console.log(err));
+    // window.api.send('getMetrics');
   }, []);
 
-  if (isSplashShowing) return (<Splash />);
-  */
+  // if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
@@ -103,7 +75,6 @@ const App = () => {
           setIsAboutShowing={setIsAboutShowing}
         />
         <div id="app-container">
-          <button onClick={handleTest}>test button</button>
           {areMetricsShowing && (<Metrics metrics={metrics} />)}
           {isLogShowing && (<Log log={log} />)}
           {isAboutShowing && (<About />)}
