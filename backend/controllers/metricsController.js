@@ -1,3 +1,5 @@
+//! Jeff's work from this PR needs to be merged into this file: https://github.com/oslabs-beta/Kubiquity/pull/28
+
 const fetch = require('node-fetch');
 
 const PROM_URL = 'http://127.0.0.1:9090/api/v1/';

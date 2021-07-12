@@ -1,21 +1,27 @@
-const errorsController = require('./controllers/errorsController');
-const metricsController = require('./controllers/metricsController');
+const { getMemory } = require('./controllers/metricsController');
+const {
+  clearLog,
+  queryLog,
+  formatLog,
+  saveLog,
+  getLog: fetchLog,
+} = require('./controllers/logController');
 
 const getLog = async () => {
-  await errorsController.clearErrors();
-  const errorLogs = await errorsController.queryErrors();
-  const formattedErrors = await errorsController.formatErrors(errorLogs);
-  await errorsController.saveErrors(formattedErrors);
-  return await errorsController.getErrors();
+  await clearLog();
+  let log = await queryLog();
+  log = formatLog(log);
+  await saveLog(log);
+  return await fetchLog();
 };
 
 const getLogTest = async () => {
-  const errors = await errorsController.getErrors()
-  return errors;
+  const log = await fetchLog()
+  return log;
 }
 
 const getMetrics = async () => {
-  const metrics = await metricsController.getMemory();
+  const metrics = await getMemory();
   return metrics;
 }
 
