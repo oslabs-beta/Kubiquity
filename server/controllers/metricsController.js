@@ -8,7 +8,7 @@ const metricsController = {};
 
 let isPromUp = false;
 
-const forwardPromPort = () =>
+const forwardPromPort = () => (
   new Promise((resolve, reject) => {
     const promPodName = cmd
       .runSync(
@@ -39,7 +39,8 @@ const forwardPromPort = () =>
       isPromUp = true;
       resolve();
     });
-  });
+  })
+);
 
 metricsController.getMemory = async (req, res, next) => {
   try {
