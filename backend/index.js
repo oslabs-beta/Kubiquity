@@ -7,6 +7,8 @@ const {
   getLog: fetchLog,
 } = require('./controllers/logController');
 
+const getLogTest = async () => await fetchLog();
+const getMetrics = async () =>  await getMemory();
 const getLog = async () => {
   await clearLog();
   let log = await queryLog();
@@ -14,16 +16,6 @@ const getLog = async () => {
   await saveLog(log);
   return await fetchLog();
 };
-
-const getLogTest = async () => {
-  const log = await fetchLog()
-  return log;
-}
-
-const getMetrics = async () => {
-  const metrics = await getMemory();
-  return metrics;
-}
 
 module.exports = {
   getLog,
