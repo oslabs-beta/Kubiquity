@@ -25,7 +25,6 @@
   "dependencies": {
     "@kubernetes/client-node": "^0.15.0",
     "apexcharts": "^3.27.1",
-    "cmd": "^0.1.0",
     "dotenv": "^10.0.0",
     "electron": "^13.1.4",
     "electron-json-storage": "^4.5.0",
