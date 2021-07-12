@@ -1,16 +1,16 @@
 const { BrowserWindow, app, ipcMain } = require('electron');
 const path = require('path');
 const electronReload = require('electron-reload');
-const { getLog, getMetrics, getLogTest } = require('./backend');
 
-import {
+const { getLog, getMetrics, getLogTest } = require('./backend');
+const  {
   GET_LOG,
   GET_METRICS,
   GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
   GOT_LOG_TEST,
-} from './utils';
+} = require('./utils');
 
 const ELECTRON_MODULE_PATH = path.join(
   __dirname,

@@ -1,13 +1,13 @@
-const { contextBridge, ipcRenderer } = require("electron");
+const { contextBridge, ipcRenderer } = require('electron');
 
-import {
+const  {
   GET_LOG,
   GET_METRICS,
   GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
   GOT_LOG_TEST,
-} from './utils';
+} = require('./utils');
 
 const VALID_CHANNELS = [
   GET_LOG,
