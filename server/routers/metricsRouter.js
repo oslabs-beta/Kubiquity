@@ -6,6 +6,7 @@ const router = express.Router();
 router.get(
   '/', 
   metricsController.getMemory, 
+  metricsController.getCPU,
   (req, res) => res.status(200).json(res.locals.memory)
 );
 
