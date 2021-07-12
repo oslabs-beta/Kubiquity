@@ -1,12 +1,21 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
+import {
+  GET_LOG,
+  GET_METRICS,
+  GET_LOG_TEST,
+  GOT_LOG,
+  GOT_METRICS,
+  GOT_LOG_TEST,
+} from './utils';
+
 const VALID_CHANNELS = [
-  'getLog',
-  'getMetrics',
-  'getLogTest',
-  'gotLogTest',
-  'gotLog',
-  'gotMetrics',
+  GET_LOG,
+  GET_METRICS,
+  GET_LOG_TEST,
+  GOT_LOG,
+  GOT_METRICS,
+  GOT_LOG_TEST
 ];
 
 contextBridge.exposeInMainWorld(

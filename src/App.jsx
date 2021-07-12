@@ -8,6 +8,15 @@ import {
   About,
 } from './components';
 
+import {
+  GET_LOG,
+  GET_METRICS,
+  GET_LOG_TEST,
+  GOT_LOG,
+  GOT_METRICS,
+  GOT_LOG_TEST,
+} from '../utils';
+
 import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
@@ -31,17 +40,17 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive('gotLogTest', resp => {
+  window.api.receive(GOT_LOG_TEST, resp => {
     const newLog = JSON.parse(resp);
     setLog(newLog);
   });
 
-  window.api.receive('gotLog', resp => {
+  window.api.receive(GOT_LOG, resp => {
     const newLog = JSON.parse(resp);
     setLog(newLog);
   });
 
-  window.api.receive('gotMetrics', resp => {
+  window.api.receive(GOT_METRICS, resp => {
     const newMetrics = JSON.parse(resp);
     setMetrics(newMetrics);
   });
@@ -52,12 +61,12 @@ const App = () => {
     }, 4850);
 
     // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
-    window.api.send('getLogTest');
-    // window.api.send('getLog');
+    window.api.send(GET_LOG_TEST);
+    // window.api.send(GET_LOG);
 
     // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
     setMetrics(MOCK_PODS);
-    // window.api.send('getMetrics');
+    // window.api.send(GET_METRICS);
   }, []);
 
   if (isSplashShowing) return (<Splash />);

@@ -1,10 +1,16 @@
 const { BrowserWindow, app, ipcMain } = require('electron');
-const storage = require('electron-json-storage');
 const path = require('path');
 const electronReload = require('electron-reload');
-const { getLog, getMetrics, getLogTest } = require('./backend/index');
-require('dotenv').config();
-const errorsController = require('./backend/controllers/errorsController')
+const { getLog, getMetrics, getLogTest } = require('./backend');
+
+import {
+  GET_LOG,
+  GET_METRICS,
+  GET_LOG_TEST,
+  GOT_LOG,
+  GOT_METRICS,
+  GOT_LOG_TEST,
+} from './utils';
 
 const ELECTRON_MODULE_PATH = path.join(
   __dirname,
@@ -46,21 +52,17 @@ app
     throw Error(`Error while launching app: ${ err }`);
   });
 
-ipcMain.on('getLog', async (event, data) => {
+ipcMain.on(GET_LOG, async (event, data) => {
   const log = await getLog();
-  console.log('them logs been got');
-  event.sender.send('gotLog', JSON.stringify(log));
+  event.sender.send(GOT_LOG, JSON.stringify(log));
 });
 
-ipcMain.on('getMetrics', async (event, data) => {
+ipcMain.on(GET_METRICS, async (event, data) => {
   const metrics = await getMetrics();
-  console.log(metrics);
-  event.sender.send('gotMetrics', JSON.stringify(metrics));
+  event.sender.send(GOT_METRICS, JSON.stringify(metrics));
 });
 
-ipcMain.on('getLogTest', async (event, data) => {
-  console.log('in test')
+ipcMain.on(GET_LOG_TEST, async (event, data) => {
   const errors = await getLogTest();
-  // console.log(errors);
-  event.sender.send('gotLogTest', JSON.stringify(errors));
+  event.sender.send(GOT_LOG_TEST, JSON.stringify(errors));
 });
