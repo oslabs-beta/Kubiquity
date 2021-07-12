@@ -48,17 +48,18 @@ app
 
 ipcMain.on('getLog', async (event, data) => {
   const log = await getLog();
-  event.sender.send('gotLog', log);
+  event.sender.send('gotLog', JSON.stringify(log));
 });
 
 ipcMain.on('getMetrics', async (event, data) => {
   const metrics = await getMetrics();
-  event.sender.send('gotMetrics', metrics);
+  console.log(metrics);
+  event.sender.send('gotMetrics', JSON.stringify(metrics));
 });
 
 ipcMain.on('getLogTest', async (event, data) => {
   console.log('in test')
   const errors = await getLogTest();
-  console.log(errors);
+  // console.log(errors);
   event.sender.send('gotLogTest', JSON.stringify(errors));
 });
