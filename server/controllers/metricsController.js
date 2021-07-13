@@ -49,7 +49,7 @@ metricsController.getMemory = async (req, res, next) => {
     // create query at current time
     if (isPromUp) {
       const currentDate = new Date().toISOString();
-      let query = `/query_range?query=rate(container_memory_usage_bytes[2m])&start=${currentDate}&end=${currentDate}&step=1m`;
+      let query = `/query_range?query=sum(rate(container_memory_usage_bytes{image!=""}[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
       let memArr;
       // send query to prometheus for node memory usage
       const data = await fetch(PROM_URL + query);
