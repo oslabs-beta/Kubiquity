@@ -37,22 +37,22 @@ const App = () => {
     }, 4850);
 
     // TODO: to test actual K8s cluster, uncomment 33 and comment out 34. 
-    // fetch('http://localhost:3000/errors/')
-    fetch('http://localhost:3000/errors/test')
-      .then(res => res.json())
-      .then(newLog => setLog(newLog))
-      .catch(err => console.log(err));
+     fetch('http://localhost:3000/errors/')
+    // fetch('http://localhost:3000/errors/test')
+       .then(res => res.json())
+       .then(newLog => setLog(newLog))
+       .catch(err => console.log(err));
 
     // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
     setMetrics(MOCK_PODS);
 
-    // fetch('http://localhost:3000/metrics')
-    //   .then(res => res.json())
-    //   .then(newMetrics => setMetrics(newMetrics))
-    //   .catch(err => console.log(err));
+    fetch('http://localhost:3000/metrics')
+      .then(res => res.json())
+      .then(newMetrics => setMetrics(newMetrics))
+      .catch(err => console.log(err));
   }, []);
 
-  if (isSplashShowing) return (<Splash />);
+  // if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">

@@ -1,13 +1,20 @@
 import React from 'react';
 
+const ABOUT_SECTION_STYLE = {
+    marginBottom: '8px',
+};
+
 // TODO: adjust indentation
 const About = () => (
     <div id="about-container">
-        <div id="about-header">
-            About
+        <div className="section-headers">
+            ABOUT
         </div>
         <div className="about-section">
-            <div className="about-subheader">
+            <div
+                className="about-subheader"
+                style={ABOUT_SECTION_STYLE}
+            >
                 About Kubiquity
             </div>
             <p className="about-text">
@@ -15,24 +22,25 @@ const About = () => (
             </p>
         </div>
         <div className="about-section">
-            <div className="about-subheader">
+            <div
+                className="about-subheader"
+                style={ABOUT_SECTION_STYLE}
+            >
+
                 About K8sM8s
             </div>
             <p className="about-text">
                 K8sM8s is a developer group based in New York City focused on open source application development. Specializing in products that aid container orchestration development, our most recent product is Kubiquity.
             </p>
             <p className="about-text">
-                K8sM8s is composed of the following engineers:
+                K8sM8s is composed of the following engineers: David Anderson; Robert Hernandez; David Zhang; and Jeffrey Zheng.
             </p>
-            <ul>
-                <li>David Anderson</li>
-                <li>Robert Hernandez</li>
-                <li>David Zhang</li>
-                <li>Jeffrey Zheng</li>
-            </ul>
         </div>
         <div className="about-section">
-            <div className="about-subheader">
+            <div
+                className="about-subheader"
+                style={ABOUT_SECTION_STYLE}
+            >
                 Contact
             </div>
             <p className="about-text">
