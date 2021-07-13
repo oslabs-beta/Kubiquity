@@ -52,7 +52,7 @@ const App = () => {
       .catch(err => console.log(err));
   }, []);
 
-  // if (isSplashShowing) return (<Splash />);
+   if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
