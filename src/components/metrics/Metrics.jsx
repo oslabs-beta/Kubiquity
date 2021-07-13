@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Loading } from '../';
 import MemoryBarChart from './MemoryBarChart';
@@ -32,6 +33,10 @@ const Metrics = ({ metrics }) => {
       )}
     </div>
   );
+};
+
+Metrics.propTypes = {
+  metrics: PropTypes.array.isRequired,
 };
 
 export default Metrics;

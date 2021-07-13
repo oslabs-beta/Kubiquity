@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const NavButton = ({ navOption, handleClick }) => (
   <li>
@@ -7,5 +8,10 @@ const NavButton = ({ navOption, handleClick }) => (
     </button>
   </li>
 );
+
+NavButton.propTypes = {
+  navOption: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default NavButton;
