@@ -8,6 +8,15 @@ import {
   About,
 } from './components';
 
+import {
+  GET_LOG,
+  GET_METRICS,
+  GET_LOG_TEST,
+  GOT_LOG,
+  GOT_METRICS,
+  GOT_LOG_TEST,
+} from '../utils';
+
 import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
@@ -31,25 +40,33 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
+  window.api.receive(GOT_LOG_TEST, resp => {
+    const newLog = JSON.parse(resp);
+    setLog(newLog);
+  });
+
+  window.api.receive(GOT_LOG, resp => {
+    const newLog = JSON.parse(resp);
+    setLog(newLog);
+  });
+
+  window.api.receive(GOT_METRICS, resp => {
+    const newMetrics = JSON.parse(resp);
+    setMetrics(newMetrics);
+  });
+
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
 
-    // TODO: to test actual K8s cluster, uncomment 33 and comment out 34. 
-    // fetch('http://localhost:3000/errors/')
-    fetch('http://localhost:3000/errors/test')
-      .then(res => res.json())
-      .then(newLog => setLog(newLog))
-      .catch(err => console.log(err));
+    // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
+    window.api.send(GET_LOG_TEST);
+    // window.api.send(GET_LOG);
 
-    // TODO: to test actual K8s cluster, comment out 40 and comment in 43-46. 
+    // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
     setMetrics(MOCK_PODS);
-
-    // fetch('http://localhost:3000/metrics')
-    //   .then(res => res.json())
-    //   .then(newMetrics => setMetrics(newMetrics))
-    //   .catch(err => console.log(err));
+    // window.api.send(GET_METRICS);
   }, []);
 
   if (isSplashShowing) return (<Splash />);
