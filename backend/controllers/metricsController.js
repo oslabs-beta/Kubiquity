@@ -54,17 +54,13 @@ metricsController.getMemory = async () => {
     const memArr = results.data.result;
 
     // format results and change into bytes
-    const mappedData = memArr.map(metrics => {
-      if (metrics.values[0][1] == 0) return;
-      const memory = parseFloat(metrics.values[0][1]);
-      return {podId: metrics.metric.pod, memory}
+    const mappedData = memArr.filter(metrics => {
+      if (metrics.values[0][1] != 0 || !metrics.metric.pod){
+        const memory = parseFloat(metrics.values[0][1]);
+        return {podId: metrics.metric.pod, memory}
+      }
     });
-    
-    // remove undefined values (pods that are not running)
-    const formattedData = mappedData.filter(x => x);
     // removes first element that has an undefined podId
-    formattedData.shift();
-    
     return formattedData;
   } catch (err) {
     // TODO: add proper error handling. 

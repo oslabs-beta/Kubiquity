@@ -55,14 +55,14 @@ metricsController.getMemory = async (req, res, next) => {
       const results = await data.json();
       const memArr = results.data.result;
       // format results and change into megabytes
-      const mappedData = memArr.map(metrics => {
-        if (metrics.values[0][1] == 0) return;
-        const mbMemory = parseFloat(metrics.values[0][1]);
-        return {podId: metrics.metric.pod, memory: mbMemory}
-      })
-      // remove undefined values from array
-      const formattedData = mappedData.filter(x => x);
-      formattedData.shift();
+      const mappedData = memArr.filter(metrics => {
+        if (metrics.values[0][1] != 0 || !metrics.metric.pod){
+          const memory = parseFloat(metrics.values[0][1]);
+
+          return {podId: metrics.metric.pod, memory}
+        }
+      });
+      
       res.locals.memory = formattedData;
     }
 

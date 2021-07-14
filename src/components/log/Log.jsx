@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Loading } from '../';
 import Table from './Table.jsx';
@@ -62,5 +63,9 @@ const Log = ({ log }) => (
     )}
   </div>
 );
+
+Log.propTypes = {
+  log: PropTypes.array.isRequired,
+};
 
 export default Log;

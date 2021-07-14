@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactApexCharts from 'react-apexcharts';
 
 // TODO: test out given download functions. 
@@ -64,6 +65,11 @@ const MemoryBarChart = ({ data, categories }) => {
       />
     </div>
   )
+};
+
+MemoryBarChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
 };
 
 export default MemoryBarChart;
