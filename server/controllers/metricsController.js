@@ -49,23 +49,23 @@ metricsController.getMemory = async (req, res, next) => {
     // create query at current time
     if (isPromUp) {
       const currentDate = new Date().toISOString();
-      let query = `/query_range?query=sum(rate(container_memory_usage_bytes{image!=""}[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
-      let memArr;
+      let query = `/query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
       // send query to prometheus for node memory usage
       const data = await fetch(PROM_URL + query);
       const results = await data.json();
+      const memArr = results.data.result;
       // format results and change into megabytes
-      memArr = results.data.result;
-      const formattedData = memArr.map(metric => {
-        console.log(metric.values[0]);
-        if(metric.metric.pod && metric.values[0][1] != 0) {
-          const mbMemory = Math.floor(parseFloat(metric.value[0][1])/1048576);
-          return {podId: metric.metric.pod, memory: mbMemory};
-        }
+      const mappedData = memArr.map(metrics => {
+        if (metrics.values[0][1] == 0) return;
+        const mbMemory = parseFloat(metrics.values[0][1]);
+        return {podId: metrics.metric.pod, memory: mbMemory}
       })
-      console.log(formattedData);
+      // remove undefined values from array
+      const formattedData = mappedData.filter(x => x);
+      formattedData.shift();
       res.locals.memory = formattedData;
     }
+
     return next();
   } catch (err) {
     return next({
