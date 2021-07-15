@@ -16,7 +16,7 @@ const forwardPromPort = () => (
       )
       .data
       .split('\n');
-      
+
     const portForward = spawn('kubectl', [
       '--namespace=prometheus',
       'port-forward',
@@ -63,13 +63,43 @@ metricsController.getMemory = async (req, res, next) => {
         }
       });
       
-      res.locals.memory = formattedData;
+      res.locals.memory = mappedData;
     }
 
     return next();
   } catch (err) {
     return next({
       log: `metricsController.getMemory: ERROR: ${err}`,
+      message: {
+        err: 'Error occurred while querying metrics. Check server logs for more information.',
+      },
+    });
+  }
+};
+
+metricsController.getCPU = async (req, res, next) => {
+  try {
+    // create query at current time
+    const currentDate = new Date().toISOString();
+    let query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)`;
+    query += `&start=${currentDate}&end=${currentDate}&step=1m`;
+    let cpuArr;
+    // send query to prometheus for pod cpu usage
+    const data = await fetch(PROM_URL + query);
+    const results = await data.json();
+    // format results
+    cpuArr = results.data.result;
+    cpuArr.forEach((el, ind) => {
+      let podID = el.metric.pod
+      let cpuPercent = el.values[0][1];
+      cpuArr[ind] = {[podID]: cpuPercent}
+    });
+    console.log(cpuArr);
+    res.locals.cpu = cpuArr;
+    return next();
+  } catch (err) {
+    return next({
+      log: `metricsController.getCPU: ERROR: ${err}`,
       message: {
         err: 'Error occurred while querying metrics. Check server logs for more information.',
       },
