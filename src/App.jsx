@@ -61,12 +61,12 @@ const App = () => {
     }, 4850);
 
     // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
-    window.api.send(GET_LOG_TEST);
-    // window.api.send(GET_LOG);
+    // window.api.send(GET_LOG_TEST);
+    window.api.send(GET_LOG);
 
     // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
-    setMetrics(MOCK_PODS);
-    // window.api.send(GET_METRICS);
+    // setMetrics(MOCK_PODS);
+    window.api.send(GET_METRICS);
   }, []);
 
   if (isSplashShowing) return (<Splash />);
