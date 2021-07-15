@@ -4,6 +4,7 @@ import Metrics from './metrics';
 import Navbar from './navbar';
 import Splash from './splash';
 import About from './about';
+import BarChart from './barChart';
 
 export {
   Loading,
@@ -12,4 +13,5 @@ export {
   Navbar,
   Splash,
   About,
+  BarChart,
 };
