@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-const  {
+const {
   GET_LOG,
   GET_METRICS,
   GET_CPU_USE,
