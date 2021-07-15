@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTable, useSortBy } from 'react-table';
 
-// TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
-
 const RED_BACKGROUND_STYLE = {
   backgroundColor: '#de8989',
   fontWeight: 'bold',
