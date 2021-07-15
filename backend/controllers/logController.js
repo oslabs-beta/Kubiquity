@@ -82,14 +82,11 @@ logController.saveLog = async (log) => {
         createdAt
       };
       allLogs.push(newEntry);
-      return entryPromise;
     });
 
-    await Promise.all(logPromises);
     storage.set('logs', {data: allLogs}, (err) => {
       if (err) throw err;
     });
-    
     return;
   } catch (err) {
     console.log(err);
