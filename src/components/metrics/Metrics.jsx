@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Loading } from '../';
-import MemoryBarChart from './MemoryBarChart';
+import { Loading, BarChart } from '../';
+
+const formatXAxisToBytes = (val) => `${val} B`;
 
 const Metrics = ({ metrics }) => {
   const memoryValues = new Array(metrics.length);
   const podLabels = new Array(metrics.length);
-  
+
   metrics.forEach(({ podId, memory }, i) => {
     memoryValues[i] = memory;
     podLabels[i] = podId;
@@ -15,20 +16,16 @@ const Metrics = ({ metrics }) => {
 
   return (
     <div>
-      <div className="section-headers">
-        MEMORY METRICS FOR ACTIVE PODS
-      </div>
+      <div className="section-headers">MEMORY METRICS FOR ACTIVE PODS</div>
       <div className="sub-header">
-        Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your cluster.
+        Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your
+        cluster.
       </div>
       {metrics.length ? (
-        <MemoryBarChart
-          data={memoryValues}
-          categories={podLabels}
-        />
+        <BarChart data={memoryValues} categories={podLabels} xAxisFormatter={formatXAxisToBytes} />
       ) : (
         <div id="metrics-loading">
-          <Loading resource={'metrics'}/>
+          <Loading resource={'metrics'} />
         </div>
       )}
     </div>
