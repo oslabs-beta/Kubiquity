@@ -23,17 +23,6 @@ import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
-const MOCK_PODS = [
-  {
-    podId: 0,
-    memory: 1250,
-  },
-  {
-    podId: 1,
-    memory: 845,
-  },
-];
-
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
   const [metrics, setMetrics] = useState([]);
@@ -54,11 +43,13 @@ const App = () => {
   });
 
   window.api.receive(GOT_METRICS, resp => {
+    debugger
     const newMetrics = JSON.parse(resp);
     setMetrics(newMetrics);
   });
 
   window.api.receive(GOT_CPU_USE, resp => {
+    debugger
     const newCpuUse = JSON.parse(resp);
     setCpuUse(newCpuUse);
   });
@@ -67,9 +58,6 @@ const App = () => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
-
-    // window.api.send(GET_LOG_TEST);
-    // setMetrics(MOCK_PODS);
     
     window.api.send(GET_LOG);
     window.api.send(GET_METRICS);

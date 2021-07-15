@@ -4,14 +4,23 @@ import PropTypes from 'prop-types';
 import { Loading, BarChart } from '../';
 
 const formatXAxisToBytes = val => `${val} B`;
+const formatXAxisToPercent = val => `${val}%`;
 
-const Metrics = ({ metrics }) => {
+const Metrics = ({ metrics, cpuUse }) => {
   const memoryValues = new Array(metrics.length);
   const podLabels = new Array(metrics.length);
 
   metrics.forEach(({ podId, memory }, i) => {
     memoryValues[i] = memory;
     podLabels[i] = podId;
+  });
+
+  const cpuValues = new Array(cpuUse.length);
+  const cpuPodLabels = new Array(cpuUse.length);
+
+  cpuUse.forEach(({ podId, cpuUsage }, i) => {
+    cpuValues[i] = cpuUsage;
+    cpuPodLabels[i] = podId;
   });
 
   return (
@@ -31,6 +40,17 @@ const Metrics = ({ metrics }) => {
       ) : (
         <div id="metrics-loading">
           <Loading resource={'metrics'} />
+        </div>
+      )}
+      {cpuUse.length ? (
+        <BarChart
+          data={cpuValues}
+          categories={cpuPodLabels}
+          xAxisFormatter={formatXAxisToPercent}
+        />
+      ) : (
+        <div id="cpu-loading">
+          <Loading resource={'CPU use'} />
         </div>
       )}
     </div>

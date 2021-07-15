@@ -32,7 +32,11 @@ const Loading = ({ resource }) => (
 );
 
 Loading.propTypes = {
-  resource: PropTypes.oneOf(['log', 'metrics']).isRequired,
+  resource: PropTypes.oneOf([
+    'log',
+    'metrics',
+    'CPU use'
+  ]).isRequired,
 };
 
 export default Loading;
