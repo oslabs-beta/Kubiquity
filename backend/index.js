@@ -10,7 +10,6 @@ const {
 const getLogTest = async () => await fetchLog();
 const getMetrics = async () =>  await getMemory();
 const getLog = async () => {
-  await clearLog();
   let log = await queryLog();
   log = formatLog(log);
   await saveLog(log);

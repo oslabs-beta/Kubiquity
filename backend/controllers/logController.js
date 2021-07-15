@@ -1,5 +1,5 @@
-const cmd = require('node-cmd');
-const K8sError = require('../models/errorsModel');
+const cmd = require('node-cmd')
+const storage = require('electron-json-storage');
 
 const HEADERS = [
   'NAMESPACE',
@@ -61,8 +61,8 @@ logController.formatLog = logList => (
 
 logController.saveLog = async (log) => {
   log.shift();
-
   try {
+    const allLogs = [];
     const logPromises = log.map(([
       namespace,
       lastSeen,
@@ -71,6 +71,7 @@ logController.saveLog = async (log) => {
       object,
       message
     ]) => {
+      const createdAt = new Date().toISOString();
       const newEntry = {
         namespace,
         lastSeen,
@@ -78,13 +79,17 @@ logController.saveLog = async (log) => {
         reason,
         object,
         message,
+        createdAt
       };
-
-      const entryPromise = K8sError.create(newEntry);
+      allLogs.push(newEntry);
       return entryPromise;
     });
 
     await Promise.all(logPromises);
+    storage.set('logs', {data: allLogs}, (err) => {
+      if (err) throw err;
+    });
+    
     return;
   } catch (err) {
     console.log(err);
@@ -93,20 +98,12 @@ logController.saveLog = async (log) => {
 
 logController.getLog = async () => {
   try {
-    const log = await K8sError.find({}).sort({ 'createdAt': -1 });
-    return log
+    const logs = await storage.getSync('logs');
+    return logs.data;
   } catch (err) {
     console.log(err);
   }
 };
 
-logController.clearLog = async () => {
-  try {
-    await K8sError.deleteMany({});
-    return;
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 module.exports = logController;
