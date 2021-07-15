@@ -55,7 +55,6 @@ metricsController.getMemory = async () => {
 
     // format results and change into bytes
     return memArr.reduce((pods, metrics) => {
-      // console.log(metrics);
       if (metrics.values[0][1] > 0 && metrics.metric.pod) {
         const memory = parseFloat(metrics.values[0][1]);
 
