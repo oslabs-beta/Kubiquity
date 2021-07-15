@@ -81,9 +81,7 @@ metricsController.getCPU = async (req, res, next) => {
   try {
     // create query at current time
     const currentDate = new Date().toISOString();
-    //let query = `/query_range?query=rate(container_cpu_usage_seconds_total[2m])`;
     let query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)`;
-    //let query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{container_name!="POD",namespace!=""}[2m])) by (namespace)`;
     query += `&start=${currentDate}&end=${currentDate}&step=1m`;
     let cpuArr;
     // send query to prometheus for pod cpu usage
@@ -91,23 +89,12 @@ metricsController.getCPU = async (req, res, next) => {
     const results = await data.json();
     // format results
     cpuArr = results.data.result;
-    //cpuArr = results;
     cpuArr.forEach((el, ind) => {
-      //let id = el.metric.id
       let podID = el.metric.pod
-      //let idAndPodID = id + podID
       let cpuPercent = el.values[0][1];
       cpuArr[ind] = {[podID]: cpuPercent}
     });
-    console.log(cpuArr, cpuArr.length, query);
-    // // convert array into object to send to front end
-    // const memObj = Object.assign({}, memArr);
-    // const formattedData = Object.entries(memObj).map(([podId, memory]) => ({
-    //   podId, 
-    //   memory
-    // }));
-
-    // res.locals.memory = formattedData;
+    res.locals.cpu = cpuArr;
     return next();
   } catch (err) {
     return next({
