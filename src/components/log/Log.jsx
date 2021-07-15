@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Loading } from '../';
-import Table from './Table.jsx';
+import Table from './Table';
+
+const sortByTimestamp = (a, b) => (
+  new Date(b.original.createdAt) - new Date(a.original.createdAt)
+);
 
 const LOG_HEADERS = [
   {
     Header: 'Timestamp',
     accessor: 'createdAt',
-    sortType: 'basic',
+    sortType: sortByTimestamp,
   },
   {
     Header: 'Namespace',
@@ -38,7 +42,7 @@ const LOG_HEADERS = [
   {
     Header: 'Last seen',
     accessor: 'lastSeen',
-    sortType: 'basic',
+    disableSortBy: true,
   },
 ];
 
