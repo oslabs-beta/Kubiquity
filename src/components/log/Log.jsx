@@ -54,11 +54,13 @@ const Log = ({ log }) => {
     if (!searchTerm) {
       setFilteredLog(log);
     } else {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
       const newFilteredLog = log.filter(entry => {
         const values = Object.values(entry);
 
         for (const value of values) {
-          if (typeof value === 'string' && value.includes(searchTerm)) {
+          if (typeof value === 'string' && value.toLowerCase().includes(lowerCaseSearchTerm)) {
             return true;
           }
         }
@@ -67,12 +69,6 @@ const Log = ({ log }) => {
       });
       setFilteredLog(newFilteredLog);
     }
-
-    // return () => {
-    //   setSearchTerm('');
-    //   setFilteredLog(log);
-    // };
-    debugger
   }, [searchTerm]);
 
   const handleInput = e => {
@@ -81,6 +77,21 @@ const Log = ({ log }) => {
   };
 
   const resetSearch = () => setSearchTerm('');
+
+  let displayComponent;
+
+  if (!log.length) {
+    displayComponent = (<Loading resource={'log'} />);
+  } else if (!filteredLog.length) {
+    displayComponent = (<div>Nothing found in your search; please refine your search</div>);
+  } else {
+    displayComponent = (
+      <Table
+        data={filteredLog}
+        headers={LOG_HEADERS}
+      />
+    );
+  }
 
   return (
     <div>
@@ -97,14 +108,7 @@ const Log = ({ log }) => {
         <input onChange={handleInput} value={searchTerm} placeholder={'Search the logs'}></input>
         <button onClick={resetSearch}>Reset</button>
       </div>
-      {log.length ? (
-        <Table
-          data={filteredLog}
-          headers={LOG_HEADERS}
-        />
-      ) : (
-        <Loading resource={'log'} />
-      )}
+      {displayComponent}
     </div>
   )
 }
