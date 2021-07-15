@@ -87,6 +87,7 @@ logController.saveLog = async (log) => {
     storage.set('logs', {data: allLogs}, (err) => {
       if (err) throw err;
     });
+
     return;
   } catch (err) {
     console.log(err);
@@ -96,6 +97,7 @@ logController.saveLog = async (log) => {
 logController.getLog = async () => {
   try {
     const logs = await storage.getSync('logs');
+    
     return logs.data;
   } catch (err) {
     console.log(err);
