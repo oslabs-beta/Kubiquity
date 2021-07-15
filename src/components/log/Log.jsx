@@ -82,9 +82,13 @@ const Log = ({ log }) => {
   let displayComponent;
 
   if (!log.length) {
-    displayComponent = (<Loading resource={'log'} />);
+    displayComponent = (
+      <Loading resource={'log'} />
+    );
   } else if (!filteredLog.length) {
-    displayComponent = (<NoSearchResults searchTerm={searchTerm}/>);
+    displayComponent = (
+      <NoSearchResults searchTerm={searchTerm} />
+    );
   } else {
     displayComponent = (
       <Table
@@ -106,7 +110,11 @@ const Log = ({ log }) => {
         Use the Kubiquity event log to find and resolve errors. 
       </div>
       <div>
-        <input onChange={handleInput} value={searchTerm} placeholder={'Search the logs'}></input>
+        <input
+          onChange={handleInput}
+          value={searchTerm}
+          placeholder={'Search the event logs'}
+        ></input>
         <button onClick={resetSearch}>Reset</button>
       </div>
       {displayComponent}
