@@ -78,11 +78,11 @@ metricsController.getMemory = async (req, res, next) => {
 };
 
 metricsController.getCPU = async (req, res, next) => {
+  // create query at current time
+  const currentDate = new Date().toISOString();
+  const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
+
   try {
-    // create query at current time
-    const currentDate = new Date().toISOString();
-    let query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)`;
-    query += `&start=${currentDate}&end=${currentDate}&step=1m`;
     let cpuArr;
     // send query to prometheus for pod cpu usage
     const data = await fetch(PROM_URL + query);
@@ -90,12 +90,13 @@ metricsController.getCPU = async (req, res, next) => {
     // format results
     cpuArr = results.data.result;
     cpuArr.forEach((el, ind) => {
-      let podID = el.metric.pod
-      let cpuPercent = el.values[0][1];
-      cpuArr[ind] = {[podID]: cpuPercent}
+      let podID = el.metric.pod;
+      let cpuPercent = el.values[0][1] * 100;
+      cpuArr[ind] = { podID, cpuUsage: cpuPercent };
     });
     console.log(cpuArr);
     res.locals.cpu = cpuArr;
+    
     return next();
   } catch (err) {
     return next({
