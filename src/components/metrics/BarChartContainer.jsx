@@ -16,7 +16,7 @@ const BarChartContainer = ({
     labels[i] = datum.podId;
     values[i] = datum[resourceKey];
   });
-  debugger
+
   return (
     <>
       {data.length ? (

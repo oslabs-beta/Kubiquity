@@ -43,13 +43,11 @@ const App = () => {
   });
 
   window.api.receive(GOT_METRICS, resp => {
-    debugger
     const newMetrics = JSON.parse(resp);
     setMetrics(newMetrics);
   });
 
   window.api.receive(GOT_CPU_USE, resp => {
-    debugger
     const newCpuUse = JSON.parse(resp);
     setCpuUse(newCpuUse);
   });
