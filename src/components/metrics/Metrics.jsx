@@ -16,10 +16,11 @@ const Metrics = ({ metrics }) => {
 
   return (
     <div>
-      <div className="section-headers">MEMORY METRICS FOR ACTIVE PODS</div>
+      <div className="section-headers">
+        MEMORY METRICS FOR ACTIVE PODS
+      </div>
       <div className="sub-header">
-        Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your
-        cluster.
+        Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your cluster.
       </div>
       {metrics.length ? (
         <BarChart
