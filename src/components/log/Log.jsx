@@ -61,7 +61,9 @@ const Log = ({ log }) => {
         const values = Object.values(entry);
 
         for (const value of values) {
-          if (typeof value === 'string' && value.toLowerCase().includes(lowerCaseSearchTerm)) {
+          if (typeof value === 'string' &&
+            value.toLowerCase().includes(lowerCaseSearchTerm)
+          ) {
             return true;
           }
         }
