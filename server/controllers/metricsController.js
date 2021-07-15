@@ -63,7 +63,7 @@ metricsController.getMemory = async (req, res, next) => {
         }
       });
       
-      res.locals.memory = formattedData;
+      res.locals.memory = mappedData;
     }
 
     return next();
@@ -94,6 +94,7 @@ metricsController.getCPU = async (req, res, next) => {
       let cpuPercent = el.values[0][1];
       cpuArr[ind] = {[podID]: cpuPercent}
     });
+    console.log(cpuArr);
     res.locals.cpu = cpuArr;
     return next();
   } catch (err) {
