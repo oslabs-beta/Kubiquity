@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useTable, useSortBy } from 'react-table';
 
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
-// TODO: potentially add sticky headers: https://github.com/GuillaumeJasmin/react-table-sticky
 
 const RED_BACKGROUND_STYLE = {
   backgroundColor: '#de8989',
