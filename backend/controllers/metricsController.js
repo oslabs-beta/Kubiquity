@@ -46,29 +46,25 @@ metricsController.getMemory = async () => {
   if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
-  const query = `/query_range?query=sum(rate(node_memory_MemFree_bytes[2m]))&start=${currentDate}&end=${currentDate}&step=1m`;
+  const query = `/query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
     const data = await fetch(PROM_URL + query);
     const results = await data.json();
-    const memArr = results.data.result[0].values[0];
+    const memArr = results.data.result;
 
-    memArr.forEach((el, ind) => {
-      if (typeof el === 'string') el = parseFloat(el);
-      mbMemory = el / 1048576;
-      memArr[ind] = Math.floor(mbMemory);
+    // format results and change into bytes
+    const mappedData = memArr.filter(metrics => {
+      if (metrics.values[0][1] != 0 || !metrics.metric.pod){
+        const memory = parseFloat(metrics.values[0][1]);
+        return {podId: metrics.metric.pod, memory}
+      }
     });
-    
-    const memObj = Object.assign({}, memArr);
-    return  Object
-      .entries(memObj)
-      .map(([podId, memory]) => ({
-        podId, 
-        memory
-      }));
+    // removes first element that has an undefined podId
+    return formattedData;
   } catch (err) {
     // TODO: add proper error handling. 
-    console.log(err);
+    console.log(`metricsController.getMemory: ERROR: ${err}`);
   }
 };
 
