@@ -83,20 +83,19 @@ metricsController.getCPU = async (req, res, next) => {
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
-    let cpuArr;
     // send query to prometheus for pod cpu usage
     const data = await fetch(PROM_URL + query);
     const results = await data.json();
     // format results
-    cpuArr = results.data.result;
+    const cpuArr = results.data.result;
     cpuArr.forEach((el, ind) => {
       let podID = el.metric.pod;
       let cpuPercent = el.values[0][1] * 100;
       cpuArr[ind] = { podID, cpuUsage: cpuPercent };
     });
     console.log(cpuArr);
-    res.locals.cpu = cpuArr;
-    
+    res.locals.cpu = cpuArr.sort((a, b) => b.cpuUsage - a.cpuUsage);
+
     return next();
   } catch (err) {
     return next({

@@ -72,21 +72,20 @@ metricsController.getCPU = async () => {
   // create query at current time
   const currentDate = new Date().toISOString();
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
-  
+
   try {
-    let cpuArr;
     // send query to prometheus for pod cpu usage
     const data = await fetch(PROM_URL + query);
     const results = await data.json();
     // format results
-    cpuArr = results.data.result;
+    const cpuArr = results.data.result;
     cpuArr.forEach((el, ind) => {
       let podID = el.metric.pod;
       let cpuPercent = el.values[0][1] * 100;
       cpuArr[ind] = { podID, cpuUsage: cpuPercent };
     });
 
-    return cpuArr;
+    return cpuArr.sort((a, b) => b.cpuUsage - a.cpuUsage);
   } catch (err) {
     // TODO: add proper error handling. 
     console.log(`metricsController.getCPU: ERROR: ${err}`);
