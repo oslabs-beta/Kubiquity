@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTable, useSortBy } from 'react-table';
 
 // TODO: potentially incorporate filtering: https://codesandbox.io/s/github/tannerlinsley/react-table/tree/master/examples/filtering
@@ -84,6 +85,11 @@ const Table = ({ data, headers }) => {
       </table>
     </div>
   )
+};
+
+Table.propTypes = {
+  data: PropTypes.array.isRequired,
+  headers: PropTypes.array.isRequired,
 };
 
 export default Table;

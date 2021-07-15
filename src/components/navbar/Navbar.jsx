@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
 
@@ -52,6 +53,12 @@ const Navbar = ({
       {buttons}
     </ul>
   )
+};
+
+Navbar.propTypes = {
+  setIsLogShowing: PropTypes.func.isRequired,
+  setAreMetricsShowing: PropTypes.func.isRequired,
+  setIsAboutShowing: PropTypes.func.isRequired,
 };
 
 export default Navbar;
