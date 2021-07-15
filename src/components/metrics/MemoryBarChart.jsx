@@ -30,13 +30,7 @@ const PLOT_OPTIONS = {
 };
 
 const X_AXIS_LABELS = {
-  formatter: val => `${val} MB`,
-};
-
-const Y_AXIS = {
-  labels: {
-    formatter: val => `Pod ${val}`,
-  },
+  formatter: val => `${val} B`,
 };
 
 const MemoryBarChart = ({ data, categories }) => {
@@ -48,7 +42,6 @@ const MemoryBarChart = ({ data, categories }) => {
     chart: CHART,
     plotOptions: PLOT_OPTIONS,
     dataLabels: ENABLED_FALSE,
-    yaxis: Y_AXIS,
     xaxis: {
       categories,
       labels: X_AXIS_LABELS,
