@@ -13,10 +13,10 @@ const BarChartContainer = ({
   const labels = new Array(data.length);
 
   data.forEach((datum, i) => {
-    values[i] = datum.podId;
-    labels[i] = datum[resourceKey];
+    labels[i] = datum.podId;
+    values[i] = datum[resourceKey];
   });
-
+  debugger
   return (
     <>
       {data.length ? (

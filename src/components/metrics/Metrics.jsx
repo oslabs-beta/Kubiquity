@@ -7,6 +7,7 @@ const formatXAxisToBytes = val => `${val} B`;
 const formatXAxisToPercent = val => `${val}%`;
 
 const Metrics = ({ metrics, cpuUse }) => {
+  debugger
   return (
     <div>
       <div className="section-headers">
