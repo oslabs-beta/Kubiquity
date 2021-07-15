@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Loading, BarChart } from '../';
 
-const formatXAxisToBytes = (val) => `${val} B`;
+const formatXAxisToBytes = val => `${val} B`;
 
 const Metrics = ({ metrics }) => {
   const memoryValues = new Array(metrics.length);
@@ -22,7 +22,11 @@ const Metrics = ({ metrics }) => {
         cluster.
       </div>
       {metrics.length ? (
-        <BarChart data={memoryValues} categories={podLabels} xAxisFormatter={formatXAxisToBytes} />
+        <BarChart
+          data={memoryValues}
+          categories={podLabels}
+          xAxisFormatter={formatXAxisToBytes}
+        />
       ) : (
         <div id="metrics-loading">
           <Loading resource={'metrics'} />

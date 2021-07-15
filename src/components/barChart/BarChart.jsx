@@ -48,7 +48,12 @@ const BarChart = ({ data, categories, xAxisFormatter }) => {
 
   return (
     <div id="chart-container">
-      <ReactApexCharts options={options} series={series} type="bar" height={height} />
+      <ReactApexCharts
+        options={options}
+        series={series}
+        type="bar"
+        height={height}
+      />
     </div>
   );
 };
