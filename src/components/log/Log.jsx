@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Loading } from '../';
 import Table from './Table';
+import NoSearchResults from './NoSearchResults';
 
 const sortByTimestamp = (a, b) => (
   new Date(b.original.createdAt) - new Date(a.original.createdAt)
@@ -83,7 +84,7 @@ const Log = ({ log }) => {
   if (!log.length) {
     displayComponent = (<Loading resource={'log'} />);
   } else if (!filteredLog.length) {
-    displayComponent = (<div>Nothing found in your search; please refine your search</div>);
+    displayComponent = (<NoSearchResults searchTerm={searchTerm}/>);
   } else {
     displayComponent = (
       <Table
