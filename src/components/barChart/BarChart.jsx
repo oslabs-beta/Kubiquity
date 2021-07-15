@@ -29,17 +29,11 @@ const PLOT_OPTIONS = {
   },
 };
 
-const X_AXIS_LABELS = {
-  formatter: val => `${val} MB`,
-};
-
-const Y_AXIS = {
-  labels: {
-    formatter: val => `Pod ${val}`,
-  },
-};
-
-const BarChart = ({ data, categories }) => {
+const BarChart = ({
+  data,
+  categories,
+  xAxisFormatter,
+}) => {
   const height = data.length > 30 ? 1500 : data.length * 80;
   const series = [{ data }];
 
@@ -48,10 +42,11 @@ const BarChart = ({ data, categories }) => {
     chart: CHART,
     plotOptions: PLOT_OPTIONS,
     dataLabels: ENABLED_FALSE,
-    yaxis: Y_AXIS,
     xaxis: {
       categories,
-      labels: X_AXIS_LABELS,
+      labels: {
+        formatter: xAxisFormatter,
+      },
     },
   };
 
