@@ -7,4 +7,8 @@ const NoSearchResults = ({ searchTerm }) => (
   </div>
 );
 
+NoSearchResults.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+}
+
 export default NoSearchResults;
