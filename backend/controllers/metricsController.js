@@ -46,7 +46,7 @@ metricsController.getMemory = async () => {
   if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
-  const query = `/query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
+  const query = `query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
     const data = await fetch(PROM_URL + query);
