@@ -1,64 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Loading, BarChart } from '../';
+import BarChartContainer from './BarChartContainer';
 
 const formatXAxisToBytes = val => `${val} B`;
 const formatXAxisToPercent = val => `${val}%`;
 
 const Metrics = ({ metrics, cpuUse }) => {
-  const memoryValues = new Array(metrics.length);
-  const podLabels = new Array(metrics.length);
-
-  metrics.forEach(({ podId, memory }, i) => {
-    memoryValues[i] = memory;
-    podLabels[i] = podId;
-  });
-
-  const cpuValues = new Array(cpuUse.length);
-  const cpuPodLabels = new Array(cpuUse.length);
-
-  cpuUse.forEach(({ podId, cpuUsage }, i) => {
-    cpuValues[i] = cpuUsage;
-    cpuPodLabels[i] = podId;
-  });
-
   return (
     <div>
       <div className="section-headers">
         MEMORY METRICS FOR ACTIVE PODS
       </div>
       <div className="sub-header">
-        Prevent OOM (out of memory) kill errors by monitoring the memory usage of each node in your cluster.
+        Prevent OOM (out of memory) kill errors by monitoring the memory and CPU usage of each node in your cluster.
       </div>
-      {metrics.length ? (
-        <BarChart
-          data={memoryValues}
-          categories={podLabels}
-          xAxisFormatter={formatXAxisToBytes}
-        />
-      ) : (
-        <div id="metrics-loading">
-          <Loading resource={'metrics'} />
-        </div>
-      )}
-      {cpuUse.length ? (
-        <BarChart
-          data={cpuValues}
-          categories={cpuPodLabels}
-          xAxisFormatter={formatXAxisToPercent}
-        />
-      ) : (
-        <div id="cpu-loading">
-          <Loading resource={'CPU use'} />
-        </div>
-      )}
+      <BarChartContainer
+        data={metrics}
+        resource="metrics"
+        resourceKey="memory"
+        xAxisFormatter={formatXAxisToBytes}
+      />
+      <BarChartContainer
+        data={cpuUse}
+        resource="CPU use"
+        resourceKey="cpuUsage"
+        xAxisFormatter={formatXAxisToPercent}
+      />
     </div>
   );
 };
 
 Metrics.propTypes = {
   metrics: PropTypes.array.isRequired,
+  cpuUse: PropTypes.array.isRequired,
 };
 
 export default Metrics;
