@@ -14,7 +14,6 @@ const getMetrics = async () =>  await getMemory();
 const getCpuUse = async () =>  await getCPU();
 
 const getLog = async () => {
-  await clearLog();
   let log = await queryLog();
   log = formatLog(log);
   await saveLog(log);
