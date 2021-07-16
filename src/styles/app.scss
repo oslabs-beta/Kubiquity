@@ -4,6 +4,7 @@
 @import '_splash';
 @import '_loading';
 @import '_about'; 
+@import '_noSearchResults'; 
 
 body {
   min-width: 600px;
@@ -138,4 +139,9 @@ button:hover {
   body {
     overflow-x: scroll;
   }
+}
+
+input {
+  width: 40%;
+  min-width: 300px;
 }
