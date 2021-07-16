@@ -28,21 +28,19 @@ p, div, h1 {
 }
 
 #app-header {
-  padding: 42px 42px 0 42px;
+  padding: 0 42px;
   display: flex;
   align-items: center;
   background: $darkBlue;
-
-  h1 {
-    margin-right: 18px;
-    color: $white;
-    font-size: 54px;
-  }
 
   p {
     padding-top: 18px;
     font-size: 18px;
     color: $white;
+  }
+
+  img {
+    max-height: 240px;
   }
 }
 
