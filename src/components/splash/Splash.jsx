@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { FullLogo } from '../';
+
 const Splash = () => (
   <div id="splash-container">
-    <h1 id="splash-header">
-      kubiquity
-    </h1>
+    <FullLogo />
     <div id="credits">
       Developed by k8sm8s, 2021
     </div>

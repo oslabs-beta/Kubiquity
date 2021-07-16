@@ -1,5 +1,3 @@
 import FullLogo from './FullLogo';
 
-export {
-  FullLogo,
-}
+export { FullLogo };
