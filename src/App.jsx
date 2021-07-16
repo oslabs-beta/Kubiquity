@@ -11,9 +11,11 @@ import {
 import {
   GET_LOG,
   GET_METRICS,
+  GET_CPU_USE,
   GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
+  GOT_CPU_USE,
   GOT_LOG_TEST,
 } from '../utils';
 
@@ -21,20 +23,10 @@ import './styles/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
-const MOCK_PODS = [
-  {
-    podId: 0,
-    memory: 1250,
-  },
-  {
-    podId: 1,
-    memory: 845,
-  },
-];
-
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
   const [metrics, setMetrics] = useState([]);
+  const [cpuUse, setCpuUse] = useState([]);
   const [log, setLog] = useState([]);
   const [isLogShowing, setIsLogShowing] = useState(true);
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
@@ -55,18 +47,19 @@ const App = () => {
     setMetrics(newMetrics);
   });
 
+  window.api.receive(GOT_CPU_USE, resp => {
+    const newCpuUse = JSON.parse(resp);
+    setCpuUse(newCpuUse);
+  });
+
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
-
-    // TODO: to test actual K8s cluster, uncomment 56 and comment out 55. 
-    window.api.send(GET_LOG_TEST);
-    // window.api.send(GET_LOG);
-
-    // TODO: to test actual K8s cluster, comment out 59 and uncomment 60. 
-    setMetrics(MOCK_PODS);
-    // window.api.send(GET_METRICS);
+    
+    window.api.send(GET_LOG);
+    window.api.send(GET_METRICS);
+    window.api.send(GET_CPU_USE);
   }, []);
 
   if (isSplashShowing) return (<Splash />);
@@ -84,8 +77,13 @@ const App = () => {
           setIsAboutShowing={setIsAboutShowing}
         />
         <div id="app-container">
-          {areMetricsShowing && (<Metrics metrics={metrics} />)}
           {isLogShowing && (<Log log={log} />)}
+          {areMetricsShowing && (
+            <Metrics
+              metrics={metrics}
+              cpuUse={cpuUse}
+            />
+          )}
           {isAboutShowing && (<About />)}
         </div>
       </div>

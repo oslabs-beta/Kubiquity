@@ -2,13 +2,21 @@ const { BrowserWindow, app, ipcMain } = require('electron');
 const path = require('path');
 const electronReload = require('electron-reload');
 
-const { getLog, getMetrics, getLogTest } = require('./backend');
+const {
+  getLog,
+  getMetrics,
+  getCpuUse,
+  getLogTest,
+} = require('./backend');
+
 const  {
   GET_LOG,
   GET_METRICS,
+  GET_CPU_USE,
   GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
+  GOT_CPU_USE,
   GOT_LOG_TEST,
 } = require('./utils');
 
@@ -52,8 +60,6 @@ app
     throw Error(`Error while launching app: ${ err }`);
   });
 
-
-// TODO: figure out if we need to convert data to JSON, or if IPC can handle JS. 
 ipcMain.on(GET_LOG, async (event, data) => {
   const log = await getLog();
   event.sender.send(GOT_LOG, JSON.stringify(log));
@@ -62,6 +68,11 @@ ipcMain.on(GET_LOG, async (event, data) => {
 ipcMain.on(GET_METRICS, async (event, data) => {
   const metrics = await getMetrics();
   event.sender.send(GOT_METRICS, JSON.stringify(metrics));
+});
+
+ipcMain.on(GET_CPU_USE, async (event, data) => {
+  const cpuUse = await getCpuUse();
+  event.sender.send(GOT_CPU_USE, JSON.stringify(cpuUse));
 });
 
 ipcMain.on(GET_LOG_TEST, async (event, data) => {
