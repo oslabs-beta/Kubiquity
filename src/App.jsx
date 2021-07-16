@@ -6,6 +6,7 @@ import {
   Splash,
   Navbar,
   About,
+  Logo,
 } from './components';
 
 import {
@@ -67,7 +68,7 @@ const App = () => {
   return (
     <div id="app">
       <div id="app-header">
-        <h1>Kubiquity</h1>
+        <Logo />
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="navbar-and-app-container">

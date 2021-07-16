@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { FullLogo } from '../';
+import { Logo } from '../';
 
 const Splash = () => (
   <div id="splash-container">
-    <FullLogo />
+    <Logo />
     <div id="credits">
       Developed by k8sm8s, 2021
     </div>
