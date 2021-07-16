@@ -5,6 +5,7 @@ import Navbar from './navbar';
 import Splash from './splash';
 import About from './about';
 import BarChart from './barChart';
+import { FullLogo } from './logo';
 
 export {
   Loading,
@@ -14,4 +15,5 @@ export {
   Splash,
   About,
   BarChart,
+  FullLogo,
 };
