@@ -20,7 +20,7 @@ import {
   GOT_LOG_TEST,
 } from '../utils';
 
-import './styles/app.scss';
+import './assets/stylesheets/app.scss';
 
 // TODO: after MVP, try out Typescript.
 
