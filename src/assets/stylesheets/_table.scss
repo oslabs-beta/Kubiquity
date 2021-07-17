@@ -26,3 +26,8 @@ th {
 #download-button {
   transition: 300ms all;
 }
+
+#input-buttons-container {
+  display: flex;
+  justify-content: space-around;
+}

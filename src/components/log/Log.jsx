@@ -114,13 +114,15 @@ const Log = ({ log }) => {
       >
         Use the Kubiquity event log to find and resolve errors. 
       </div>
-      <div>
-        <input
-          onChange={handleInput}
-          value={searchTerm}
-          placeholder={'Search the event logs'}
-        ></input>
-        <button onClick={resetSearch}>Reset</button>
+      <div id="input-buttons-container">
+        <div>
+          <input
+            onChange={handleInput}
+            value={searchTerm}
+            placeholder={'Search the event logs'}
+          ></input>
+          <button onClick={resetSearch}>Reset</button>
+        </div>
         <Download data={filteredLog}/>
       </div>
       {displayComponent}
