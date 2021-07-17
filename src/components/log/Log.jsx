@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Loading } from '../';
 import Table from './Table';
 import NoSearchResults from './NoSearchResults';
+import Download from './Download';
 
 const sortByTimestamp = (a, b) => (
   new Date(b.original.createdAt) - new Date(a.original.createdAt)
@@ -120,6 +121,7 @@ const Log = ({ log }) => {
           placeholder={'Search the event logs'}
         ></input>
         <button onClick={resetSearch}>Reset</button>
+        <Download data={filteredLog}/>
       </div>
       {displayComponent}
     </div>

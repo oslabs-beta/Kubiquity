@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "rm -rf build && webpack --mode production --config webpack.common.js",
-    "dev": "rm -rf build && webpack --config webpack.common.js && concurrently 'webpack.common.js --watch --mode development' 'electron .'",
+    "dev": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch --mode development' 'electron .'",
     "frontend": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .'",
     "backend": "nodemon server/server.js",
     "react": "rm -rf build && webpack --config webpack.common.js --watch  --mode development",
