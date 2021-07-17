@@ -10,8 +10,8 @@ const ABOUT = 'About';
 
 const NAV_OPTIONS = [
   HOME,
-  METRICS,
   LOG,
+  METRICS,
   ABOUT
 ];
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ipcRenderer } from 'electron';
 
 import {
   Log,
@@ -13,11 +14,9 @@ import {
   GET_LOG,
   GET_METRICS,
   GET_CPU_USE,
-  GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
   GOT_CPU_USE,
-  GOT_LOG_TEST,
 } from '../utils';
 
 import './assets/stylesheets/app.scss';
@@ -33,34 +32,37 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive(GOT_LOG_TEST, resp => {
-    const newLog = JSON.parse(resp);
-    setLog(newLog);
-  });
-
-  window.api.receive(GOT_LOG, resp => {
-    const newLog = JSON.parse(resp);
-    setLog(newLog);
-  });
-
-  window.api.receive(GOT_METRICS, resp => {
-    const newMetrics = JSON.parse(resp);
-    setMetrics(newMetrics);
-  });
-
-  window.api.receive(GOT_CPU_USE, resp => {
-    const newCpuUse = JSON.parse(resp);
-    setCpuUse(newCpuUse);
-  });
-
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
     
-    window.api.send(GET_LOG);
-    window.api.send(GET_METRICS);
-    window.api.send(GET_CPU_USE);
+    ipcRenderer.send(GET_LOG);
+    ipcRenderer.send(GET_METRICS);
+    ipcRenderer.send(GET_CPU_USE);
+
+    setInterval(() => {
+      ipcRenderer.once(GOT_LOG, (_, data) => {
+        const newLog = JSON.parse(data);
+        setLog(newLog);
+      });
+    
+      ipcRenderer.once(GOT_METRICS, (_, data) => {
+        const newMetrics = JSON.parse(data);
+        setMetrics(newMetrics);
+      });
+    
+      ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+        const newCpuUse = JSON.parse(data);
+        setCpuUse(newCpuUse);
+      });
+
+      ipcRenderer.send(GET_LOG);
+      ipcRenderer.send(GET_METRICS);
+      ipcRenderer.send(GET_CPU_USE);
+    }, 5000);
+
+    return () => ipcRenderer.off();
   }, []);
 
   if (isSplashShowing) return (<Splash />);

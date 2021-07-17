@@ -75,6 +75,8 @@ metricsController.getMemory = async () => {
 };
 
 metricsController.getCPU = async () => {
+  if (!isPromUp) await forwardPromPort();
+  
   const currentDate = new Date().toISOString();
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
