@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CsvDownloader from 'react-csv-downloader';
 
 const COLUMNS = [
@@ -32,9 +32,34 @@ const COLUMNS = [
   },
 ];
 
+const DOWNLOADED_STYLE = {
+  background: '#5aa25a',
+  color: 'white',
+  transition: '300ms all',
+  borderRadius: '5px',
+  padding: '5px',
+};
+
 const Download = ({ data }) => {
+  const [hasDownloaded, setHasDownloaded] = useState(false);
+
+  const handleClick = () => {
+    setHasDownloaded(true);
+    setTimeout(() => setHasDownloaded(false), 3000);
+  };
+
   return (
-    <CsvDownloader filename="kubernetes-event-logs" datas={data} columns={COLUMNS} />
+    <CsvDownloader
+      filename="kubernetes-event-logs"
+      datas={data}
+      columns={COLUMNS}
+    >
+      <button
+        id="download-button"
+        style={hasDownloaded ? DOWNLOADED_STYLE : null}
+        onClick={handleClick}
+      >Download{hasDownloaded ? 'ed!' : ''}</button>
+    </CsvDownloader>
   )
 }
 

@@ -60,7 +60,7 @@ const App = () => {
       ipcRenderer.send(GET_LOG);
       ipcRenderer.send(GET_METRICS);
       ipcRenderer.send(GET_CPU_USE);
-    }, 5000);
+    }, 10000);
 
     return () => ipcRenderer.off();
   }, []);
