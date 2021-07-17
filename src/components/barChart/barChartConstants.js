@@ -7,9 +7,7 @@ export const FILL = { colors: ['#0e2b5f'] };
 export const CHART = {
   height: 350,
   type: BAR,
-  toolbar: {
-    show: false
-  },
+  toolbar: { show: false },
   animations: {
     enabled: true,
     easing: 'easeinout',

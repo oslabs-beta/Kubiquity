@@ -1,20 +1,41 @@
 import React from 'react';
+import CsvDownloader from 'react-csv-downloader';
 
-const DATA_TYPE = "data:text/csv;charset=utf-8,";
-const HEADERS = "Timestamp,Namespace,Type,Reason,Object,Message,Last seen,\n";
+const COLUMNS = [
+  {
+    id: 'createdAt',
+    displayName: 'Timestamp',
+  },
+  {
+    displayName: 'Namespace',
+    id: 'namespace',
+  },
+  {
+    displayName: 'Type',
+    id: 'type',
+  },
+  {
+    displayName: 'Reason',
+    id: 'reason',
+  },
+  {
+    displayName: 'Object',
+    id: 'object',
+  },
+  {
+    displayName: 'Message',
+    id: 'message',
+  },
+  {
+    displayName: 'Last seen',
+    id: 'lastSeen',
+  },
+];
 
 const Download = ({ data }) => {
-  const handleDownload = e => {
-    e.preventDefault();
-
-    let formattedData = DATA_TYPE + HEADERS;
-    formattedData += data.map(datum => Object.values(datum).join(',')).join('\n');
-    const encodedUri = encodeURI(formattedData);
-    debugger
-    window.open(encodedUri);
-  };
-
-  return (<button onClick={handleDownload}>Download</button>)
+  return (
+    <CsvDownloader filename="kubernetes-event-logs" datas={data} columns={COLUMNS} />
+  )
 }
 
 export default Download;
