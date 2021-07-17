@@ -32,24 +32,7 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  ipcRenderer.on(GOT_LOG, (event, data) => {
-    console.log('got logs');
-    const newLog = JSON.parse(data);
-    setLog(newLog);
-  });
-
-  ipcRenderer.on(GOT_METRICS, (_, data) => {
-    console.log('got metrics');
-    const newMetrics = JSON.parse(data);
-    setMetrics(newMetrics);
-  });
-
-  ipcRenderer.on(GOT_CPU_USE, (_, data) => {
-    console.log('got cpu');
-    const newCpuUse = JSON.parse(data);
-    setCpuUse(newCpuUse);
-  });
-
+  
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
@@ -62,14 +45,48 @@ const App = () => {
     // ipcRenderer.removeAllListeners(GET_LOG);
     // ipcRenderer.removeAllListeners(GET_METRICS);
     // ipcRenderer.removeAllListeners(GET_CPU_USE);
+    
+    ipcRenderer.once(GOT_LOG, (event, data) => {
+      console.log('got logs');
+      const newLog = JSON.parse(data);
+      setLog(newLog);
+    });
+  
+    ipcRenderer.once(GOT_METRICS, (_, data) => {
+      console.log('got metrics');
+      const newMetrics = JSON.parse(data);
+      setMetrics(newMetrics);
+    });
+  
+    ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+      console.log('got cpu');
+      const newCpuUse = JSON.parse(data);
+      setCpuUse(newCpuUse);
+    });
 
-
-
+    
     setInterval(() => {
-      ipcRenderer.off();
+      // ipcRenderer.off();
       ipcRenderer.send(GET_LOG);
       ipcRenderer.send(GET_METRICS);
       ipcRenderer.send(GET_CPU_USE);
+      ipcRenderer.once(GOT_LOG, (event, data) => {
+        console.log('got logs');
+        const newLog = JSON.parse(data);
+        setLog(newLog);
+      });
+    
+      ipcRenderer.once(GOT_METRICS, (_, data) => {
+        console.log('got metrics');
+        const newMetrics = JSON.parse(data);
+        setMetrics(newMetrics);
+      });
+    
+      ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+        console.log('got cpu');
+        const newCpuUse = JSON.parse(data);
+        setCpuUse(newCpuUse);
+      });
     }, 10000);
 
     return () => ipcRenderer.off();
