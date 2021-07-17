@@ -32,7 +32,6 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
@@ -42,52 +41,26 @@ const App = () => {
     ipcRenderer.send(GET_METRICS);
     ipcRenderer.send(GET_CPU_USE);
 
-    // ipcRenderer.removeAllListeners(GET_LOG);
-    // ipcRenderer.removeAllListeners(GET_METRICS);
-    // ipcRenderer.removeAllListeners(GET_CPU_USE);
-    
-    ipcRenderer.once(GOT_LOG, (event, data) => {
-      console.log('got logs');
-      const newLog = JSON.parse(data);
-      setLog(newLog);
-    });
-  
-    ipcRenderer.once(GOT_METRICS, (_, data) => {
-      console.log('got metrics');
-      const newMetrics = JSON.parse(data);
-      setMetrics(newMetrics);
-    });
-  
-    ipcRenderer.once(GOT_CPU_USE, (_, data) => {
-      console.log('got cpu');
-      const newCpuUse = JSON.parse(data);
-      setCpuUse(newCpuUse);
-    });
-
-    
     setInterval(() => {
-      // ipcRenderer.off();
-      ipcRenderer.send(GET_LOG);
-      ipcRenderer.send(GET_METRICS);
-      ipcRenderer.send(GET_CPU_USE);
-      ipcRenderer.once(GOT_LOG, (event, data) => {
-        console.log('got logs');
+      ipcRenderer.once(GOT_LOG, (_, data) => {
         const newLog = JSON.parse(data);
         setLog(newLog);
       });
     
       ipcRenderer.once(GOT_METRICS, (_, data) => {
-        console.log('got metrics');
         const newMetrics = JSON.parse(data);
         setMetrics(newMetrics);
       });
     
       ipcRenderer.once(GOT_CPU_USE, (_, data) => {
-        console.log('got cpu');
         const newCpuUse = JSON.parse(data);
         setCpuUse(newCpuUse);
       });
-    }, 10000);
+
+      ipcRenderer.send(GET_LOG);
+      ipcRenderer.send(GET_METRICS);
+      ipcRenderer.send(GET_CPU_USE);
+    }, 5000);
 
     return () => ipcRenderer.off();
   }, []);

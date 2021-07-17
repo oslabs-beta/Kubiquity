@@ -72,7 +72,9 @@ const Log = ({ log }) => {
       });
       setFilteredLog(newFilteredLog);
     }
-  }, [searchTerm]);
+
+    return () => setFilteredLog(log);
+  }, [searchTerm, log]);
 
   const handleInput = e => {
     const { value } = e.target;
