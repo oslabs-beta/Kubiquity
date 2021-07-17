@@ -10,7 +10,7 @@
     "frontend": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .'",
     "backend": "nodemon server/server.js",
     "react": "rm -rf build && webpack --config webpack.common.js --watch  --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,8 @@
     "concurrently": "^6.2.0",
     "css-loader": "^5.2.6",
     "electron-reload": "^1.5.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.29.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.23.4",
@@ -57,6 +59,7 @@
     "eslint-plugin-react": "^7.24.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
     "nodemon": "^2.0.9",
     "sass": "^1.35.1",
     "sass-loader": "^12.1.0",
