@@ -25,9 +25,11 @@ th {
 
 #download-button {
   transition: 300ms all;
+  margin-right: 24px;
 }
 
 #input-buttons-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
