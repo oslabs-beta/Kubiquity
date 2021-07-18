@@ -1,16 +1,20 @@
+import React from 'react';
+
 const TIMESTAMP = 'Timestamp';
 const NAMESPACE = 'Namespace';
 const TYPE = 'Type';
 const OBJECT = 'Object';
 const MESSAGE = 'Message';
 const LAST_SEEN = 'Last seen';
+const REASON = 'Reason';
 
-const CREATED_AT_CAMEL_CASE = 'createdAd';
+const CREATED_AT_CAMEL_CASE = 'createdAt';
 const NAMESPACE_CAMEL_CASE = 'namespace';
 const TYPE_CAMEL_CASE = 'type';
 const OBJECT_CAMEL_CASE = 'object';
 const MESSAGE_CAMEL_CASE = 'message';
 const LAST_SEEN_CAMEL_CASE = 'lastSeen';
+const REASON_CAMEL_CASE = 'reason';
 
 const BASIC_SORT = 'basic';
 
