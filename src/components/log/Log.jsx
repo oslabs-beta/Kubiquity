@@ -9,16 +9,6 @@ import Download from './Download';
 import { LOG_HEADERS } from './logConstants';
 
 const Log = ({ log }) => {
-  const referenceLog = log.map(entry => {
-    return Object.values(entry).map(value => {
-      if (typeof value !== 'string') {
-        return value.toString();
-      } else {
-        return value.toLowerCase();
-      }
-    });
-  });
-
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredLog, setFilteredLog] = useState(log);
 
@@ -28,18 +18,20 @@ const Log = ({ log }) => {
     } else {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-      const newFilteredLog = log.filter((entry, i) => {
-        const values = referenceLog[i];
+      const newFilteredLog = log.filter(entry => {
+        const values = Object.values(entry);
 
         for (const value of values) {
-          if (value.includes(lowerCaseSearchTerm)) {
+          if (typeof value === 'string' &&
+            value.toLowerCase().includes(lowerCaseSearchTerm)
+          ) {
             return true;
           }
         }
 
         return false;
       });
-      
+
       setFilteredLog(newFilteredLog);
     }
 
