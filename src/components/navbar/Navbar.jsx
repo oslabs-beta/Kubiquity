@@ -28,7 +28,7 @@ const Navbar = ({
 
   const handleClick = e => {
     const { textContent } = e.target;
-    const areAllShowing = textContent === 'Home';
+    const areAllShowing = textContent === HOME;
     
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];

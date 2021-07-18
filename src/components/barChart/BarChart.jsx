@@ -11,8 +11,6 @@ import {
   PLOT_OPTIONS,
 } from './barChartConstants';
 
-// TODO: test out given download functions.
-
 const BarChart = ({
   data,
   categories,

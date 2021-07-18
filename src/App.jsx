@@ -7,7 +7,6 @@ import {
   Splash,
   Navbar,
   About,
-  Logo,
 } from './components';
 
 import {
@@ -19,9 +18,8 @@ import {
   GOT_CPU_USE,
 } from '../utils';
 
+import logo from './assets/images/logo.png';
 import './assets/stylesheets/app.scss';
-
-// TODO: after MVP, try out Typescript.
 
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
@@ -70,7 +68,7 @@ const App = () => {
   return (
     <div id="app">
       <div id="app-header">
-        <Logo />
+        <img src={logo}/>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="navbar-and-app-container">
