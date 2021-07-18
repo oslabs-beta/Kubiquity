@@ -9,6 +9,16 @@ import Download from './Download';
 import { LOG_HEADERS } from './logConstants';
 
 const Log = ({ log }) => {
+  const referenceLog = log.map(entry => {
+    return Object.values(entry).map(value => {
+      if (typeof value !== 'string') {
+        return value.toString();
+      } else {
+        return value.toLowerCase();
+      }
+    });
+  });
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredLog, setFilteredLog] = useState(log);
 
@@ -18,19 +28,18 @@ const Log = ({ log }) => {
     } else {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-      const newFilteredLog = log.filter(entry => {
-        const values = Object.values(entry);
+      const newFilteredLog = log.filter((entry, i) => {
+        const values = referenceLog[i];
 
         for (const value of values) {
-          if (typeof value === 'string' &&
-            value.toLowerCase().includes(lowerCaseSearchTerm)
-          ) {
+          if (value.includes(lowerCaseSearchTerm)) {
             return true;
           }
         }
 
         return false;
       });
+      
       setFilteredLog(newFilteredLog);
     }
 
@@ -91,7 +100,17 @@ const Log = ({ log }) => {
 }
 
 Log.propTypes = {
-  log: PropTypes.array.isRequired,
+  log: PropTypes.arrayOf(
+    PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      namespace: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      reason: PropTypes.string.isRequired,
+      object: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      lastSeen: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Log;

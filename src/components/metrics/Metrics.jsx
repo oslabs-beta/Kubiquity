@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import BarChartContainer from './BarChartContainer';
 
-const formatXAxisToBytes = val => `${val} B`;
-const formatXAxisToPercent = val => `${val}%`;
+const roundNumToOneDecimal = num => Math.round(num * 10) / 10;
+const formatXAxisToBytes = val => `${roundNumToOneDecimal(val)} B`;
+const formatXAxisToPercent = val => `${roundNumToOneDecimal(val)}%`;
 
 const Metrics = ({ metrics, cpuUse }) => (
   <div>

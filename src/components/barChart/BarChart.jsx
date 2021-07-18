@@ -45,8 +45,8 @@ const BarChart = ({
 };
 
 BarChart.propTypes = {
-  data: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default BarChart;
