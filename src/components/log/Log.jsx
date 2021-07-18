@@ -6,47 +6,7 @@ import Table from './Table';
 import NoSearchResults from './NoSearchResults';
 import Download from './Download';
 
-const sortByTimestamp = (a, b) => (
-  new Date(b.original.createdAt) - new Date(a.original.createdAt)
-);
-
-const LOG_HEADERS = [
-  {
-    Header: 'Timestamp',
-    accessor: 'createdAt',
-    sortType: sortByTimestamp,
-  },
-  {
-    Header: 'Namespace',
-    accessor: 'namespace',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Type',
-    accessor: 'type',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Reason',
-    accessor: 'reason',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Object',
-    accessor: 'object',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Message',
-    accessor: 'message',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Last seen',
-    accessor: 'lastSeen',
-    disableSortBy: true,
-  },
-];
+import { LOG_HEADERS } from './logConstants';
 
 const Log = ({ log }) => {
   const [searchTerm, setSearchTerm] = useState('');
