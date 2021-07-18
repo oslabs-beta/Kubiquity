@@ -16,7 +16,7 @@ const BarChart = ({
   categories,
   xAxisFormatter,
 }) => {
-  const height = data.length > 30 ? 1500 : data.length * 80;
+  const height = data.length > 30 ? 1500 : data.length * 60;
   const series = [{ data }];
 
   const options = {

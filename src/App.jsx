@@ -30,38 +30,40 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsSplashShowing(false);
-    }, 4850);
-    
+  const getAppData = () => {
     ipcRenderer.send(GET_LOG);
     ipcRenderer.send(GET_METRICS);
     ipcRenderer.send(GET_CPU_USE);
 
-    setInterval(() => {
-      ipcRenderer.once(GOT_LOG, (_, data) => {
-        const newLog = JSON.parse(data);
-        setLog(newLog);
-      });
-    
-      ipcRenderer.once(GOT_METRICS, (_, data) => {
-        const newMetrics = JSON.parse(data);
-        setMetrics(newMetrics);
-      });
-    
-      ipcRenderer.once(GOT_CPU_USE, (_, data) => {
-        const newCpuUse = JSON.parse(data);
-        setCpuUse(newCpuUse);
-      });
+    ipcRenderer.once(GOT_LOG, (_, data) => {
+      const newLog = JSON.parse(data);
+      setLog(newLog);
+    });
+  
+    ipcRenderer.once(GOT_METRICS, (_, data) => {
+      const newMetrics = JSON.parse(data);
+      setMetrics(newMetrics);
+    });
+  
+    ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+      const newCpuUse = JSON.parse(data);
+      setCpuUse(newCpuUse);
+    });
+  };
 
-      ipcRenderer.send(GET_LOG);
-      ipcRenderer.send(GET_METRICS);
-      ipcRenderer.send(GET_CPU_USE);
-    }, 10000);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSplashShowing(false);
+    }, 4850);
+
+    getAppData();
 
     return () => ipcRenderer.off();
   }, []);
+
+  useEffect(() => {
+    setTimeout(getAppData, 10000);
+  }, [log]);
 
   if (isSplashShowing) return (<Splash />);
 
