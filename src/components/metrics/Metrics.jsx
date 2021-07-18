@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import BarChartContainer from './BarChartContainer';
 
+import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
+
 const roundNumToOneDecimal = num => Math.round(num * 10) / 10;
 const formatXAxisToBytes = val => `${roundNumToOneDecimal(val)} B`;
 const formatXAxisToPercent = val => `${roundNumToOneDecimal(val)}%`;
@@ -17,22 +19,32 @@ const Metrics = ({ metrics, cpuUse }) => (
     </div>
     <BarChartContainer
       data={metrics}
-      resource="metrics"
-      resourceKey="memory"
+      resource={MEMORY}
+      resourceKey={MEMORY}
       xAxisFormatter={formatXAxisToBytes}
     />
     <BarChartContainer
       data={cpuUse}
-      resource="CPU use"
-      resourceKey="cpuUsage"
+      resource={CPU_USE}
+      resourceKey={CPU_USAGE}
       xAxisFormatter={formatXAxisToPercent}
     />
   </div>
 );
 
 Metrics.propTypes = {
-  metrics: PropTypes.array.isRequired,
-  cpuUse: PropTypes.array.isRequired,
+  metrics: PropTypes.arrayOf(
+    PropTypes.shape({
+      podId: PropTypes.string.isRequired,
+      memory: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  cpuUse: PropTypes.arrayOf(
+    PropTypes.shape({
+      podId: PropTypes.string.isRequired,
+      cpuUsage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Metrics;

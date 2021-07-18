@@ -85,8 +85,28 @@ const Table = ({ data, headers }) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired,
-  headers: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      namespace: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      reason: PropTypes.string.isRequired,
+      object: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      lastSeen: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  headers: PropTypes.arrayOf(
+    PropTypes.shape({
+      Header: PropTypes.string.isRequired,
+      accessor: PropTypes.string.isRequired,
+      sortType: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string,
+      ]),
+      disableSortBy: PropTypes.bool,
+    })
+  ).isRequired,
 };
 
 export default Table;

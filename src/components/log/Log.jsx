@@ -7,6 +7,7 @@ import NoSearchResults from './NoSearchResults';
 import Download from './Download';
 
 import { LOG_HEADERS } from './logConstants';
+import { LOG } from '../utils';
 
 const Log = ({ log }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -49,7 +50,7 @@ const Log = ({ log }) => {
 
   if (!log.length) {
     displayComponent = (
-      <Loading resource={'log'} />
+      <Loading resource={LOG} />
     );
   } else if (!filteredLog.length) {
     displayComponent = (
