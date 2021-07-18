@@ -6,7 +6,7 @@ import BarChartContainer from './BarChartContainer';
 import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
 
 const roundNumToOneDecimal = num => Math.round(num * 10) / 10;
-const formatXAxisToBytes = val => `${roundNumToOneDecimal(val)} B`;
+const formatXAxisToBytes = val => `${roundNumToOneDecimal(val).toLocaleString()} B`;
 const formatXAxisToPercent = val => `${roundNumToOneDecimal(val)}%`;
 
 const Metrics = ({ metrics, cpuUse }) => (
