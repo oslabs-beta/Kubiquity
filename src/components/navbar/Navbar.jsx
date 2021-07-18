@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
 
-const HOME = 'Home';
-const METRICS = 'Metrics';
-const LOG = 'Log';
-const ABOUT = 'About';
-
-const NAV_OPTIONS = [
+import {
   HOME,
   LOG,
   METRICS,
-  ABOUT
-];
+  ABOUT,
+  NAV_OPTIONS,
+} from './navbarConstants';
 
 const Navbar = ({
   setIsLogShowing,
