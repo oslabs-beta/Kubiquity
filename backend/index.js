@@ -1,4 +1,4 @@
-const { getMemory, getCPU } = require('./controllers/metricsController');
+const { getMemory: fetchMemory, getCPU } = require('./controllers/metricsController');
 const {
   queryLog,
   formatLog,
@@ -6,7 +6,7 @@ const {
   getLog: fetchLog,
 } = require('./controllers/logController');
 
-const getMetrics = async () => await getMemory();
+const getMemory = async () => await fetchMemory();
 
 const getCpuUse = async () => await getCPU();
 
@@ -17,4 +17,4 @@ const getLog = async () => {
   return await fetchLog();
 };
 
-module.exports = { getLog, getMetrics, getCpuUse };
+module.exports = { getLog, getMemory, getCpuUse };

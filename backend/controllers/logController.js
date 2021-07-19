@@ -14,8 +14,6 @@ const HEADERS = [
 
 const logController = {};
 
-// TODO: app proper error handling
-
 logController.queryLog = () => {
   try {
     // runs a terminal command that gets the event logs from cluster
@@ -28,7 +26,8 @@ logController.queryLog = () => {
 
     return logList;
   } catch (err) {
-    console.log(err);
+    console.log('Error in queryLog: ', err);
+    throw err;
   }
 };
 
@@ -84,24 +83,25 @@ logController.saveLog = async (log) => {
 
     storage.set(LOGS, { data: allLogs }, (err) => {
       if (err) {
-        console.log(err);
+        console.log('Error in saveLog: ', err);
         throw err;
       }
     });
 
     return;
   } catch (err) {
-    console.log(err);
+    console.log('Error in saveLog: ', err);
+    throw err;
   }
 };
 
 logController.getLog = async () => {
   try {
     const logs = await storage.getSync(LOGS);
-
     return logs.data;
   } catch (err) {
-    console.log(err);
+    console.log('Error in getLog: ', err);
+    throw err;
   }
 };
 

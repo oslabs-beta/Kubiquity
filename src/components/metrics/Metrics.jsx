@@ -10,7 +10,7 @@ const formatXAxisToBytes = (val) =>
   `${roundNumToOneDecimal(val).toLocaleString()} B`;
 const formatXAxisToPercent = (val) => `${roundNumToOneDecimal(val)}%`;
 
-const Metrics = ({ metrics, cpuUse }) => (
+const Metrics = ({ memory, cpuUse }) => (
   <div>
     <div className="section-headers">MEMORY METRICS FOR ACTIVE PODS</div>
     <div className="sub-header">
@@ -18,7 +18,7 @@ const Metrics = ({ metrics, cpuUse }) => (
       usage of each node in your cluster.
     </div>
     <BarChartContainer
-      data={metrics}
+      data={memory}
       resource={MEMORY}
       resourceKey={MEMORY}
       xAxisFormatter={formatXAxisToBytes}
@@ -33,7 +33,7 @@ const Metrics = ({ metrics, cpuUse }) => (
 );
 
 Metrics.propTypes = {
-  metrics: PropTypes.arrayOf(
+  memory: PropTypes.arrayOf(
     PropTypes.shape({
       podId: PropTypes.string.isRequired,
       memory: PropTypes.number.isRequired,

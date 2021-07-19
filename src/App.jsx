@@ -5,10 +5,10 @@ import { Log, Metrics, Splash, Navbar, About } from './components';
 
 import {
   GET_LOG,
-  GET_METRICS,
+  GET_MEMORY,
   GET_CPU_USE,
   GOT_LOG,
-  GOT_METRICS,
+  GOT_MEMORY,
   GOT_CPU_USE,
 } from '../utils';
 
@@ -17,7 +17,7 @@ import './assets/stylesheets/app.scss';
 
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
-  const [metrics, setMetrics] = useState([]);
+  const [memory, setMemory] = useState([]);
   const [cpuUse, setCpuUse] = useState([]);
   const [log, setLog] = useState([]);
   const [isLogShowing, setIsLogShowing] = useState(true);
@@ -26,7 +26,7 @@ const App = () => {
 
   const getAppData = () => {
     ipcRenderer.send(GET_LOG);
-    ipcRenderer.send(GET_METRICS);
+    ipcRenderer.send(GET_MEMORY);
     ipcRenderer.send(GET_CPU_USE);
 
     ipcRenderer.once(GOT_LOG, (_, data) => {
@@ -34,9 +34,9 @@ const App = () => {
       setLog(newLog);
     });
 
-    ipcRenderer.once(GOT_METRICS, (_, data) => {
-      const newMetrics = JSON.parse(data);
-      setMetrics(newMetrics);
+    ipcRenderer.once(MEMORY, (_, data) => {
+      const newMemory = JSON.parse(data);
+      setMemory(newMemory);
     });
 
     ipcRenderer.once(GOT_CPU_USE, (_, data) => {
@@ -75,7 +75,7 @@ const App = () => {
         />
         <div id="app-container">
           {isLogShowing && <Log log={log} />}
-          {areMetricsShowing && <Metrics metrics={metrics} cpuUse={cpuUse} />}
+          {areMetricsShowing && <Metrics memory={memory} cpuUse={cpuUse} />}
           {isAboutShowing && <About />}
         </div>
       </div>

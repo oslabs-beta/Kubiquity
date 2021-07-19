@@ -60,12 +60,7 @@ metricsController.getMemory = async () => {
 
     // Parses the memory usage and formats it into an array of objects with podId and memory usage
     return memArr
-      .reduce((pods, {
-        values,
-        metric: {
-          pod: podId,
-        }
-      }) => {
+      .reduce((pods, { values, metric: { pod: podId } }) => {
         if (values[0][1] > 0 && podId) {
           const memory = parseFloat(values[0][1]);
 
@@ -81,8 +76,8 @@ metricsController.getMemory = async () => {
       }, [])
       .sort((a, b) => b.memory - a.memory);
   } catch (err) {
-    // TODO: add proper error handling.
-    console.log(`metricsController.getMemory: ERROR: ${err}`);
+    console.log('Error in getMemory: ', err);
+    throw err;
   }
 };
 
@@ -99,19 +94,19 @@ metricsController.getCPU = async () => {
     const cpuArr = results.data.result;
 
     // Formats the cpuArr into an array of objects with podname and cpu usage as properties
-    return cpuArr.map(({ metric: {
-      pod: podId,
-    }, values }) => {
-      const cpuUsage = values[0][1] * 100;
+    return cpuArr
+      .map(({ metric: { pod: podId }, values }) => {
+        const cpuUsage = values[0][1] * 100;
 
-      return {
-        podId,
-        cpuUsage,
-      }
-    }).sort((a, b) => b.cpuUsage - a.cpuUsage);
+        return {
+          podId,
+          cpuUsage,
+        };
+      })
+      .sort((a, b) => b.cpuUsage - a.cpuUsage);
   } catch (err) {
-    // TODO: add proper error handling.
-    console.log(`metricsController.getCPU: ERROR: ${err}`);
+    console.log('Error in getCPU: ', err);
+    throw err;
   }
 };
 
