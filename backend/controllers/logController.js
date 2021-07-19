@@ -1,6 +1,8 @@
 const cmd = require('node-cmd');
 const storage = require('electron-json-storage');
 
+const LOGS = 'logs';
+
 const HEADERS = [
   'NAMESPACE',
   'LAST SEEN',
@@ -67,7 +69,8 @@ logController.saveLog = async (log) => {
     const allLogs = log.map(
       ([namespace, lastSeen, type, reason, object, message]) => {
         const createdAt = new Date().toISOString();
-        const newEntry = {
+
+        return {
           namespace,
           lastSeen,
           type,
@@ -76,13 +79,14 @@ logController.saveLog = async (log) => {
           message,
           createdAt,
         };
-
-        return newEntry;
-      },
+      }
     );
 
-    storage.set('logs', { data: allLogs }, (err) => {
-      if (err) throw err;
+    storage.set(LOGS, { data: allLogs }, (err) => {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
     });
 
     return;
@@ -93,7 +97,7 @@ logController.saveLog = async (log) => {
 
 logController.getLog = async () => {
   try {
-    const logs = await storage.getSync('logs');
+    const logs = await storage.getSync(LOGS);
 
     return logs.data;
   } catch (err) {
