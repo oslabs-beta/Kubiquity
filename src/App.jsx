@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 
-import {
-  Log,
-  Metrics,
-  Splash,
-  Navbar,
-  About,
-} from './components';
+import { Log, Metrics, Splash, Navbar, About } from './components';
 
 import {
   GET_LOG,
@@ -39,12 +33,12 @@ const App = () => {
       const newLog = JSON.parse(data);
       setLog(newLog);
     });
-  
+
     ipcRenderer.once(GOT_METRICS, (_, data) => {
       const newMetrics = JSON.parse(data);
       setMetrics(newMetrics);
     });
-  
+
     ipcRenderer.once(GOT_CPU_USE, (_, data) => {
       const newCpuUse = JSON.parse(data);
       setCpuUse(newCpuUse);
@@ -65,12 +59,12 @@ const App = () => {
     setTimeout(getAppData, 10000);
   }, [log]);
 
-  if (isSplashShowing) return (<Splash />);
+  if (isSplashShowing) return <Splash />;
 
   return (
     <div id="app">
       <div id="app-header">
-        <img src={logo}/>
+        <img src={logo} />
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="navbar-and-app-container">
@@ -80,18 +74,13 @@ const App = () => {
           setIsAboutShowing={setIsAboutShowing}
         />
         <div id="app-container">
-          {isLogShowing && (<Log log={log} />)}
-          {areMetricsShowing && (
-            <Metrics
-              metrics={metrics}
-              cpuUse={cpuUse}
-            />
-          )}
-          {isAboutShowing && (<About />)}
+          {isLogShowing && <Log log={log} />}
+          {areMetricsShowing && <Metrics metrics={metrics} cpuUse={cpuUse} />}
+          {isAboutShowing && <About />}
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default App;

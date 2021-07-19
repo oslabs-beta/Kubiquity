@@ -11,11 +11,7 @@ import {
   PLOT_OPTIONS,
 } from './barChartConstants';
 
-const BarChart = ({
-  data,
-  categories,
-  xAxisFormatter,
-}) => {
+const BarChart = ({ data, categories, xAxisFormatter }) => {
   const height = data.length > 30 ? 1500 : data.length * 60;
   const series = [{ data }];
 

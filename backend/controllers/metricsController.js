@@ -8,15 +8,14 @@ const metricsController = {};
 
 let isPromUp = false;
 
-const forwardPromPort = () => (
+const forwardPromPort = () =>
   new Promise((resolve, reject) => {
     const promPodName = cmd
       .runSync(
         'export POD_NAME=$(kubectl get pods --all-namespaces -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}") && echo $POD_NAME',
       )
-      .data
-      .split('\n');
-      
+      .data.split('\n');
+
     const portForward = spawn('kubectl', [
       '--namespace=prometheus',
       'port-forward',
@@ -39,8 +38,7 @@ const forwardPromPort = () => (
       isPromUp = true;
       resolve();
     });
-  })
-);
+  });
 
 metricsController.getMemory = async () => {
   if (!isPromUp) await forwardPromPort();
@@ -54,29 +52,31 @@ metricsController.getMemory = async () => {
     const memArr = results.data.result;
 
     // format results and change into bytes
-    return memArr.reduce((pods, metrics) => {
-      if (metrics.values[0][1] > 0 && metrics.metric.pod) {
-        const memory = parseFloat(metrics.values[0][1]);
+    return memArr
+      .reduce((pods, metrics) => {
+        if (metrics.values[0][1] > 0 && metrics.metric.pod) {
+          const memory = parseFloat(metrics.values[0][1]);
 
-        const pod = {
-          podId: metrics.metric.pod,
-          memory,
-        };
+          const pod = {
+            podId: metrics.metric.pod,
+            memory,
+          };
 
-        pods.push(pod);
-      }
+          pods.push(pod);
+        }
 
-      return pods;
-    }, []).sort((a, b) => b.memory - a.memory);
+        return pods;
+      }, [])
+      .sort((a, b) => b.memory - a.memory);
   } catch (err) {
-    // TODO: add proper error handling. 
+    // TODO: add proper error handling.
     console.log(`metricsController.getMemory: ERROR: ${err}`);
   }
 };
 
 metricsController.getCPU = async () => {
   if (!isPromUp) await forwardPromPort();
-  
+
   const currentDate = new Date().toISOString();
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
@@ -88,7 +88,7 @@ metricsController.getCPU = async () => {
     cpuArr.forEach((el, ind) => {
       const podId = el.metric.pod;
       const cpuPercent = el.values[0][1] * 100;
-      
+
       cpuArr[ind] = {
         podId,
         cpuUsage: cpuPercent,
@@ -97,7 +97,7 @@ metricsController.getCPU = async () => {
 
     return cpuArr.sort((a, b) => b.cpuUsage - a.cpuUsage);
   } catch (err) {
-    // TODO: add proper error handling. 
+    // TODO: add proper error handling.
     console.log(`metricsController.getCPU: ERROR: ${err}`);
   }
 };

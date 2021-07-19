@@ -6,12 +6,4 @@ import Splash from './splash';
 import About from './about';
 import BarChart from './barChart';
 
-export {
-  Loading,
-  Log,
-  Metrics,
-  Navbar,
-  Splash,
-  About,
-  BarChart,
-};
+export { Loading, Log, Metrics, Navbar, Splash, About, BarChart };

@@ -26,8 +26,8 @@ const Download = ({ data }) => {
         Download{hasDownloaded ? 'ed!' : ''}
       </button>
     </CsvDownloader>
-  )
-}
+  );
+};
 
 Download.propTypes = {
   data: PropTypes.arrayOf(
@@ -39,8 +39,8 @@ Download.propTypes = {
       object: PropTypes.string.isRequired,
       message: PropTypes.string.isRequired,
       lastSeen: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
-}
+};
 
 export default Download;

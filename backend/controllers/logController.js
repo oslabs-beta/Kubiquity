@@ -1,4 +1,4 @@
-const cmd = require('node-cmd')
+const cmd = require('node-cmd');
 const storage = require('electron-json-storage');
 
 const HEADERS = [
@@ -7,14 +7,13 @@ const HEADERS = [
   'TYPE',
   'REASON',
   'OBJECT',
-  'MESSAGE'
+  'MESSAGE',
 ];
 
-const getHeadersIndices = array => (
-  HEADERS.map((header) => array.indexOf(header))
-);
+const getHeadersIndices = (array) =>
+  HEADERS.map((header) => array.indexOf(header));
 
-const logArrayConverter = array => {
+const logArrayConverter = (array) => {
   const headersIndices = getHeadersIndices(array[0]);
 
   return array.map((el, i) => {
@@ -46,7 +45,9 @@ const logController = {};
 
 logController.queryLog = () => {
   try {
-    const logList = cmd.runSync('kubectl get events --all-namespaces').data.split('\n');
+    const logList = cmd
+      .runSync('kubectl get events --all-namespaces')
+      .data.split('\n');
     logList.pop();
 
     return logList;
@@ -55,36 +56,29 @@ logController.queryLog = () => {
   }
 };
 
-logController.formatLog = logList => (
-  logArrayConverter(logList)
-);
+logController.formatLog = (logList) => logArrayConverter(logList);
 
 logController.saveLog = async (log) => {
   log.shift();
   try {
     const allLogs = [];
-    const logPromises = log.map(([
-      namespace,
-      lastSeen,
-      type,
-      reason,
-      object,
-      message
-    ]) => {
-      const createdAt = new Date().toISOString();
-      const newEntry = {
-        namespace,
-        lastSeen,
-        type,
-        reason,
-        object,
-        message,
-        createdAt
-      };
-      allLogs.push(newEntry);
-    });
+    const logPromises = log.map(
+      ([namespace, lastSeen, type, reason, object, message]) => {
+        const createdAt = new Date().toISOString();
+        const newEntry = {
+          namespace,
+          lastSeen,
+          type,
+          reason,
+          object,
+          message,
+          createdAt,
+        };
+        allLogs.push(newEntry);
+      },
+    );
 
-    storage.set('logs', {data: allLogs}, (err) => {
+    storage.set('logs', { data: allLogs }, (err) => {
       if (err) throw err;
     });
 
@@ -97,12 +91,11 @@ logController.saveLog = async (log) => {
 logController.getLog = async () => {
   try {
     const logs = await storage.getSync('logs');
-    
+
     return logs.data;
   } catch (err) {
     console.log(err);
   }
 };
-
 
 module.exports = logController;

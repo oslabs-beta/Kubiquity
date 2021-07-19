@@ -6,9 +6,9 @@ const {
   getLog: fetchLog,
 } = require('./controllers/logController');
 
-const getMetrics = async () =>  await getMemory();
+const getMetrics = async () => await getMemory();
 
-const getCpuUse = async () =>  await getCPU();
+const getCpuUse = async () => await getCPU();
 
 const getLog = async () => {
   let log = await queryLog();

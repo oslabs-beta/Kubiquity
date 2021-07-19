@@ -3,14 +3,16 @@
 @import '_table';
 @import '_splash';
 @import '_loading';
-@import '_about'; 
-@import '_noSearchResults'; 
+@import '_about';
+@import '_noSearchResults';
 
 body {
   min-width: 600px;
 }
 
-p, div, h1 {
+p,
+div,
+h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: $grey;
 }
