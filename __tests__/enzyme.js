@@ -17,10 +17,19 @@ configure({ adapter: new Adapter() });
 describe('React unit tests', () => {
     let wrapper;
     describe('NavBar component', () => {
-        it('should render without errors', () => {
-            const wrapper = shallow(<NavBar />);
-            expect(wrapper.length).toBe(1);
+        const props = {
+            setIsLogShowing: jest.fn(() => console.log('setIsLogShowing')),
+            setAreMetricsShowing: jest.fn(() => console.log('setAreMetricsShowing')),
+            setIsAboutShowing: jest.fn(() => console.log('setIsAboutShowing')),
+        };
+        beforeAll(() => {
+            wrapper = shallow(<NavBar {...props} />);
         });
+
+        it('should render an unordered list of buttons', () => {
+            expect(wrapper.find('ul').length).toBe(1);
+        });
+            
     });
     describe('BarChart component', () => {
         let wrapper;
@@ -34,10 +43,6 @@ describe('React unit tests', () => {
 
         it('should render without errors', () => {
             expect(wrapper.length).toBe(1);
-        });
-        it('should pass props to the <BarChart /> component', () => {
-            console.log(wrapper.find(BarChart).prop(), "console.log");
-            expect(wrapper.find('BarChart').prop()).toEqual(props);
         });
     });
 });
