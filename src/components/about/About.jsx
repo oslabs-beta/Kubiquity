@@ -4,6 +4,10 @@ const ABOUT_SECTION_STYLE = {
   marginBottom: '8px',
 };
 
+/* eslint-disable */
+const kubiquityAboutText =
+  'Kubiquity is a Kubernetes error logging and tracking tool developed and launched in 2021. Designed for production-level applications using Kubernetes to orchestrate containers, Kubiquity provides metrics on all pods memory use to help developers prevent OOM kill errors additionally, Kubiquity logs Kubernetes events to highlight any errors and warnings that originate within monitored clusters.';
+
 const About = () => (
   <div id="about-container">
     <div className="section-headers">ABOUT</div>
@@ -11,14 +15,7 @@ const About = () => (
       <div className="about-subheader" style={ABOUT_SECTION_STYLE}>
         About Kubiquity
       </div>
-      <p className="about-text">
-        Kubiquity is a Kubernetes error logging and tracking tool developed and
-        launched in 2021. Designed for production-level applications using
-        Kubernetes to orchestrate containers, Kubiquity provides metrics on all
-        pods' memory use to help developers prevent OOM kill errors;
-        additionally, Kubiquity logs Kubernetes events to highlight any errors
-        and warnings that originate within monitored clusters.
-      </p>
+      <p className="about-text">{kubiquityAboutText}</p>
     </div>
     <div className="about-section">
       <div className="about-subheader" style={ABOUT_SECTION_STYLE}>

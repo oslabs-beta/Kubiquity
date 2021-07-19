@@ -78,6 +78,7 @@ metricsController.getCPU = async () => {
   if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
+  // TODO add comment also image
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
@@ -87,11 +88,11 @@ metricsController.getCPU = async () => {
 
     cpuArr.forEach((el, ind) => {
       const podId = el.metric.pod;
-      const cpuPercent = el.values[0][1] * 100;
+      const cpuUsage = el.values[0][1] * 100;
 
       cpuArr[ind] = {
         podId,
-        cpuUsage: cpuPercent,
+        cpuUsage,
       };
     });
 
