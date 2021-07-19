@@ -11,14 +11,12 @@ import {
   PLOT_OPTIONS,
 } from './barChartConstants';
 
-// TODO: test out given download functions.
-
 const BarChart = ({
   data,
   categories,
   xAxisFormatter,
 }) => {
-  const height = data.length > 30 ? 1500 : data.length * 80;
+  const height = data.length > 30 ? 1500 : data.length * 60;
   const series = [{ data }];
 
   const options = {
@@ -47,8 +45,8 @@ const BarChart = ({
 };
 
 BarChart.propTypes = {
-  data: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default BarChart;

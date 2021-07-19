@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "rm -rf build && webpack --mode production --config webpack.common.js",
-    "dev": "rm -rf build && webpack --config webpack.common.js && concurrently 'webpack.common.js --watch --mode development' 'electron .'",
+    "dev": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch --mode development' 'electron .'",
     "frontend": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .'",
     "backend": "nodemon server/server.js",
     "react": "rm -rf build && webpack --config webpack.common.js --watch  --mode development",
@@ -37,6 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-apexcharts": "^1.3.9",
+    "react-csv-downloader": "^2.7.0",
     "react-dom": "^17.0.2",
     "react-table": "^7.7.0"
   },

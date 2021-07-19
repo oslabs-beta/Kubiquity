@@ -7,7 +7,6 @@ import {
   Splash,
   Navbar,
   About,
-  Logo,
 } from './components';
 
 import {
@@ -19,9 +18,8 @@ import {
   GOT_CPU_USE,
 } from '../utils';
 
+import logo from './assets/images/logo.png';
 import './assets/stylesheets/app.scss';
-
-// TODO: after MVP, try out Typescript.
 
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
@@ -32,45 +30,47 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsSplashShowing(false);
-    }, 4850);
-    
+  const getAppData = () => {
     ipcRenderer.send(GET_LOG);
     ipcRenderer.send(GET_METRICS);
     ipcRenderer.send(GET_CPU_USE);
 
-    setInterval(() => {
-      ipcRenderer.once(GOT_LOG, (_, data) => {
-        const newLog = JSON.parse(data);
-        setLog(newLog);
-      });
-    
-      ipcRenderer.once(GOT_METRICS, (_, data) => {
-        const newMetrics = JSON.parse(data);
-        setMetrics(newMetrics);
-      });
-    
-      ipcRenderer.once(GOT_CPU_USE, (_, data) => {
-        const newCpuUse = JSON.parse(data);
-        setCpuUse(newCpuUse);
-      });
+    ipcRenderer.once(GOT_LOG, (_, data) => {
+      const newLog = JSON.parse(data);
+      setLog(newLog);
+    });
+  
+    ipcRenderer.once(GOT_METRICS, (_, data) => {
+      const newMetrics = JSON.parse(data);
+      setMetrics(newMetrics);
+    });
+  
+    ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+      const newCpuUse = JSON.parse(data);
+      setCpuUse(newCpuUse);
+    });
+  };
 
-      ipcRenderer.send(GET_LOG);
-      ipcRenderer.send(GET_METRICS);
-      ipcRenderer.send(GET_CPU_USE);
-    }, 5000);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSplashShowing(false);
+    }, 4850);
+
+    getAppData();
 
     return () => ipcRenderer.off();
   }, []);
+
+  useEffect(() => {
+    setTimeout(getAppData, 10000);
+  }, [log]);
 
   if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
       <div id="app-header">
-        <Logo />
+        <img src={logo}/>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="navbar-and-app-container">

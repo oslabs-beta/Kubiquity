@@ -33,10 +33,6 @@ const BROWSER_WINDOW_SETTINGS = {
     contextIsolation: false,
     enableRemoteModule: true,
     worldSafeExecuteJavaScript: true,
-    preload: path.join(
-      __dirname,
-      'preload.js'
-    ),
   },
 };
 

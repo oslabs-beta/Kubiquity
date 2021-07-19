@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { LOG, MEMORY, CPU_USE } from '../utils';
+
 const SVG_WIDTH_HEIGHT = 200;
 const PATH_PROPS = {
   strokeLinecap: 'round',
@@ -33,9 +35,9 @@ const Loading = ({ resource }) => (
 
 Loading.propTypes = {
   resource: PropTypes.oneOf([
-    'log',
-    'metrics',
-    'CPU use'
+    LOG,
+    MEMORY,
+    CPU_USE,
   ]).isRequired,
 };
 
