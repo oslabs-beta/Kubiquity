@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ipcRenderer } from 'electron';
 
 import {
   Log,
@@ -6,23 +7,19 @@ import {
   Splash,
   Navbar,
   About,
-  Logo,
 } from './components';
 
 import {
   GET_LOG,
   GET_METRICS,
   GET_CPU_USE,
-  GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
   GOT_CPU_USE,
-  GOT_LOG_TEST,
 } from '../utils';
 
+import logo from './assets/images/logo.png';
 import './assets/stylesheets/app.scss';
-
-// TODO: after MVP, try out Typescript.
 
 const App = () => {
   const [isSplashShowing, setIsSplashShowing] = useState(true);
@@ -33,42 +30,47 @@ const App = () => {
   const [areMetricsShowing, setAreMetricsShowing] = useState(true);
   const [isAboutShowing, setIsAboutShowing] = useState(true);
 
-  window.api.receive(GOT_LOG_TEST, resp => {
-    const newLog = JSON.parse(resp);
-    setLog(newLog);
-  });
+  const getAppData = () => {
+    ipcRenderer.send(GET_LOG);
+    ipcRenderer.send(GET_METRICS);
+    ipcRenderer.send(GET_CPU_USE);
 
-  window.api.receive(GOT_LOG, resp => {
-    const newLog = JSON.parse(resp);
-    setLog(newLog);
-  });
-
-  window.api.receive(GOT_METRICS, resp => {
-    const newMetrics = JSON.parse(resp);
-    setMetrics(newMetrics);
-  });
-
-  window.api.receive(GOT_CPU_USE, resp => {
-    const newCpuUse = JSON.parse(resp);
-    setCpuUse(newCpuUse);
-  });
+    ipcRenderer.once(GOT_LOG, (_, data) => {
+      const newLog = JSON.parse(data);
+      setLog(newLog);
+    });
+  
+    ipcRenderer.once(GOT_METRICS, (_, data) => {
+      const newMetrics = JSON.parse(data);
+      setMetrics(newMetrics);
+    });
+  
+    ipcRenderer.once(GOT_CPU_USE, (_, data) => {
+      const newCpuUse = JSON.parse(data);
+      setCpuUse(newCpuUse);
+    });
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShowing(false);
     }, 4850);
-    
-    window.api.send(GET_LOG);
-    window.api.send(GET_METRICS);
-    window.api.send(GET_CPU_USE);
+
+    getAppData();
+
+    return () => ipcRenderer.off();
   }, []);
+
+  useEffect(() => {
+    setTimeout(getAppData, 10000);
+  }, [log]);
 
   if (isSplashShowing) return (<Splash />);
 
   return (
     <div id="app">
       <div id="app-header">
-        <Logo />
+        <img src={logo}/>
         <p>An error logging and visualization tool for Kubernetes.</p>
       </div>
       <div id="navbar-and-app-container">

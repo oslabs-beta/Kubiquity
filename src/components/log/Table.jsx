@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTable, useSortBy } from 'react-table';
 
-const RED_BACKGROUND_STYLE = {
-  backgroundColor: '#de8989',
-  fontWeight: 'bold',
-  color: '#f8f8f8',
-};
-
-const DOWN_ARROW = (<div>&#128317;</div>);
-const UP_ARROW = (<div>&#128316;</div>);
+import {
+  HEADER,
+  CELL,
+  NORMAL,
+  ROW_RED_BACKGROUND_STYLE,
+  DOWN_ARROW,
+  UP_ARROW,
+} from './logConstants';
 
 const Table = ({ data, headers }) => {
   const {
@@ -35,7 +35,7 @@ const Table = ({ data, headers }) => {
           <th
             {...column.getHeaderProps(column.getSortByToggleProps())}
           >
-            {column.render('Header')}
+            {column.render(HEADER)}
             <span>
               {column.isSorted ?
                 (column.isSortedDesc ? UP_ARROW : DOWN_ARROW)
@@ -50,7 +50,7 @@ const Table = ({ data, headers }) => {
   const rowsComponents = rows.map(row => {
     prepareRow(row);
     const { type } = row.original;
-    const rowStyles = type === 'Normal' ? null : RED_BACKGROUND_STYLE;
+    const rowStyles = type === NORMAL ? null : ROW_RED_BACKGROUND_STYLE;
 
     return (
       <tr
@@ -62,7 +62,7 @@ const Table = ({ data, headers }) => {
 
           return (
             <td {...cellProps}>
-              {cell.render('Cell')}
+              {cell.render(CELL)}
             </td>
           )
         })}
@@ -85,8 +85,28 @@ const Table = ({ data, headers }) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired,
-  headers: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      namespace: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      reason: PropTypes.string.isRequired,
+      object: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      lastSeen: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  headers: PropTypes.arrayOf(
+    PropTypes.shape({
+      Header: PropTypes.string.isRequired,
+      accessor: PropTypes.string.isRequired,
+      sortType: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string,
+      ]),
+      disableSortBy: PropTypes.bool,
+    })
+  ).isRequired,
 };
 
 export default Table;

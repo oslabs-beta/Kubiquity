@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { NAV_OPTIONS } from './navbarConstants';
+
 const NavButton = ({ navOption, handleClick }) => (
   <li>
     <button onClick={handleClick}>
@@ -10,7 +12,7 @@ const NavButton = ({ navOption, handleClick }) => (
 );
 
 NavButton.propTypes = {
-  navOption: PropTypes.string.isRequired,
+  navOption: PropTypes.oneOf(NAV_OPTIONS).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 

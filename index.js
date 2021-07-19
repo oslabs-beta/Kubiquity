@@ -2,22 +2,15 @@ const { BrowserWindow, app, ipcMain } = require('electron');
 const path = require('path');
 const electronReload = require('electron-reload');
 
-const {
-  getLog,
-  getMetrics,
-  getCpuUse,
-  getLogTest,
-} = require('./backend');
+const { getLog, getMetrics, getCpuUse } = require('./backend');
 
 const  {
   GET_LOG,
   GET_METRICS,
   GET_CPU_USE,
-  GET_LOG_TEST,
   GOT_LOG,
   GOT_METRICS,
   GOT_CPU_USE,
-  GOT_LOG_TEST,
 } = require('./utils');
 
 const ELECTRON_MODULE_PATH = path.join(
@@ -36,13 +29,10 @@ const BROWSER_WINDOW_SETTINGS = {
   height: 800,
   backgroundColor: 'white',
   webPreferences: {
-    nodeIntegration: false,
+    nodeIntegration: true,
+    contextIsolation: false,
+    enableRemoteModule: true,
     worldSafeExecuteJavaScript: true,
-    contextIsolation: true,
-    preload: path.join(
-      __dirname,
-      'preload.js'
-    ),
   },
 };
 
@@ -73,9 +63,4 @@ ipcMain.on(GET_METRICS, async (event, data) => {
 ipcMain.on(GET_CPU_USE, async (event, data) => {
   const cpuUse = await getCpuUse();
   event.sender.send(GOT_CPU_USE, JSON.stringify(cpuUse));
-});
-
-ipcMain.on(GET_LOG_TEST, async (event, data) => {
-  const errors = await getLogTest();
-  event.sender.send(GOT_LOG_TEST, JSON.stringify(errors));
 });

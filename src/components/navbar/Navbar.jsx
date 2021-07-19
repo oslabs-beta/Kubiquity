@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
 
-const HOME = 'Home';
-const METRICS = 'Metrics';
-const LOG = 'Log';
-const ABOUT = 'About';
-
-const NAV_OPTIONS = [
+import {
   HOME,
-  METRICS,
   LOG,
-  ABOUT
-];
+  METRICS,
+  ABOUT,
+  NAV_OPTIONS,
+} from './navbarConstants';
 
 const Navbar = ({
   setIsLogShowing,
@@ -28,7 +24,7 @@ const Navbar = ({
 
   const handleClick = e => {
     const { textContent } = e.target;
-    const areAllShowing = textContent === 'Home';
+    const areAllShowing = textContent === HOME;
     
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];

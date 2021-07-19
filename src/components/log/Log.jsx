@@ -4,48 +4,10 @@ import PropTypes from 'prop-types';
 import { Loading } from '../';
 import Table from './Table';
 import NoSearchResults from './NoSearchResults';
+import Download from './Download';
 
-const sortByTimestamp = (a, b) => (
-  new Date(b.original.createdAt) - new Date(a.original.createdAt)
-);
-
-const LOG_HEADERS = [
-  {
-    Header: 'Timestamp',
-    accessor: 'createdAt',
-    sortType: sortByTimestamp,
-  },
-  {
-    Header: 'Namespace',
-    accessor: 'namespace',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Type',
-    accessor: 'type',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Reason',
-    accessor: 'reason',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Object',
-    accessor: 'object',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Message',
-    accessor: 'message',
-    sortType: 'basic',
-  },
-  {
-    Header: 'Last seen',
-    accessor: 'lastSeen',
-    disableSortBy: true,
-  },
-];
+import { LOG_HEADERS } from './logConstants';
+import { LOG } from '../utils';
 
 const Log = ({ log }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -70,9 +32,12 @@ const Log = ({ log }) => {
 
         return false;
       });
+
       setFilteredLog(newFilteredLog);
     }
-  }, [searchTerm]);
+
+    return () => setFilteredLog(log);
+  }, [searchTerm, log]);
 
   const handleInput = e => {
     const { value } = e.target;
@@ -85,7 +50,7 @@ const Log = ({ log }) => {
 
   if (!log.length) {
     displayComponent = (
-      <Loading resource={'log'} />
+      <Loading resource={LOG} />
     );
   } else if (!filteredLog.length) {
     displayComponent = (
@@ -111,13 +76,16 @@ const Log = ({ log }) => {
       >
         Use the Kubiquity event log to find and resolve errors. 
       </div>
-      <div>
-        <input
-          onChange={handleInput}
-          value={searchTerm}
-          placeholder={'Search the event logs'}
-        ></input>
-        <button onClick={resetSearch}>Reset</button>
+      <div id="input-buttons-container">
+        <div>
+          <input
+            onChange={handleInput}
+            value={searchTerm}
+            placeholder={'Search the event logs'}
+          ></input>
+          <button onClick={resetSearch}>Reset</button>
+        </div>
+        <Download data={filteredLog}/>
       </div>
       {displayComponent}
     </div>
@@ -125,7 +93,17 @@ const Log = ({ log }) => {
 }
 
 Log.propTypes = {
-  log: PropTypes.array.isRequired,
+  log: PropTypes.arrayOf(
+    PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      namespace: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      reason: PropTypes.string.isRequired,
+      object: PropTypes.string.isRequired,
+      message: PropTypes.string.isRequired,
+      lastSeen: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Log;
