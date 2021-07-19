@@ -60,12 +60,17 @@ metricsController.getMemory = async () => {
 
     // Parses the memory usage and formats it into an array of objects with podId and memory usage
     return memArr
-      .reduce((pods, metrics) => {
-        if (metrics.values[0][1] > 0 && metrics.metric.pod) {
-          const memory = parseFloat(metrics.values[0][1]);
+      .reduce((pods, {
+        values,
+        metric: {
+          pod: podId,
+        }
+      }) => {
+        if (values[0][1] > 0 && podId) {
+          const memory = parseFloat(values[0][1]);
 
           const pod = {
-            podId: metrics.metric.pod,
+            podId,
             memory,
           };
 
@@ -94,17 +99,16 @@ metricsController.getCPU = async () => {
     const cpuArr = results.data.result;
 
     // Formats the cpuArr into an array of objects with podname and cpu usage as properties
-    cpuArr.forEach((el, ind) => {
-      const podId = el.metric.pod;
-      const cpuUsage = el.values[0][1] * 100;
+    return cpuArr.map(({ metric: {
+      pod: podId,
+    }, values }) => {
+      const cpuUsage = values[0][1] * 100;
 
-      cpuArr[ind] = {
+      return {
         podId,
         cpuUsage,
-      };
-    });
-
-    return cpuArr.sort((a, b) => b.cpuUsage - a.cpuUsage);
+      }
+    }).sort((a, b) => b.cpuUsage - a.cpuUsage);
   } catch (err) {
     // TODO: add proper error handling.
     console.log(`metricsController.getCPU: ERROR: ${err}`);
