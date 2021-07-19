@@ -10,12 +10,14 @@ let isPromUp = false;
 
 const forwardPromPort = () =>
   new Promise((resolve, reject) => {
+    // Run command to get pod name for prometheus instance and save to variable
     const promPodName = cmd
       .runSync(
         'export POD_NAME=$(kubectl get pods --all-namespaces -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}") && echo $POD_NAME',
       )
       .data.split('\n');
 
+    // Spawns a new persistent process to forward the port 9090 to 9090 in the prometheus pod
     const portForward = spawn('kubectl', [
       '--namespace=prometheus',
       'port-forward',
@@ -23,16 +25,20 @@ const forwardPromPort = () =>
       '9090',
     ]);
 
+    // if the process is successful, resolve the promise
     portForward.stdout.on('data', (data) => {
       console.log(`stdout: ${data}`);
       isPromUp = true;
       resolve();
     });
 
+    // if the process fails, reject the promise
     portForward.stderr.on('data', (data) => {
       console.log(`stderr: ${data}`);
+      reject();
     });
 
+    // if prometheus is already running, resolve the promise
     portForward.on('close', (code) => {
       if (code === 1) console.log('Prometheus is already running...');
       isPromUp = true;
@@ -44,6 +50,7 @@ metricsController.getMemory = async () => {
   if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
+  // Sums the memory usage rate of all containers and splitting them by pod name
   const query = `query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
@@ -51,7 +58,7 @@ metricsController.getMemory = async () => {
     const results = await data.json();
     const memArr = results.data.result;
 
-    // format results and change into bytes
+    // Parses the memory usage and formats it into an array of objects with podId and memory usage
     return memArr
       .reduce((pods, metrics) => {
         if (metrics.values[0][1] > 0 && metrics.metric.pod) {
@@ -78,7 +85,7 @@ metricsController.getCPU = async () => {
   if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
-  // TODO add comment also image
+  // Sums the CPU usage rate of all containers with an image and splitting them by pod name
   const query = `query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m])) by (pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
@@ -86,6 +93,7 @@ metricsController.getCPU = async () => {
     const results = await data.json();
     const cpuArr = results.data.result;
 
+    // Formats the cpuArr into an array of objects with podname and cpu usage as properties
     cpuArr.forEach((el, ind) => {
       const podId = el.metric.pod;
       const cpuUsage = el.values[0][1] * 100;
