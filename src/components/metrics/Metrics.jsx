@@ -5,18 +5,18 @@ import BarChartContainer from './BarChartContainer';
 
 import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
 
+const METRICS_TEXT =
+  'Prevent OOM (out of memory) kill errors by monitoring the memory and CPU usage of each node in your cluster.';
+
 const roundNumToOneDecimal = (num) => Math.round(num * 10) / 10;
+const formatXAxisToPercent = (val) => `${roundNumToOneDecimal(val)}%`;
 const formatXAxisToBytes = (val) =>
   `${roundNumToOneDecimal(val).toLocaleString()} B`;
-const formatXAxisToPercent = (val) => `${roundNumToOneDecimal(val)}%`;
 
 const Metrics = ({ memory, cpuUse }) => (
   <div>
     <div className="section-headers">MEMORY METRICS FOR ACTIVE PODS</div>
-    <div className="sub-header">
-      Prevent OOM (out of memory) kill errors by monitoring the memory and CPU
-      usage of each node in your cluster.
-    </div>
+    <div className="sub-header">{METRICS_TEXT}</div>
     <BarChartContainer
       data={memory}
       resource={MEMORY}

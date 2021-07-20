@@ -78,7 +78,7 @@ logController.saveLog = async (log) => {
           message,
           createdAt,
         };
-      }
+      },
     );
 
     storage.set(LOGS, { data: allLogs }, (err) => {
