@@ -1,10 +1,44 @@
-.about-text {
+.about-text, #github-links {
   font-size: 12px;
 }
 
 .about-subheader {
   font-size: 15px;
+}
+
+#all-about-sections {
   display: flex;
-  align-content: center;
-  justify-content: center;
+  
+  > * {
+    width: 32%;
+    margin-right: 18px;
+  }
+
+  :last-child {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #all-about-sections {
+    display: block;
+
+    ul {
+      justify-content: flex-start;
+    }
+
+    > * {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
+#github-links {
+  padding: 0;
+
+  > li > a {
+    display: block;
+    margin-bottom: 0;
+  }
 }
