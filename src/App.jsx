@@ -34,7 +34,7 @@ const App = () => {
       setLog(newLog);
     });
 
-    ipcRenderer.once(MEMORY, (_, data) => {
+    ipcRenderer.once(GOT_MEMORY, (_, data) => {
       const newMemory = JSON.parse(data);
       setMemory(newMemory);
     });
