@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 
 import { LOG, MEMORY, CPU_USE } from '../utils';
 
+const ROUND = 'round';
+
 const SVG_WIDTH_HEIGHT = 200;
 const PATH_PROPS = {
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  strokeMiterlimit: 10 ,
+  strokeLinecap: ROUND,
+  strokeLinejoin: ROUND,
+  strokeMiterlimit: 10,
 };
 
 const Loading = ({ resource }) => (
   <div id="loading-container">
     Loading {resource}, please wait . . .
     <div id="loading">
-      <svg
-        width={SVG_WIDTH_HEIGHT}
-        height={SVG_WIDTH_HEIGHT}
-      >
+      <svg width={SVG_WIDTH_HEIGHT} height={SVG_WIDTH_HEIGHT}>
         <path
           id="infinity-outline"
           {...PATH_PROPS}
@@ -34,11 +33,7 @@ const Loading = ({ resource }) => (
 );
 
 Loading.propTypes = {
-  resource: PropTypes.oneOf([
-    LOG,
-    MEMORY,
-    CPU_USE,
-  ]).isRequired,
+  resource: PropTypes.oneOf([LOG, MEMORY, CPU_USE]).isRequired,
 };
 
 export default Loading;

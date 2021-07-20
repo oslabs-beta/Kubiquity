@@ -5,12 +5,7 @@ import { Loading, BarChart } from '../';
 
 import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
 
-const BarChartContainer = ({
-  data,
-  resource,
-  xAxisFormatter,
-  resourceKey,
-}) => {
+const BarChartContainer = ({ data, resource, xAxisFormatter, resourceKey }) => {
   const values = new Array(data.length);
   const labels = new Array(data.length);
 
@@ -33,7 +28,7 @@ const BarChartContainer = ({
         </div>
       )}
     </>
-  )
+  );
 };
 
 BarChartContainer.propTypes = {
@@ -42,17 +37,11 @@ BarChartContainer.propTypes = {
       podId: PropTypes.string.isRequired,
       memory: PropTypes.number,
       cpuUsage: PropTypes.number,
-    })
+    }),
   ).isRequired,
-  resource: PropTypes.oneOf([
-    MEMORY,
-    CPU_USE,
-  ]).isRequired,
+  resource: PropTypes.oneOf([MEMORY, CPU_USE]).isRequired,
   xAxisFormatter: PropTypes.func.isRequired,
-  resourceKey: PropTypes.oneOf([
-    MEMORY,
-    CPU_USAGE,
-  ]).isRequired,
+  resourceKey: PropTypes.oneOf([MEMORY, CPU_USAGE]).isRequired,
 };
 
 export default BarChartContainer;

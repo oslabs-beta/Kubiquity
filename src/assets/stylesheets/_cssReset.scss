@@ -6,7 +6,11 @@ html {
   cursor: default;
 }
 
-input, textarea, select, button, img {
+input,
+textarea,
+select,
+button,
+img {
   -webkit-user-drag: none;
 }
 
@@ -23,15 +27,27 @@ input, textarea, select, button, img {
 
 /* General CSS reset */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
 }
 
-ul[role='list'], ol[role='list'] {
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
 }
 
@@ -50,12 +66,16 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-img, picture {
+img,
+picture {
   max-width: 100%;
   display: block;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
@@ -63,8 +83,10 @@ input, button, textarea, select {
   html:focus-within {
     scroll-behavior: auto;
   }
-  
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -5,9 +5,7 @@ import { NAV_OPTIONS } from './navbarConstants';
 
 const NavButton = ({ navOption, handleClick }) => (
   <li>
-    <button onClick={handleClick}>
-      {navOption}
-    </button>
+    <button onClick={handleClick}>{navOption}</button>
   </li>
 );
 

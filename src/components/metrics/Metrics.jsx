@@ -5,20 +5,20 @@ import BarChartContainer from './BarChartContainer';
 
 import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
 
-const roundNumToOneDecimal = num => Math.round(num * 10) / 10;
-const formatXAxisToBytes = val => `${roundNumToOneDecimal(val).toLocaleString()} B`;
-const formatXAxisToPercent = val => `${roundNumToOneDecimal(val)}%`;
+const METRICS_TEXT =
+  'Prevent OOM (out of memory) kill errors by monitoring the memory and CPU usage of each node in your cluster.';
 
-const Metrics = ({ metrics, cpuUse }) => (
+const roundNumToOneDecimal = (num) => Math.round(num * 10) / 10;
+const formatXAxisToPercent = (val) => `${roundNumToOneDecimal(val)}%`;
+const formatXAxisToBytes = (val) =>
+  `${roundNumToOneDecimal(val).toLocaleString()} B`;
+
+const Metrics = ({ memory, cpuUse }) => (
   <div>
-    <div className="section-headers">
-      MEMORY METRICS FOR ACTIVE PODS
-    </div>
-    <div className="sub-header">
-      Prevent OOM (out of memory) kill errors by monitoring the memory and CPU usage of each node in your cluster.
-    </div>
+    <div className="section-headers">MEMORY METRICS FOR ACTIVE PODS</div>
+    <div className="sub-header">{METRICS_TEXT}</div>
     <BarChartContainer
-      data={metrics}
+      data={memory}
       resource={MEMORY}
       resourceKey={MEMORY}
       xAxisFormatter={formatXAxisToBytes}
@@ -33,17 +33,17 @@ const Metrics = ({ metrics, cpuUse }) => (
 );
 
 Metrics.propTypes = {
-  metrics: PropTypes.arrayOf(
+  memory: PropTypes.arrayOf(
     PropTypes.shape({
       podId: PropTypes.string.isRequired,
       memory: PropTypes.number.isRequired,
-    })
+    }),
   ).isRequired,
   cpuUse: PropTypes.arrayOf(
     PropTypes.shape({
       podId: PropTypes.string.isRequired,
       cpuUsage: PropTypes.number.isRequired,
-    })
+    }),
   ).isRequired,
 };
 

@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
 
-import {
-  HOME,
-  LOG,
-  METRICS,
-  ABOUT,
-  NAV_OPTIONS,
-} from './navbarConstants';
+import { HOME, LOG, METRICS, ABOUT, NAV_OPTIONS } from './navbarConstants';
 
 const Navbar = ({
   setIsLogShowing,
@@ -22,10 +16,10 @@ const Navbar = ({
     [ABOUT]: setIsAboutShowing,
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     const { textContent } = e.target;
     const areAllShowing = textContent === HOME;
-    
+
     for (let i = 1; i < NAV_OPTIONS.length; i++) {
       const navOption = NAV_OPTIONS[i];
       const stateUpdater = navOptionToStateUpdater[navOption];
@@ -44,11 +38,7 @@ const Navbar = ({
     />
   ));
 
-  return (
-    <ul>
-      {buttons}
-    </ul>
-  )
+  return <ul>{buttons}</ul>;
 };
 
 Navbar.propTypes = {

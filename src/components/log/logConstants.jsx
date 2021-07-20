@@ -18,9 +18,8 @@ const REASON_CAMEL_CASE = 'reason';
 
 const BASIC_SORT = 'basic';
 
-const sortByTimestamp = (a, b) => (
-  new Date(b.original.createdAt) - new Date(a.original.createdAt)
-);
+const sortByTimestamp = (a, b) =>
+  new Date(b.original.createdAt) - new Date(a.original.createdAt);
 
 export const LOG_HEADERS = [
   {
@@ -111,5 +110,5 @@ export const ROW_RED_BACKGROUND_STYLE = {
   color: '#f8f8f8',
 };
 
-export const DOWN_ARROW = (<div>&#128317;</div>);
-export const UP_ARROW = (<div>&#128316;</div>);
+export const DOWN_ARROW = <div>&#128317;</div>;
+export const UP_ARROW = <div>&#128316;</div>;

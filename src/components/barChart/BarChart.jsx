@@ -11,11 +11,7 @@ import {
   PLOT_OPTIONS,
 } from './barChartConstants';
 
-const BarChart = ({
-  data,
-  categories,
-  xAxisFormatter,
-}) => {
+const BarChart = ({ data, categories, xAxisFormatter }) => {
   const height = data.length > 30 ? 1500 : data.length * 60;
   const series = [{ data }];
 
@@ -47,6 +43,7 @@ const BarChart = ({
 BarChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.number).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  xAxisFormatter: PropTypes.func.isRequired,
 };
 
 export default BarChart;
