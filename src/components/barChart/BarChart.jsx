@@ -43,6 +43,7 @@ const BarChart = ({ data, categories, xAxisFormatter }) => {
 BarChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.number).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  xAxisFormatter: PropTypes.func.isRequired,
 };
 
 export default BarChart;
