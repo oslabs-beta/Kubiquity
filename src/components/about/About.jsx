@@ -16,7 +16,7 @@ const K8SM8S_TEAM_TEXT =
 const About = () => (
   <div id="about-container">
     <div className="section-headers">ABOUT</div>
-      <div id="all-about-sections">
+    <div id="all-about-sections">
       <div className="about-section">
         <div className="about-subheader" style={ABOUT_SECTION_STYLE}>
           About Kubiquity
@@ -36,14 +36,17 @@ const About = () => (
         </div>
         <p className="about-text">
           If you want to contact the K8sM8s team about Kubiquity, please contact
-          us at <a href="mailto:kubiquityapp@gmail.com">kubiquityapp@gmail.com</a>.
+          us at{' '}
+          <a href="mailto:kubiquityapp@gmail.com">kubiquityapp@gmail.com</a>.
         </p>
         <p className="about-text">
-          The Kubiquity repo can be found at <a href="https://github.com/oslabs-beta/Kubiquity">github.com/oslabs-beta/Kubiquity</a>.
+          The Kubiquity repo can be found at{' '}
+          <a href="https://github.com/oslabs-beta/Kubiquity">
+            github.com/oslabs-beta/Kubiquity
+          </a>
+          .
         </p>
-        <p className="about-text">
-          The K8sM8s team can be found on GitHub:
-        </p>
+        <p className="about-text">The K8sM8s team can be found on GitHub:</p>
         <ul id="github-links">
           <li>
             <a href="https://github.com/dlande000">David Anderson</a>

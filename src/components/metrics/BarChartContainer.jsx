@@ -5,7 +5,13 @@ import { Loading, BarChart } from '../';
 
 import { MEMORY, CPU_USE, CPU_USAGE } from '../utils';
 
-const BarChartContainer = ({ data, resource, xAxisFormatter, resourceKey, title }) => {
+const BarChartContainer = ({
+  data,
+  resource,
+  xAxisFormatter,
+  resourceKey,
+  title,
+}) => {
   const values = new Array(data.length);
   const labels = new Array(data.length);
 
