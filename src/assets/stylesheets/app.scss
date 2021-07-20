@@ -155,3 +155,10 @@ input {
 a {
   color: $darkBlue;
 }
+
+.chart-title {
+  display: flex;
+  justify-content: center;
+  color: $darkBlue;
+  font-weight: 600;
+}

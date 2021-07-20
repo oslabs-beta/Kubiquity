@@ -22,12 +22,14 @@ const Metrics = ({ memory, cpuUse }) => (
       resource={MEMORY}
       resourceKey={MEMORY}
       xAxisFormatter={formatXAxisToBytes}
+      title="Memory use in Bytes per Pod"
     />
     <BarChartContainer
       data={cpuUse}
       resource={CPU_USE}
       resourceKey={CPU_USAGE}
       xAxisFormatter={formatXAxisToPercent}
+      title="Percentage of CPU use per Pod"
     />
   </div>
 );
