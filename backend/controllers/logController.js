@@ -23,7 +23,6 @@ logController.queryLog = () => {
 
     // pops off last element in logList because it is an empty string
     logList.pop();
-
     return logList;
   } catch (err) {
     console.log('Error in queryLog: ', err);

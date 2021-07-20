@@ -47,7 +47,14 @@ const forwardPromPort = () =>
   });
 
 metricsController.getMemory = async () => {
-  if (!isPromUp) await forwardPromPort();
+  while (!isPromUp) {
+    try {
+      await forwardPromPort();
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 
   const currentDate = new Date().toISOString();
   // Sums the memory usage rate of all containers and splitting them by pod name
@@ -82,7 +89,14 @@ metricsController.getMemory = async () => {
 };
 
 metricsController.getCPU = async () => {
-  if (!isPromUp) await forwardPromPort();
+  while (!isPromUp) {
+    try {
+      await forwardPromPort();
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 
   const currentDate = new Date().toISOString();
   // Sums the CPU usage rate of all containers with an image and splitting them by pod name
