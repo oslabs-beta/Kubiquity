@@ -35,7 +35,6 @@ const forwardPromPort = () =>
     // if the process fails, reject the promise
     portForward.stderr.on('data', (data) => {
       console.log(`stderr: ${data}`);
-      reject();
     });
 
     // if prometheus is already running, resolve the promise
