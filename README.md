@@ -13,7 +13,7 @@
 
 ### 🏠 [Homepage](https://kubiquity)
 
->Kubiquity is a real time Kubernetes error monitoring tool that incorporates Prometheus metrics queries for CPU and memory usage that runs locally as an Electron application.
+>Kubiquity is a real-time Kubernetes error-monitoring tool. Kubiquity runs locally as an Electron application and incorporates Prometheus metrics queries for a cluster's CPU and memory usage by node.
 
 
 
@@ -27,8 +27,8 @@
 - [Preview](#preview)
 - [Table of contents](#table-of-contents)
 - [Installation](#installation)
-- [Usage](#usage)
-- [TODO](#todo)
+- [Usage Requirements](#usage-requirements)
+- [Planned implementations](#planned-implementations)
 - [Contributions](#contributions)
 - [Contributors](#contributors)
 - [License](#license)
@@ -36,31 +36,31 @@
 # Installation
 [(Back to top)](#table-of-contents)
 
-Visit our [releases page](https://github.com/oslabs-beta/Kubiquity/releases) to download the latest stable release for your operating system
+Visit our [releases page](https://github.com/oslabs-beta/Kubiquity/releases) to download the latest release for your operating system.
 
-To package the app from the source code, fork and clone the repo, then run the following commands
+To package the app from the source code, fork and clone the repo, then run the following commands:
 
 1. ```yarn```
-2. ```yarn run package-linux``` or ```yarn run package-win``` based on your OS"
-3. The app will be created and placed in the ```release-builds``` folder
+2. ```yarn run package-linux``` or ```yarn run package-win``` based on your OS.
+3. The app will be created and placed in the ```release-builds``` folder.
 
-# Usage
+# Usage Requirements
 [(Back to top)](#table-of-contents)
 
-- Ensure that a Kubernetes cluster is running.
+- Ensure that a Kubernetes cluster is running and healthy.
 
 - Create a Prometheus namespace in the cluster and install Prometheus into that namespace.
 
 - When running the app, ensure that Prometheus has been running for at least a minute so that it can generate metrics from the cluster.
 
 
-# TODO
+# Planned implementations
 [(Back to top)](#table-of-contents)
 
-- [ ] Add Mac OS support
-- [ ] Add time travel debugging by saving a snapshot of the current state of the cluster
-- [ ] Add line graph for CPU and memory usage
-- [ ] Add recommended course of action based on warnings and errors
+- [ ] Add Mac OS support.
+- [ ] Add time travel debugging by saving a snapshot of the current state of the cluster.
+- [ ] Store and display CPU and memory usage over time.
+- [ ] Add recommended course of action based on warnings and errors.
 
 # Contributions
 [(Back to top)](#table-of-contents)
@@ -106,4 +106,4 @@ Copyright © 2021 [k8sm8s](https://github.com/oslabs-beta).
 
 This product is [MIT](https://github.com/oslabs-beta/Kubiquity/blob/master/LICENSE) licensed.
 
-This product is accelerated by [OS Labs](https://opensourcelabs.io)
+This product is accelerated by [OS Labs](https://opensourcelabs.io).
