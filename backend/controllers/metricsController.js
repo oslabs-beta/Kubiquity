@@ -59,7 +59,7 @@ metricsController.getMemory = async () => {
       .reduce((pods, { values, metric: { pod: podId } }) => {
         let memory = values[0][1];
 
-        if (values[0][1] > 0 && podId) {
+        if (podId) {
           memory = Math.round(parseFloat(memory));
 
           const pod = {
