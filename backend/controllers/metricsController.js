@@ -8,53 +8,42 @@ const metricsController = {};
 
 let isPromUp = false;
 
-const forwardPromPort = () =>
-  new Promise((resolve, reject) => {
-    // Run command to get pod name for prometheus instance and save to variable
-    const promPodName = cmd
-      .runSync(
-        'export POD_NAME=$(kubectl get pods --all-namespaces -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}") && echo $POD_NAME',
-      )
-      .data.split('\n');
+const forwardPromPort = async () => {
+  // Run command to get pod name for prometheus instance and save to variable
+  const [promPodName] = cmd
+    .runSync(
+      'export POD_NAME=$(kubectl get pods --all-namespaces -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}") && echo $POD_NAME',
+    )
+    .data.split('\n');
 
-    // Spawns a new persistent process to forward the port 9090 to 9090 in the prometheus pod
-    const portForward = spawn('kubectl', [
-      '--namespace=prometheus',
-      'port-forward',
-      `${promPodName[0]}`,
-      '9090',
-    ]);
+  // Spawns a new persistent process to forward the port 9090 to 9090 in the prometheus pod
+  const portForward = await spawn('kubectl', [
+    '--namespace=prometheus',
+    'port-forward',
+    promPodName,
+    '9090',
+  ]);
 
-    // if the process is successful, resolve the promise
-    portForward.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-      isPromUp = true;
-      resolve();
-    });
-
-    // if the process fails, reject the promise
-    portForward.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-      reject();
-    });
-
-    // if prometheus is already running, resolve the promise
-    portForward.on('close', (code) => {
-      if (code === 1) console.log('Prometheus is already running...');
-      isPromUp = true;
-      resolve();
-    });
+  // if the process is successful, resolve the promise
+  await portForward.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+    isPromUp = true;
   });
 
+  // if the process fails, reject the promise
+  await portForward.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+  });
+
+  // if prometheus is already running, resolve the promise
+  await portForward.on('close', (code) => {
+    if (code === 1) console.log('Prometheus is already running...');
+    isPromUp = true;
+  });
+};
+
 metricsController.getMemory = async () => {
-  while (!isPromUp) {
-    try {
-      await forwardPromPort();
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  }
+  if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
   // Sums the memory usage rate of all containers and splitting them by pod name
@@ -68,8 +57,10 @@ metricsController.getMemory = async () => {
     // Parses the memory usage and formats it into an array of objects with podId and memory usage
     return memArr
       .reduce((pods, { values, metric: { pod: podId } }) => {
-        if (values[0][1] > 0 && podId) {
-          const memory = parseFloat(values[0][1]);
+        let memory = values[0][1];
+
+        if (podId) {
+          memory = Math.round(parseFloat(memory));
 
           const pod = {
             podId,
@@ -89,14 +80,7 @@ metricsController.getMemory = async () => {
 };
 
 metricsController.getCPU = async () => {
-  while (!isPromUp) {
-    try {
-      await forwardPromPort();
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  }
+  if (!isPromUp) await forwardPromPort();
 
   const currentDate = new Date().toISOString();
   // Sums the CPU usage rate of all containers with an image and splitting them by pod name
@@ -110,7 +94,7 @@ metricsController.getCPU = async () => {
     // Formats the cpuArr into an array of objects with podname and cpu usage as properties
     return cpuArr
       .map(({ metric: { pod: podId }, values }) => {
-        const cpuUsage = values[0][1] * 100;
+        const cpuUsage = Math.round(values[0][1] * 1000) / 10;
 
         return {
           podId,
