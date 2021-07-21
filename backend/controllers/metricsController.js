@@ -50,7 +50,7 @@ metricsController.getMemory = async () => {
   const query = `query_range?query=sum(rate(container_memory_usage_bytes[2m])) by (pod) &start=${currentDate}&end=${currentDate}&step=1m`;
 
   try {
-    const data = await fetch(PROM_URL + query)
+    const data = await fetch(PROM_URL + query);
     const results = await data.json();
     const memArr = results.data.result;
 
