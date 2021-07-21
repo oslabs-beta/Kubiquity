@@ -15,7 +15,7 @@ const forwardPromPort = async () => {
       'export POD_NAME=$(kubectl get pods --all-namespaces -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}") && echo $POD_NAME',
     )
     .data.split('\n');
-      console.log('this is the console log I am looking for', promPodName);
+
   // Spawns a new persistent process to forward the port 9090 to 9090 in the prometheus pod
   const portForward = await spawn('kubectl', [
     '--namespace=prometheus',
