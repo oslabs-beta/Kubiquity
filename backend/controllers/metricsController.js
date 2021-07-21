@@ -57,8 +57,10 @@ metricsController.getMemory = async () => {
     // Parses the memory usage and formats it into an array of objects with podId and memory usage
     return memArr
       .reduce((pods, { values, metric: { pod: podId } }) => {
+        let memory = values[0][1];
+
         if (values[0][1] > 0 && podId) {
-          const memory = parseFloat(values[0][1]);
+          memory = Math.round(parseFloat(memory));
 
           const pod = {
             podId,
@@ -92,7 +94,7 @@ metricsController.getCPU = async () => {
     // Formats the cpuArr into an array of objects with podname and cpu usage as properties
     return cpuArr
       .map(({ metric: { pod: podId }, values }) => {
-        const cpuUsage = values[0][1] * 100;
+        const cpuUsage = Math.round(values[0][1] * 1000) / 10;
 
         return {
           podId,
