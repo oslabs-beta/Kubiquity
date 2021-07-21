@@ -22,7 +22,6 @@ h1 {
   background: $white;
   margin-right: 30px;
   width: 82vw;
-  overflow-x: hidden;
 
   * {
     margin-bottom: 24px;
@@ -115,7 +114,15 @@ button:hover {
 
     p {
       padding-top: 0px;
-      margin: 0 0 12px;
+      margin: 0 0 12px 24px;
+    }
+
+    body {
+      overflow-x: scroll;
+    }
+
+    #header-logo {
+      width: 355px;
     }
   }
 
@@ -135,13 +142,22 @@ button:hover {
   }
 }
 
-@media only screen and (max-width: 860px) {
-  body {
-    overflow-x: scroll;
-  }
-}
-
 input {
   width: 40%;
   min-width: 300px;
+}
+
+#header-logo {
+  height: 160px;
+}
+
+a {
+  color: $darkBlue;
+}
+
+.chart-title {
+  display: flex;
+  justify-content: center;
+  color: $darkBlue;
+  font-weight: 600;
 }
