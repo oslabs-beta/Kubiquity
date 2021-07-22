@@ -1,5 +1,5 @@
 <!-- Add banner here -->
-![banner](https://i.imgur.com/FofrKIt.png)
+![banner](https://i.imgur.com/95H2JHP.png)
 # Kubiquity
 
 <!-- Add buttons here -->
