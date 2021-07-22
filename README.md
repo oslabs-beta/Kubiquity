@@ -49,7 +49,7 @@ To package the app from the source code, fork and clone the repo, then run the f
 
 
 - To start, spin up a Kubernetes cluster.
-- If not already using Prometheus, follow these steps to install and run Prometheus: `https://prometheus-community.github.io/helm-charts`
+- If not already using Prometheus, follow these steps to install and run Prometheus: https://prometheus-community.github.io/helm-charts
 - Download the Kubiquity from our releases or package the app yourself
 - Start up Kubiquity
 
