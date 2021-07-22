@@ -47,11 +47,11 @@ To package the app from the source code, fork and clone the repo, then run the f
 # Usage Requirements
 [(Back to top)](#table-of-contents)
 
-- Ensure that a Kubernetes cluster is running and healthy.
 
-- Create a Prometheus namespace in the cluster and install Prometheus into that namespace.
-
-- When running the app, ensure that Prometheus has been running for at least a minute so that it can generate metrics from the cluster.
+- To start, spin up a Kubernetes cluster.
+- If not already using Prometheus, follow these steps to install and run Prometheus: `https://prometheus-community.github.io/helm-charts`
+- Download the Kubiquity from our releases or package the app yourself
+- Start up Kubiquity
 
 
 # Planned implementations
