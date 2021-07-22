@@ -11,7 +11,7 @@
 [![Twitter: kubiquityapp](https://img.shields.io/twitter/follow/kubiquityapp.svg?style=social)](https://twitter.com/kubiquityapp)
 
 
-### 🏠 [Homepage](https://kubiquity)
+### 🏠 [Homepage](https://kubiquity.io)
 
 >Kubiquity is a real-time Kubernetes error-monitoring tool. Kubiquity runs locally as an Electron application and incorporates Prometheus metrics queries for a cluster's CPU and memory usage by node.
 
