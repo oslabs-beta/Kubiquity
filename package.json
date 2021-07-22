@@ -10,7 +10,10 @@
     "frontend": "rm -rf build && concurrently 'webpack --config webpack.common.js --watch  --mode development' 'electron .'",
     "backend": "nodemon server/server.js",
     "react": "rm -rf build && webpack --config webpack.common.js --watch  --mode development",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/images/icon.png --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/images/icon.ico --prune=true --out=release-builds --version-string.CompanyName=K8sM8s --version-string.FileDescription=CE --version-string.ProductName=\"Kubiquity\"",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "dotenv": "^10.0.0",
     "electron": "^13.1.4",
     "electron-json-storage": "^4.5.0",
+    "electron-reload": "^1.5.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.1",
     "node-cmd": "^4.0.0",
@@ -50,7 +54,7 @@
     "babel-polyfill": "^6.26.0",
     "concurrently": "^6.2.0",
     "css-loader": "^5.2.6",
-    "electron-reload": "^1.5.0",
+    "electron-packager": "^15.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.29.0",
