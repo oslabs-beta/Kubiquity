@@ -2,6 +2,7 @@
 <p align="center">
   <img src="https://i.imgur.com/95H2JHP.png" alt="Kubiquity banner"/>
 </p>
+
 # Kubiquity
 
 <!-- Add buttons here -->
