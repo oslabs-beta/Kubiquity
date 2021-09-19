@@ -77,29 +77,33 @@ We also welcome contributions from the community. If you are interested in contr
 
 
 <a href="https://github.com/dlande000"><img src="https://avatars.githubusercontent.com/u/44009893?v=4" width=200px height=200px /></a>
-David Anderson                                      |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **[![David Anderson](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dlande000)  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dlande000/)** |
+
+**David Anderson**
+
+**[![David Anderson](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dlande000)  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dlande000/)**
 
 
 
 
 <a href="https://github.com/Hydroelectric29"><img src="https://avatars.githubusercontent.com/u/39108231?v=4" width=200px height=200px /></a>
-Robert Hernandez                                      |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **[![Robert Hernandez](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hydroelectric29)  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/robert-hernandez-879108211/)** |
+
+**Robert Hernandez**
+
+**[![Robert Hernandez](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hydroelectric29)  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/robert-hernandez-879108211/)**
 
 
 <a href="https://github.com/davidzhangnyc"><img src="https://avatars.githubusercontent.com/u/11681692?v=4" width=200px height=200px /></a>
-David Zhang                                      |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **[![David Zhang](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/davidzhangnyc)  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/davidnyc/)** |
+
+**David Zhang**
+
+**[![David Zhang](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/davidzhangnyc)  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/davidnyc/)**
 
 
 <a href="https://github.com/JefZheng"><img src="https://avatars.githubusercontent.com/u/39392074?v=4" width=200px height=200px /></a>
-Jeffrey Zheng                             |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **[![Jeffrey Zheng](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JefZheng) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/JefZheng/)** |
+
+**Jeffrey Zheng**
+
+**[![Jeffrey Zheng](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JefZheng) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/JefZheng/)**
 
 
 # License
